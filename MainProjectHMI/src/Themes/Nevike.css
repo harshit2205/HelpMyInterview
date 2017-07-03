@@ -24,7 +24,7 @@
     -fx-font-weight: bolder;
 }
 .combo-box{
-    -fx-background-color: #01a0e4;
+    -fx-background-color: #ff851a;
     -fx-text-fill: #32302F;
 }
 .tab{
@@ -75,6 +75,21 @@
 .radio-button{
     -fx-text-fill: #ffffff;
     -fx-font-weight: bolder;
+
+}
+.text-field{
+
+}
+.text-field-error{
+    -fx-border-color: #e81216;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.text-error{
+    -fx-fill: #e81216;
 }
 
 
