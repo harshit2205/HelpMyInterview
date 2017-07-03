@@ -1,0 +1,81 @@
+.root {
+    -fx-background-color: #32302F;
+
+}
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #f80367;
+
+}
+.button-blue {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #01a0e4;
+
+}
+.button-round{
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bolder;
+    -fx-background-color: #f80367;
+    -fx-background-radius: 100;
+}
+
+.label{
+    -fx-text-fill: #ff851a;
+    -fx-font-weight: bolder;
+}
+.combo-box{
+    -fx-background-color: #01a0e4;
+    -fx-text-fill: #32302F;
+}
+.tab{
+    -fx-background-color: #01a0e4 ;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 5,0,0,0;
+
+    -fx-background-radius: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+
+
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+
+}
+
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: #000000;
+}
+.tab-pane *.tab-header-background
+{
+    -fx-background-color: #32302F;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #807d7c;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: #01a0e4;
+}
+.tab .tab-label
+{
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-padding: 5;
+    -fx-text-fill: #ffffff;
+}
+
+.menu .label {-fx-text-fill: white;}
+.context-menu {
+
+    -fx-background-color: transparent;
+}
+.tab-pane {
+    -fx-min-height: 581;
+    -fx-min-width: 600;
+}
+.radio-button{
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bolder;
+}
+
+
+
