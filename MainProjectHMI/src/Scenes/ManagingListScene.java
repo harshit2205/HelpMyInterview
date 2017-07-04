@@ -1,7 +1,9 @@
 package Scenes;
 
+import Delete.ConfirmBox;
 import Delete.DemoPojo;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,7 +17,7 @@ import javafx.stage.Stage;
 public class ManagingListScene {
 
     private static ObservableList<DemoPojo> list;
-    private static TableView table = null;
+    private static TableView table;
 
 
     static void passControl(Stage window){
@@ -42,14 +44,25 @@ public class ManagingListScene {
         Button logoutButton = new Button("Logout!");
         editButton.setOnAction(e -> {});
         deleteButton.setOnAction(e -> {
+            if(new ConfirmBox().confirmationUtility("Confirm delete!","Are u sure u want to Delete")){
             ObservableList<DemoPojo> selectedItems =  table.getSelectionModel().getSelectedItems();
             // code for updating in the sql
-            table.getItems().removeAll(selectedItems);
+            table.getItems().removeAll(selectedItems);}
         });
-        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                deleteButton.setDisable(false);
-                editButton.setDisable(false);
+
+        table.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<DemoPojo>(){
+            @Override
+            public void onChanged(  ListChangeListener.Change<? extends DemoPojo> changed){
+                if( changed.getList().size() > 1){
+                    editButton.setDisable(true);}
+                    else{
+                    deleteButton.setDisable(false);
+                    editButton.setDisable(false);
+                }
+            }
         });
+
+
 
         logoutButton.setOnAction(e -> {ManagerLoginScene.passControl(window);});
         topbarHBox.getChildren().add(logoutButton);
@@ -66,9 +79,6 @@ public class ManagingListScene {
     }
 
 
-
-
-
     private static boolean ifTableExists(){
         if(table == null){
         return true;}
@@ -77,17 +87,18 @@ public class ManagingListScene {
     }
 
     private static void createTable(){
-        table = new TableView();
+        table = new TableView<DemoPojo>();
 
-        TableColumn<DemoPojo, Integer> idColumn = new TableColumn("Id");
+        TableColumn<DemoPojo, Integer> idColumn = new TableColumn<>("Id");
+        idColumn.setMaxWidth(1000);
         idColumn.setCellValueFactory(
-                new PropertyValueFactory<DemoPojo, Integer>("id"));
-        TableColumn<DemoPojo, String> usernameColumn = new TableColumn("User Name");
+                new PropertyValueFactory<>("id"));
+        TableColumn<DemoPojo, String> usernameColumn = new TableColumn<>("User Name");
         usernameColumn.setCellValueFactory(
-                new PropertyValueFactory<DemoPojo, String>("userName"));
-        TableColumn<DemoPojo, String> nameColumn = new TableColumn("Name");
+                new PropertyValueFactory<>("userName"));
+        TableColumn<DemoPojo, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(
-                new PropertyValueFactory<DemoPojo, String>("name"));
+                new PropertyValueFactory<>("name"));
 
         table.setItems(list);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
