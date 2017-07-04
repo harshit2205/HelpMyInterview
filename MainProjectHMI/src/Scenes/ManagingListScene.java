@@ -36,7 +36,9 @@ public class ManagingListScene {
 
 
         Button editButton = new Button("Edit");
+        editButton.setDisable(true);
         Button deleteButton = new Button("delete");
+        deleteButton.setDisable(true);
         Button logoutButton = new Button("Logout!");
         editButton.setOnAction(e -> {});
         deleteButton.setOnAction(e -> {
@@ -44,6 +46,11 @@ public class ManagingListScene {
             // code for updating in the sql
             table.getItems().removeAll(selectedItems);
         });
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+                deleteButton.setDisable(false);
+                editButton.setDisable(false);
+        });
+
         logoutButton.setOnAction(e -> {ManagerLoginScene.passControl(window);});
         topbarHBox.getChildren().add(logoutButton);
 
@@ -83,11 +90,9 @@ public class ManagingListScene {
                 new PropertyValueFactory<DemoPojo, String>("name"));
 
         table.setItems(list);
-
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.getColumns().addAll(idColumn, usernameColumn, nameColumn);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
     }
 
 }

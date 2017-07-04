@@ -92,5 +92,12 @@
     -fx-fill: #e81216;
 }
 
+.table-cell {
+    -fx-alignment: CENTER;
+     /* The rest is from caspian.css */
+}
+
+
+
 
 
