@@ -87,22 +87,19 @@ public class ImageSlider {
 
             });
 
-//             new Thread(){
-//                @Override
-//                public void run() {
-//                    while(true){
-//                        try {
-//                            sleep(3000);
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                        if((j + 1) == list.size()){
-//                            j = 0;
-//                        }else j = j + 1;
-//                        imageView.setImage(images[j]);
-//                    }
-//                }
-//            }.start();
+             new Thread(() -> {
+                 while(true){
+                     try {
+                         Thread.sleep(3000);
+                     } catch (InterruptedException e) {
+                         e.printStackTrace();
+                     }
+                     if((j + 1) == list.size()){
+                         j = 0;
+                     }else j = j + 1;
+                     imageView.setImage(images[j]);
+                 }
+             }).start();
 
 
 
