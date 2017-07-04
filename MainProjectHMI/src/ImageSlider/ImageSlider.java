@@ -29,6 +29,8 @@ public class ImageSlider {
     static Button lbutton;
     static Button rButton;
     static ImageView imageView;
+    static Image[] images;
+    static Thread thread = null;
 
 
     public static HBox getLayout() {
@@ -51,7 +53,7 @@ public class ImageSlider {
             lbutton.getStyleClass().add("button-round");
             rButton.getStyleClass().add("button-round");
 
-            Image images[] = new Image[list.size()];
+            images = new Image[list.size()];
             for (int i = 0; i < list.size(); i++) {
                 images[i] = new Image(list.get(i));
             }
@@ -87,21 +89,9 @@ public class ImageSlider {
 
             });
 
-             new Thread(() -> {
-                 while(true){
-                     try {
-                         Thread.sleep(3000);
-                     } catch (InterruptedException e) {
-                         e.printStackTrace();
-                     }
-                     if((j + 1) == list.size()){
-                         j = 0;
-                     }else j = j + 1;
-                     imageView.setImage(images[j]);
-                 }
-             }).start();
-
-
+            if(isImageSliderThreadRunning()){
+                slideImages();
+            }
 
             imageView.setFitHeight(300);
             imageView.setFitWidth(535);
@@ -134,7 +124,29 @@ public class ImageSlider {
         }
     };
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
+
+    private static boolean isImageSliderThreadRunning(){
+        if(thread == null) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private static void slideImages(){
+        thread = new Thread(() -> {
+            while(true){
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if((j + 1) == list.size()){
+                    j = 0;
+                }else j = j + 1;
+                imageView.setImage(images[j]);
+            }
+        });
+        thread.start();
+    }
 }

@@ -18,6 +18,5 @@ public class MainStage extends Application {
         window.setResizable(false);
         window.setTitle("Help My Interview!");
         //window.setOpacity(0.93);
-
     }
 }
