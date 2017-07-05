@@ -44,7 +44,7 @@ public class ManagingListScene {
         Button logoutButton = new Button("Logout!");
         editButton.setOnAction(e -> {});
         deleteButton.setOnAction(e -> {
-            if(new ConfirmBox().confirmationUtility("Confirm delete!","Are u sure u want to Delete")){
+            if(new ConfirmBox().confirmationUtility("Confirm delete!","Are you sure you want to \ndelete the user?")){
             ObservableList<DemoPojo> selectedItems =  table.getSelectionModel().getSelectedItems();
             // code for updating in the sql
             table.getItems().removeAll(selectedItems);}

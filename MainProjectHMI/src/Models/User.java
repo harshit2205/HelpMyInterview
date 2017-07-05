@@ -1,5 +1,7 @@
 package Models;
 
+import javafx.scene.image.Image;
+
 /**
  * Created by staLker on 04-07-2017.
  */
@@ -14,6 +16,7 @@ public class User{
     private String password;
     private String state;
     private String city;
+    private Image userImage;
 
     public User() {
         this.id = 1000 + (int)(Math.random() * 8999);

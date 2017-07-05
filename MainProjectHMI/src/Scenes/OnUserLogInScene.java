@@ -68,7 +68,7 @@ public class OnUserLogInScene {
         AnchorPane.setBottomAnchor(footerHbox,0.0);
         footerHbox.setPadding(new Insets(3,3,3,3));
         footerHbox.setStyle("-fx-background-color: #000000");
-        footerHbox.setMinWidth(600);
+        footerHbox.setMinWidth(700);
 
 
 
@@ -90,7 +90,7 @@ public class OnUserLogInScene {
 
 
         anchorPane.getChildren().addAll(tabPane,hBox,footerHbox);
-        Scene scene = new Scene(anchorPane,600,600);
+        Scene scene = new Scene(anchorPane,700,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         window.setScene(scene);
         window.show();

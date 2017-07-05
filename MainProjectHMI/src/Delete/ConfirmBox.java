@@ -27,6 +27,7 @@ public class ConfirmBox {
 
         Label messageLabel = new Label(message);
 
+
         HBox hBox = new HBox(20);
         Button yesButton = new Button("Yes");
         Button noButton = new Button("No");
