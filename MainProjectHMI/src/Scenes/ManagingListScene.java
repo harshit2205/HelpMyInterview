@@ -12,6 +12,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ManagingListScene {
@@ -21,11 +25,24 @@ public class ManagingListScene {
 
 
     static void passControl(Stage window){
-        VBox parentPaneVbox = new VBox(10);
-        HBox topbarHBox = new HBox();
-        HBox optionsHbox = new HBox(50);
-        topbarHBox.setAlignment(Pos.CENTER_RIGHT);
-        topbarHBox.setPadding(new Insets(10,10,20,10));
+        VBox parentPaneVBox = new VBox(10);
+        HBox topBarHBox = new HBox();
+
+
+        Text titleText = new Text("Users-Details List");
+        titleText.setFont(Font.font(null, FontWeight.EXTRA_BOLD,23));
+        titleText.setFill(Paint.valueOf("#01a0e4"));
+        HBox titleTextHBox = new HBox();
+        titleTextHBox.setStyle("-fx-background-color: #000000");
+        titleTextHBox.setPadding(new Insets(10,10,10,10));
+        titleTextHBox.getChildren().add(titleText);
+        titleTextHBox.setAlignment(Pos.CENTER);
+
+
+
+        VBox optionsVBox = new VBox(10);
+        topBarHBox.setAlignment(Pos.CENTER_RIGHT);
+        topBarHBox.setPadding(new Insets(10,10,0,10));
 
         list = FXCollections.observableArrayList();
         for(int i = 1 ; i <= 50 ; i++){
@@ -61,18 +78,20 @@ public class ManagingListScene {
                 }
             }
         });
+        table.setMaxHeight(330);
+        VBox.setMargin(table,new Insets(30,10,30,10));
 
 
 
         logoutButton.setOnAction(e -> {ManagerLoginScene.passControl(window);});
-        topbarHBox.getChildren().add(logoutButton);
+        topBarHBox.getChildren().add(logoutButton);
 
-        optionsHbox.setAlignment(Pos.CENTER);
-        optionsHbox.getChildren().addAll(editButton,deleteButton);
+        optionsVBox.setAlignment(Pos.CENTER);
+        optionsVBox.getChildren().addAll(editButton,deleteButton);
 
-        parentPaneVbox.setPadding(new Insets(10,10,10,10));
-        parentPaneVbox.getChildren().addAll(topbarHBox,table,optionsHbox);
-        Scene scene = new Scene(parentPaneVbox,600,600);
+        parentPaneVBox.setPadding(new Insets(0,0,0,0));
+        parentPaneVBox.getChildren().addAll(topBarHBox,titleTextHBox,table,optionsVBox);
+        Scene scene = new Scene(parentPaneVBox,600,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         window.setScene(scene);
         window.show();

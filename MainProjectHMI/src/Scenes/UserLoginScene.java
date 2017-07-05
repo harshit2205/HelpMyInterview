@@ -96,9 +96,9 @@ public class UserLoginScene {
         HBox runnableTextHBox = new HBox();
         runnableTextHBox.getChildren().add(new Text("One day this text will run in bold and white....."));
         runnableTextHBox.setStyle("-fx-background-color: #f80367");
-        HBox coloredHBoxOne = new HBox();
-        coloredHBoxOne.getChildren().add(new Text(""));
-        coloredHBoxOne.setStyle("-fx-background-color: #01a0e4");
+//        HBox coloredHBoxOne = new HBox();
+//        coloredHBoxOne.getChildren().add(new Text(""));
+//        coloredHBoxOne.setStyle("-fx-background-color: #01a0e4");
         HBox coloredHBoxTwo = new HBox();
         coloredHBoxTwo.getChildren().add(new Text(""));
         coloredHBoxTwo.setStyle("-fx-background-color: transparent");
@@ -118,7 +118,7 @@ public class UserLoginScene {
         imageSliderHBox.setPadding(new Insets(10,0,10,0));
         VBox.setMargin(imageSliderHBox,new Insets(10,0,0,0));
         imageSliderHBox.setStyle("-fx-background-color: #090300");
-        root.getChildren().addAll(optionMenuHBox,coloredHBoxOne,imageLoginPanel,coloredHBoxTwo,imageSliderHBox,runnableTextHBox);
+        root.getChildren().addAll(optionMenuHBox,imageLoginPanel,coloredHBoxTwo,imageSliderHBox,runnableTextHBox);
 
         root.setAlignment(Pos.CENTER);
 
