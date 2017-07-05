@@ -77,8 +77,8 @@
     -fx-font-weight: bolder;
 
 }
-.text-field{
-
+.text-field-normal{
+    -fx-border-color: transparent;
 }
 .text-field-error{
     -fx-border-color: #e81216;

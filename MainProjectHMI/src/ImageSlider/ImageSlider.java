@@ -90,7 +90,7 @@ public class ImageSlider {
             });
 
             if(isImageSliderThreadRunning()){
-                slideImages();
+                //slideImages();
             }
 
             imageView.setFitHeight(300);
@@ -133,20 +133,20 @@ public class ImageSlider {
         }
     }
 
-    private static void slideImages(){
-        thread = new Thread(() -> {
-            while(true){
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if((j + 1) == list.size()){
-                    j = 0;
-                }else j = j + 1;
-                imageView.setImage(images[j]);
-            }
-        });
-        thread.start();
-    }
+//    private static void slideImages(){
+//        thread = new Thread(() -> {
+//            while(true){
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                if((j + 1) == list.size()){
+//                    j = 0;
+//                }else j = j + 1;
+//                imageView.setImage(images[j]);
+//            }
+//        });
+//        thread.start();
+//    }
 }

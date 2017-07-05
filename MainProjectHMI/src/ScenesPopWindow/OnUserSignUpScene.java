@@ -1,5 +1,10 @@
 package ScenesPopWindow;
 
+import Models.EntryValidation;
+import Models.User;
+import Utils.Cities;
+import Utils.States;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,19 +22,27 @@ import javafx.scene.text.Text;
  * Created by staLker on 01-07-2017.
  */
 public class OnUserSignUpScene {
+    private static boolean firstNameVal = false;
+    private static boolean lastNameVal = false;
+    private static boolean eMailVal = false;
+    private static boolean contactVal = false;
+    private static boolean userNameVal = false;
+    private static boolean passwordVal = false;
+    private static boolean genderVal = false;
+    private static boolean stateVal = false;
+    private static boolean cityVal = false;
+    private static boolean acceptTermVal = false;
+    private static Button registerButton;
     public static Scene getScene(){
-
-//        HBox hBox = new HBox();
-//        Label label = new Label("Registration form coming soon...");
-//        hBox.getChildren().add(label);
-//        hBox.setAlignment(Pos.CENTER);
 
         VBox root = new VBox(70);
 
-        Text titleText = new Text("Enter your Detail");
+        Text titleText = new Text("Enter your Details");
         titleText.setFont(Font.font(null, FontWeight.EXTRA_BOLD,30));
         titleText.setFill(Paint.valueOf("#01a0e4"));
         HBox titleTextHBox = new HBox();
+        titleTextHBox.setStyle("-fx-background-color: #000000");
+        titleTextHBox.setPadding(new Insets(10,10,10,10));
         titleTextHBox.getChildren().add(titleText);
         titleTextHBox.setAlignment(Pos.CENTER);
 
@@ -62,20 +75,22 @@ public class OnUserSignUpScene {
         TextField usernameTextField = new TextField();
         ToggleGroup genderToggleGroup = new ToggleGroup();
         RadioButton maleRadioButton = new RadioButton("Male");
+        maleRadioButton.setUserData("Male");
         maleRadioButton.setToggleGroup(genderToggleGroup);
         RadioButton femaleRadioButton = new RadioButton("Female");
+        femaleRadioButton.setUserData("Female");
         femaleRadioButton.setToggleGroup(genderToggleGroup);
         HBox genderRadioButtonHBox = new HBox(15);
         genderRadioButtonHBox.getChildren().addAll(maleRadioButton,femaleRadioButton);
         usernameTextField.setPromptText("enter a username");
-        TextField passwordTextField = new TextField();
+        PasswordField passwordTextField = new PasswordField();
         passwordTextField.setPromptText("set your Password");
-        TextField repeatPasswordTextField = new TextField();
+        PasswordField repeatPasswordTextField = new PasswordField();
         repeatPasswordTextField.setPromptText("re-enter the Password");
-        ComboBox<String> statesComboBox = new ComboBox<>();
+        ComboBox<String> statesComboBox = new ComboBox<>(States.getAllStates());
         statesComboBox.setPromptText("select states");
-        ComboBox<String> citiesComboBox = new ComboBox<>();
-        citiesComboBox.setPromptText("select city");
+        ComboBox<String> cityComboBox = new ComboBox<String>(Cities.getAllCities());
+        cityComboBox.setPromptText("select city");
         CheckBox acceptCheckBox =  new CheckBox("Accept Terms & Conditions");
         acceptCheckBox.setStyle("-fx-text-fill: white");
 
@@ -89,7 +104,7 @@ public class OnUserSignUpScene {
         HBox passwordErrorHBox = setErrorHBox(passwordTextField);
         HBox repeatPasswordErrorHBox = setErrorHBox(repeatPasswordTextField);
         HBox stateComboBoxErrorHBox = setErrorHBox(statesComboBox);
-        HBox cityComboBoxErrorHBox = setErrorHBox(citiesComboBox);
+        HBox cityComboBoxErrorHBox = setErrorHBox(cityComboBox);
         HBox acceptCheckBoxErrorHBox = setErrorHBox(acceptCheckBox);
         acceptCheckBoxErrorHBox.setAlignment(Pos.CENTER);
 
@@ -157,29 +172,153 @@ public class OnUserSignUpScene {
 
 
 
-        Button registerButton = new Button("Register!");
+        registerButton = new Button("Register!");
+        registerButton.setDisable(true);
+
+
+        firstNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(EntryValidation.isFirstNameValid(newValue)){
+                onCorrectMakeInvisible(firstNameErrorHBox);
+                firstNameVal=true;
+            }
+            else if(!EntryValidation.isFirstNameValid(newValue)){
+                onErrorMakeRed(firstNameErrorHBox);
+                firstNameVal=false;
+            }
+            checkIfAllTrue();
+        });
+        lastNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(EntryValidation.isLastNameValid(newValue)){
+                onCorrectMakeInvisible(lastNameErrorHBox);
+                lastNameVal=true;
+            }
+            else if(!EntryValidation.isFirstNameValid(newValue)){
+                onErrorMakeRed(lastNameErrorHBox);
+                lastNameVal=false;
+            }
+            checkIfAllTrue();
+        });
+        eMailTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(EntryValidation.isEmailValid(newValue)){
+                onCorrectMakeInvisible(eMailErrorHBox);
+                eMailVal=true;
+            }
+            else if(!EntryValidation.isEmailValid(newValue)){
+                onErrorMakeRed(eMailErrorHBox);
+                eMailVal=false;
+            }
+            checkIfAllTrue();
+        });
+        contactTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(EntryValidation.isContactValid(Long.parseLong(newValue))){
+                onCorrectMakeInvisible(contactErrorHBox);
+                contactVal=true;
+            }
+            else if(!EntryValidation.isContactValid(Long.parseLong(newValue))){
+                onErrorMakeRed(contactErrorHBox);
+                contactVal=false;
+            }
+            checkIfAllTrue();
+        });
+        genderToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if(genderToggleGroup.getSelectedToggle() != null){
+                onCorrectMakeInvisible(genderErrorHBox);
+                genderVal=true;
+            }
+
+            checkIfAllTrue();
+        });
+        usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(genderToggleGroup.getSelectedToggle() != null){
+                onCorrectMakeInvisible(genderErrorHBox);
+                genderVal=true;
+            }
+            else {
+                onErrorMakeRed(genderErrorHBox);
+                genderVal=false;
+            }
+            if(EntryValidation.isUserNameValid(newValue)){
+                onCorrectMakeInvisible(userNameErrorHBox);
+                userNameVal=true;
+            }
+            else if(!EntryValidation.isUserNameValid(newValue)){
+                onErrorMakeRed(userNameErrorHBox);
+                userNameVal=false;
+            }
+            checkIfAllTrue();
+        });
+        repeatPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(EntryValidation.isPasswordValid(passwordTextField.getText(),newValue)){
+                onCorrectMakeInvisible(passwordErrorHBox);
+                onCorrectMakeInvisible(repeatPasswordErrorHBox);
+                passwordVal=true;
+            }
+            else if(!EntryValidation.isPasswordValid(passwordTextField.getText(),newValue)){
+                onErrorMakeRed(passwordErrorHBox);
+                onErrorMakeRed(repeatPasswordErrorHBox);
+                passwordVal=false;
+            }
+            checkIfAllTrue();
+
+        });
+        statesComboBox.setOnAction(e -> {
+            if(statesComboBox.getSelectionModel().getSelectedItem()!=null){
+                stateVal = true;
+                onCorrectMakeInvisible(stateComboBoxErrorHBox);
+            }
+            else {
+                stateVal = false;
+                onErrorMakeRed(stateComboBoxErrorHBox);
+            }
+            checkIfAllTrue();
+        });
+        cityComboBox.setOnAction(e -> {
+            if(cityComboBox.getSelectionModel().getSelectedItem()!=null){
+                onCorrectMakeInvisible(cityComboBoxErrorHBox);
+                cityVal = true;
+            }
+            else {
+                cityVal = false;
+                onErrorMakeRed(cityComboBoxErrorHBox);
+            }
+            checkIfAllTrue();
+        });
+        acceptCheckBox.selectedProperty().addListener(e -> {
+            acceptTermVal = acceptCheckBox.isSelected();
+            if(acceptTermVal){
+                onCorrectMakeInvisible(acceptCheckBoxErrorHBox);
+            }
+            else{
+                onErrorMakeRed(acceptCheckBoxErrorHBox);
+            }
+            checkIfAllTrue();
+        });
 
 
         registerButton.setOnAction(e -> {
-            makeRed(firstNameErrorHBox);
-            makeRed(lastNameErrorHBox);
-            makeRed(eMailErrorHBox);
-            makeRed(contactErrorHBox);
-            makeRed(genderErrorHBox);
-            makeRed(userNameErrorHBox);
-            makeRed(passwordErrorHBox);
-            makeRed(repeatPasswordErrorHBox);
-            makeRed(stateComboBoxErrorHBox);
-            makeRed(cityComboBoxErrorHBox);
-            makeRed(acceptCheckBoxErrorHBox);
+            User user = new User();
+
+            user.setUserDetails(
+                    firstNameTextField.getText(),
+                    lastNameTextField.getText(),
+                    eMailTextField.getText(),
+                    Long.parseLong(contactTextField.getText()),
+                    genderToggleGroup.getSelectedToggle().getUserData().toString(),
+                    usernameTextField.getText(),
+                    passwordTextField.getText(),
+                    statesComboBox.getValue(),
+                    cityComboBox.getValue()
+            );
+
+            user.printUser();
+
         });
 
         root.getChildren().addAll(titleTextHBox,formPane,acceptCheckBoxErrorHBox,registerButton);
         root.setAlignment(Pos.CENTER);
 
 
-        Scene scene = new Scene(root,500,900);
-        return scene;
+        return new Scene(root,500,900);
     }
 
 
@@ -194,10 +333,31 @@ public class OnUserSignUpScene {
         return hBox;
     }
 
-    private static void makeRed(HBox hBox){
-        if(hBox.getChildren().get(0)instanceof TextField) {
-            hBox.getChildren().get(0).getStyleClass().add("text-field-error");
-        }
+    private static void onErrorMakeRed(HBox hBox){
+//        if(hBox.getChildren().get(0)instanceof TextField) {
+//            if(hBox.getChildren().get(0).getStyleClass().contains("text-field-normal")){
+//                hBox.getChildren().get(0).getStyleClass().remove("text-field-normal");
+//                hBox.getChildren().get(0).getStyleClass().add("text-field-error");
+//            }
+//        }
         hBox.getChildren().get(1).setVisible(true);
+    }
+    private  static void onCorrectMakeInvisible(HBox hBox){
+//        if(hBox.getChildren().get(0)instanceof TextField) {
+//            if(hBox.getChildren().get(0).getStyleClass().contains("text-field-error")){
+//                hBox.getChildren().get(0).getStyleClass().remove("text-field-error");
+//                hBox.getChildren().get(0).getStyleClass().add("text-field-normal");
+//            }
+//        }
+        hBox.getChildren().get(1).setVisible(false);
+    }
+
+    private static void checkIfAllTrue(){
+        if(firstNameVal&&lastNameVal &&eMailVal &&contactVal &&userNameVal &&passwordVal &&genderVal&&stateVal&&cityVal&&acceptTermVal){
+            registerButton.setDisable(false);
+        }
+        else {
+            registerButton.setDisable(true);
+        }
     }
 }

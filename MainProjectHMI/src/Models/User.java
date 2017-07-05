@@ -7,7 +7,8 @@ public class User{
     private int id;
     private String firstName;
     private String lastName;
-    private String contact;
+    private String eMail;
+    private long contact;
     private String gender;
     private String userName;
     private String password;
@@ -18,13 +19,11 @@ public class User{
         this.id = 1000 + (int)(Math.random() * 8999);
     }
 
-    public String validateUserDetails(String anotherPassword){
-        return UserSignUpValidation.validate(firstName, lastName, contact, gender, userName, password, anotherPassword);
-    }
 
-    public void setUserDetails(String firstName, String lastName, String contact, String gender, String userName, String password, String state, String city) {
+    public void setUserDetails(String firstName, String lastName, String eMail, Long contact, String gender, String userName, String password, String state, String city) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.eMail = eMail;
         this.contact = contact;
         this.gender = gender;
         this.userName = userName;
@@ -53,11 +52,15 @@ public class User{
         this.lastName = lastName;
     }
 
-    public String getContact() {
+    public String getEmail() {return eMail;}
+
+    public void setEmail(String eMail) {this.eMail = eMail;}
+
+    public Long getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(Long contact) {
         this.contact = contact;
     }
 
@@ -100,5 +103,8 @@ public class User{
     public void setCity(String city) {
         this.city = city;
     }
-    //
+
+    public void printUser(){
+        System.out.println("Id : "+this.id+"\nfirstName : "+firstName+"\nlastName : "+lastName+"\neMail : "+eMail+"\ncontact : "+contact+"\ngender : "+gender+"\nuserName : "+userName+"\npassword : "+this.password+"\nstate : "+this.state+"\ncity : "+this.city);
+    }
 }
