@@ -2,6 +2,8 @@ package ScenesPopWindow.TabContentsScenes;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -21,7 +23,9 @@ import javax.xml.soap.Text;
 /**
  * Created by staLker on 02-07-2017.
  */
-public class PersonalityTabScene {
+public class PersonalityTabScene implements EventHandler<ActionEvent> {
+
+
     public static Scene getScene() {
 
 //
@@ -29,6 +33,7 @@ public class PersonalityTabScene {
         HBox personalDetailHBox = new HBox();
         personalDetailHBox.getChildren().add(personalDetailLabel);
         personalDetailHBox.setStyle("-fx-background-color: #000000");
+        personalDetailHBox.setAlignment(Pos.CENTER);
 ///------------------------------------->personal detail start<---------------------------//
 
 
@@ -36,6 +41,7 @@ public class PersonalityTabScene {
         profilePicture.setFitHeight(160);
         profilePicture.setFitWidth(140);
         Button editProfilePictureButton = new Button("Edit Image");
+
 
         Label nameLabel = new Label("Name :");
         TextField firstNameTextField = new TextField();
@@ -48,12 +54,13 @@ public class PersonalityTabScene {
 
         Label genderLabel = new Label("Gender : ");
         ComboBox<String> genderChoiceBox = new ComboBox<>();
-        //set default;
+
 
         Label emailLabel = new Label("Email : ");
         TextField eMailTextField = new TextField();
         eMailTextField.setDisable(true);
         Button editEmailButton = new Button("Edit");
+
 
         Label contactLabel = new Label("Contact : ");
         TextField contactTextField = new TextField();
@@ -69,6 +76,7 @@ public class PersonalityTabScene {
         selectYearComboBox.setPromptText("Year");
         HBox dateSelectHBox = new HBox(10);
         dateSelectHBox.getChildren().addAll(selectDayComboBox,selectMonthComboBox);
+
 
 
         GridPane personalGrid = new GridPane();
@@ -114,6 +122,14 @@ public class PersonalityTabScene {
 
         completePersonalGrid.getChildren().addAll(profilePictureVBox,personalGrid);
 
+
+
+        //listeners
+
+
+
+
+
         ///------------------------------------->personal detail end<---------------------------//
 
 
@@ -124,6 +140,7 @@ public class PersonalityTabScene {
         HBox bioLabelHBox = new HBox();
         bioLabelHBox.getChildren().add(bioLabel);
         bioLabelHBox.setStyle("-fx-background-color: #000000");
+        bioLabelHBox.setAlignment(Pos.CENTER);
 ///------------------------------------->bio start<---------------------------//
 
 
@@ -150,6 +167,7 @@ public class PersonalityTabScene {
         HBox educationLabelHBox = new HBox();
         educationLabelHBox.getChildren().add(educationLabel);
         educationLabelHBox.setStyle("-fx-background-color: #000000");
+        educationLabelHBox.setAlignment(Pos.CENTER);
 ///------------------------------------->education starts<---------------------------//
 
 
@@ -204,6 +222,7 @@ public class PersonalityTabScene {
         HBox locationDetailLabelHBox = new HBox();
         locationDetailLabelHBox.getChildren().add(locationDetailsLabel);
         locationDetailLabelHBox.setStyle("-fx-background-color: #000000");
+        locationDetailLabelHBox.setAlignment(Pos.CENTER);
 ///------------------------------------->location start<---------------------------//
 
 
@@ -257,6 +276,7 @@ public class PersonalityTabScene {
         HBox aboutLabelHBox = new HBox();
         aboutLabelHBox.getChildren().add(aboutLabel);
         aboutLabelHBox.setStyle("-fx-background-color: #000000");
+        aboutLabelHBox.setAlignment(Pos.CENTER);
 
 ///------------------------------------->about start<---------------------------//
 
@@ -299,10 +319,11 @@ public class PersonalityTabScene {
                 acceptCheckBox,
                 saveButton
         );
-        VBox.setMargin(bioLabelHBox,new Insets(40,0,0,0));
-        VBox.setMargin(educationLabelHBox,new Insets(40,0,0,0));
-        VBox.setMargin(locationDetailLabelHBox,new Insets(40,0,0,0));
-        VBox.setMargin(aboutLabelHBox,new Insets(40,0,0,0));
+        VBox.setMargin(bioLabelHBox,new Insets(60,0,0,0));
+        VBox.setMargin(educationLabelHBox,new Insets(60,0,0,0));
+        VBox.setMargin(locationDetailLabelHBox,new Insets(60,0,0,0));
+        VBox.setMargin(aboutLabelHBox,new Insets(60,0,0,0));
+        VBox.setMargin(acceptCheckBox,new Insets(30,0,0,0));
 
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(10,0,10,20));
@@ -326,9 +347,37 @@ public class PersonalityTabScene {
         root.getChildren().addAll(scrollPane);
 
 
+        PersonalityTabListener.listen(
+                profilePicture,editProfilePictureButton,
+                userNameTextField,editUsernameButton,
+                genderChoiceBox,
+                eMailTextField,editEmailButton,
+                contactTextField,editContactButton,
+                selectDayComboBox,selectMonthComboBox,selectYearComboBox,
+                bioTextArea,
+                degree1ComboBox,degree1TextField,
+                degree2ComboBox,degree2TextField,
+                degree3ComboBox,degree3TextField,
+                degree4ComboBox,degree4TextField,
+                homeTownTextField,homeTownEditButton,
+                currentCityTextField,currentCityEditButton,
+                stateTextField,stateEditButton,
+                aboutYourselfTextArea,
+                acceptCheckBox,
+                saveButton
+                );
+
+
 
 
         return new Scene(root, 700, 600);
+
+    }
+
+
+
+    @Override
+    public void handle(ActionEvent event) {
 
     }
 }
