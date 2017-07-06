@@ -25,9 +25,12 @@ public class PersonalityTabScene {
     public static Scene getScene() {
 
 
-
-///------------------------------------->personal detail start<---------------------------//
         Label personalDetailLabel = new Label("Personal Details");
+        HBox personalDetailHBox = new HBox();
+        personalDetailHBox.getChildren().add(personalDetailLabel);
+        personalDetailHBox.setStyle("-fx-background-color: #000000");
+///------------------------------------->personal detail start<---------------------------//
+
 
         ImageView profilePicture = new ImageView(new Image("/ImageResource/userImage.jpg"));
         profilePicture.setFitHeight(160);
@@ -105,11 +108,11 @@ public class PersonalityTabScene {
         GridPane completePersonalGrid = new GridPane();
         completePersonalGrid.setVgap(10);
         completePersonalGrid.setHgap(40);
-        GridPane.setConstraints(personalDetailLabel,0,0);
+        //GridPane.setConstraints(personalDetailLabel,0,0);
         GridPane.setConstraints(profilePictureVBox,0,1);
         GridPane.setConstraints(personalGrid,1,1);
 
-        completePersonalGrid.getChildren().addAll(personalDetailLabel,profilePictureVBox,personalGrid);
+        completePersonalGrid.getChildren().addAll(profilePictureVBox,personalGrid);
 
         ///------------------------------------->personal detail end<---------------------------//
 
@@ -117,20 +120,23 @@ public class PersonalityTabScene {
 
 
 
-
+        Label bioLabel = new Label("Bio");
+        HBox bioLabelHBox = new HBox();
+        bioLabelHBox.getChildren().add(bioLabel);
+        bioLabelHBox.setStyle("-fx-background-color: #000000");
 ///------------------------------------->bio start<---------------------------//
 
-        Label bioLabel = new Label("Bio");
+
         TextArea bioTextArea = new TextArea();
         bioTextArea.setPromptText("Edit your bio...");
         bioTextArea.setMaxHeight(60);
         bioTextArea.setMinWidth(640);
-        GridPane.setConstraints(bioLabel,0,0);
+        //GridPane.setConstraints(bioLabel,0,0);
         GridPane.setConstraints(bioTextArea,0,1);
         GridPane bioGridPane = new GridPane();
         bioGridPane.setVgap(10);
         bioGridPane.setHgap(40);
-        bioGridPane.getChildren().addAll(bioLabel,bioTextArea);
+        bioGridPane.getChildren().add(bioTextArea);
 
         ///------------------------------------->bio ends<---------------------------//
 
@@ -140,9 +146,13 @@ public class PersonalityTabScene {
 
 
 
+        Label educationLabel = new Label("Education");
+        HBox educationLabelHBox = new HBox();
+        educationLabelHBox.getChildren().add(educationLabel);
+        educationLabelHBox.setStyle("-fx-background-color: #000000");
 ///------------------------------------->education starts<---------------------------//
 
-        Label educationLabel = new Label("Education");
+
         ComboBox<String> degree1ComboBox = new ComboBox<>();
         degree1ComboBox.setPromptText("Select Degree");
         TextField degree1TextField = new TextField();
@@ -164,7 +174,7 @@ public class PersonalityTabScene {
         TextField degree4TextField = new TextField();
         degree4TextField.setPromptText("Enter Institution");
         degree4TextField.setDisable(true);
-        GridPane.setConstraints(educationLabel,0,0);
+        //GridPane.setConstraints(educationLabel,0,0);
         GridPane.setConstraints(degree1ComboBox,0,1);
         GridPane.setConstraints(degree1TextField,1,1);
         GridPane.setConstraints(degree2ComboBox,0,2);
@@ -180,7 +190,6 @@ public class PersonalityTabScene {
         educationGridPane.setHgap(20);
         educationGridPane.setVgap(10);
         educationGridPane.getChildren().addAll(
-                educationLabel,
                 degree1ComboBox,degree1TextField,
                 degree2ComboBox,degree2TextField,
                 degree3ComboBox,degree3TextField,
@@ -191,9 +200,13 @@ public class PersonalityTabScene {
 
 
 
+        Label locationDetailsLabel = new Label("Location Details");
+        HBox locationDetailLabelHBox = new HBox();
+        locationDetailLabelHBox.getChildren().add(locationDetailsLabel);
+        locationDetailLabelHBox.setStyle("-fx-background-color: #000000");
 ///------------------------------------->location start<---------------------------//
 
-        Label locationDetailsLabel = new Label("Location Details");
+
 
         Label homeTownLabel = new Label("Hometown : ");
         TextField homeTownTextField = new TextField();
@@ -207,21 +220,30 @@ public class PersonalityTabScene {
         currentCityTextField.setDisable(true);
         Button currentCityEditButton = new Button("Edit");
 
-        GridPane.setConstraints(locationDetailsLabel,0,0);
+        Label stateLabel = new Label("State : ");
+        TextField stateTextField = new TextField();
+        stateTextField.setPromptText("enter your state");
+        stateTextField.setDisable(true);
+        Button stateEditButton = new Button("Edit");
+
+        //GridPane.setConstraints(locationDetailsLabel,0,0);
         GridPane.setConstraints(homeTownLabel,0,1);
         GridPane.setConstraints(homeTownTextField,1,1);
         GridPane.setConstraints(homeTownEditButton,2,1);
         GridPane.setConstraints(currentCityLabel,0,2);
         GridPane.setConstraints(currentCityTextField,1,2);
         GridPane.setConstraints(currentCityEditButton,2,2);
+        GridPane.setConstraints(stateLabel,0,3);
+        GridPane.setConstraints(stateTextField,1,3);
+        GridPane.setConstraints(stateEditButton,2,3);
 
         GridPane locationGridPane = new GridPane();
         locationGridPane.setVgap(10);
         locationGridPane.setHgap(10);
         locationGridPane.getChildren().addAll(
-                locationDetailsLabel,
                 homeTownLabel,homeTownTextField,homeTownEditButton,
-                currentCityLabel,currentCityTextField,currentCityEditButton
+                currentCityLabel,currentCityTextField,currentCityEditButton,
+                stateLabel,stateTextField,stateEditButton
         );
 
 
@@ -231,33 +253,57 @@ public class PersonalityTabScene {
 
 
 
+        Label aboutLabel = new Label("About Yourself");
+        HBox aboutLabelHBox = new HBox();
+        aboutLabelHBox.getChildren().add(aboutLabel);
+        aboutLabelHBox.setStyle("-fx-background-color: #000000");
+
 ///------------------------------------->about start<---------------------------//
 
-        Label aboutLabel = new Label("About Yourself");
+
 
         TextArea aboutYourselfTextArea = new TextArea();
         aboutYourselfTextArea.setPromptText("write here something about yourself...");
         aboutYourselfTextArea.setMaxHeight(80);
         aboutYourselfTextArea.setMinWidth(640);
-        GridPane.setConstraints(aboutLabel,0,0);
+        //GridPane.setConstraints(aboutLabel,0,0);
         GridPane.setConstraints(aboutYourselfTextArea,0,1);
 
         GridPane aboutGridPane = new GridPane();
         aboutGridPane.setHgap(40);
         aboutGridPane.setVgap(10);
-        aboutGridPane.getChildren().addAll(aboutLabel,aboutYourselfTextArea);
+        aboutGridPane.getChildren().add(aboutYourselfTextArea);
 
-        ///------------------------------------->about start<---------------------------//
+        ///------------------------------------->about ends<---------------------------//
 
 
         CheckBox acceptCheckBox = new CheckBox("I assure that all details entered here are correct.");
+        acceptCheckBox.setStyle("-fx-text-fill: white");
 
         Button saveButton = new Button("Save");
         VBox.setMargin(saveButton,new Insets(0,0,70,0));
 
 
-        VBox vBox = new VBox(40);
-        vBox.getChildren().addAll(completePersonalGrid,bioGridPane,educationGridPane,locationGridPane,aboutGridPane,acceptCheckBox,saveButton);
+        VBox vBox = new VBox(10);
+        vBox.getChildren().addAll(
+                personalDetailHBox,
+                completePersonalGrid,
+                bioLabelHBox,
+                bioGridPane,
+                educationLabelHBox,
+                educationGridPane,
+                locationDetailLabelHBox,
+                locationGridPane,
+                aboutLabelHBox,
+                aboutGridPane,
+                acceptCheckBox,
+                saveButton
+        );
+        VBox.setMargin(bioLabelHBox,new Insets(40,0,0,0));
+        VBox.setMargin(educationLabelHBox,new Insets(40,0,0,0));
+        VBox.setMargin(locationDetailLabelHBox,new Insets(40,0,0,0));
+        VBox.setMargin(aboutLabelHBox,new Insets(40,0,0,0));
+
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(10,0,10,20));
 

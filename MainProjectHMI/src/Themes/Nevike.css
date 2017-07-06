@@ -99,6 +99,7 @@
 
 .table-view{
     -fx-selection-bar: #ff851a;
+    -fx-alignment: CENTER;
 }
 
 .table-view .column-header .label {
@@ -109,6 +110,9 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-background-color: #01a0e4;
+}
+.scroll-pane > .viewport{
+    -fx-background-color: #32302F;
 }
 
 
