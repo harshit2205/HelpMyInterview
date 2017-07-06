@@ -1,5 +1,6 @@
 package Models;
 
+import Utils.DOB;
 import javafx.scene.image.Image;
 
 /**
@@ -17,6 +18,9 @@ public class User{
     private String state;
     private String city;
     private Image userImage;
+    private DOB dob;
+    private String bio;
+
 
     public User() {
         this.id = 1000 + (int)(Math.random() * 8999);

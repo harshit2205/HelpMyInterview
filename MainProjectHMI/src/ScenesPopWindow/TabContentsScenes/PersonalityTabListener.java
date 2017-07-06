@@ -1,5 +1,6 @@
 package ScenesPopWindow.TabContentsScenes;
 
+import Utils.Education;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
@@ -11,6 +12,7 @@ public class PersonalityTabListener {
     public static void listen(ImageView profilePicture, Button editProfilePictureButton, TextField userNameTextField, Button editUsernameButton, ComboBox<String> genderChoiceBox, TextField eMailTextField, Button editEmailButton, TextField contactTextField, Button editContactButton, ComboBox<String> selectDayComboBox, ComboBox<String> selectMonthComboBox, ComboBox<String> selectYearComboBox, TextArea bioTextArea, ComboBox<String> degree1ComboBox, TextField degree1TextField, ComboBox<String> degree2ComboBox, TextField degree2TextField, ComboBox<String> degree3ComboBox, TextField degree3TextField, ComboBox<String> degree4ComboBox, TextField degree4TextField, TextField homeTownTextField, Button homeTownEditButton, TextField currentCityTextField, Button currentCityEditButton, TextField stateTextField, Button stateEditButton, TextArea aboutYourselfTextArea, CheckBox acceptCheckBox, Button saveButton) {
 
 
+        saveButton.setDisable(true);
 
         addDegreeList(degree1ComboBox);
         addDegreeList(degree2ComboBox);
@@ -61,6 +63,14 @@ public class PersonalityTabListener {
         stateEditButton.setOnAction(e ->{
             toggleTextField(stateTextField);
         });
+        acceptCheckBox.setOnAction(e -> {
+            if(acceptCheckBox.isSelected()){
+                saveButton.setDisable(false);
+            }
+            else {
+                saveButton.setDisable(true);
+            }
+        });
 
 
     }
@@ -76,6 +86,6 @@ public class PersonalityTabListener {
     private static void TextField(ComboBox<String> comboBox){
     }
     private static void addDegreeList(ComboBox<String> comboBox){
-        comboBox.getItems().addAll("B-Tech.","M-Tech.");
+        comboBox.getItems().addAll(Education.getAllDegree());
     }
 }

@@ -15,7 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
 
-
+/**
+ * Created by staLker on 30-06-2017.
+ */
 public class HelpScene {
     public static Scene getScene(){
 

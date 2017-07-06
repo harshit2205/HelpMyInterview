@@ -23,7 +23,7 @@ import javax.xml.soap.Text;
 /**
  * Created by staLker on 02-07-2017.
  */
-public class PersonalityTabScene implements EventHandler<ActionEvent> {
+public class PersonalityTabScene {
 
 
     public static Scene getScene() {
@@ -301,7 +301,7 @@ public class PersonalityTabScene implements EventHandler<ActionEvent> {
         acceptCheckBox.setStyle("-fx-text-fill: white");
 
         Button saveButton = new Button("Save");
-        VBox.setMargin(saveButton,new Insets(0,0,70,0));
+
 
 
         VBox vBox = new VBox(10);
@@ -319,6 +319,7 @@ public class PersonalityTabScene implements EventHandler<ActionEvent> {
                 acceptCheckBox,
                 saveButton
         );
+        VBox.setMargin(saveButton,new Insets(0,0,70,0));
         VBox.setMargin(bioLabelHBox,new Insets(60,0,0,0));
         VBox.setMargin(educationLabelHBox,new Insets(60,0,0,0));
         VBox.setMargin(locationDetailLabelHBox,new Insets(60,0,0,0));
@@ -375,9 +376,4 @@ public class PersonalityTabScene implements EventHandler<ActionEvent> {
     }
 
 
-
-    @Override
-    public void handle(ActionEvent event) {
-
-    }
 }
