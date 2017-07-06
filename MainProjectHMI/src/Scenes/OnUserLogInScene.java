@@ -19,11 +19,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- * Created by staLker on 30-06-2017.
- */
+
 public class OnUserLogInScene {
+
+
     public static void passControl(Stage window){
+
         AnchorPane anchorPane = new AnchorPane();
         TabPane tabPane = new TabPane();
         Tab personalityTab = new Tab("Personality");

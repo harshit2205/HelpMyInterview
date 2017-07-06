@@ -83,7 +83,6 @@ public class UserLoginScene {
 
 
 
-
         MenuBar menuBar = new MenuBar();
         menuBar.setBackground(Background.EMPTY);
         menuBar.getMenus().add(menu);

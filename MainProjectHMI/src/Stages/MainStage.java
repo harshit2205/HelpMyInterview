@@ -1,4 +1,4 @@
-/**
+package Stages; /**
  * Created by staLker on 30-06-2017.
  */
 
@@ -7,7 +7,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MainStage extends Application {
-    Stage window;
+    public static Stage window;
     public static void main(String[] args) {launch(args);}
 
     @Override
@@ -18,5 +18,9 @@ public class MainStage extends Application {
         window.setResizable(false);
         window.setTitle("Help My Interview!");
         //window.setOpacity(0.93);
+    }
+
+    public static Stage getWindow() {
+        return window;
     }
 }

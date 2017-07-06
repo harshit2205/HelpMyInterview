@@ -38,6 +38,7 @@ public class HelpScene {
         TextField mailTextField = new TextField();
         mailTextField.setPromptText("enter your mail");
         TextArea descriptionTextArea = new TextArea();
+        descriptionTextArea.setWrapText(true);
         descriptionTextArea.setMaxWidth(280);
         descriptionTextArea.setMaxHeight(100);
         descriptionTextArea.setPromptText("specify your problem ");
