@@ -23,7 +23,7 @@ public class GDTabScene {
         HBox headerHBox = new HBox();
         headerHBox.setStyle("-fx-background-color: #000000");
         headerHBox.setAlignment(Pos.CENTER);
-        Label doLabel = new Label("Do's of Group Disscussion");
+        Label doLabel = new Label("Do's of Group Discussion");
         TextArea doTextArea = new TextArea("1. speak when ur turn comes\n2.\n3.");
         doTextArea.setEditable(false);
         doTextArea.setWrapText(true);
@@ -36,7 +36,7 @@ public class GDTabScene {
         HBox footerHBox = new HBox();
         footerHBox.setStyle("-fx-background-color: #000000");
         footerHBox.setAlignment(Pos.CENTER);
-        Label dontLabel = new Label("Dont's of Group Disscussion");
+        Label dontLabel = new Label("Don'ts of Group Discussion");
         TextArea dontTextArea = new TextArea("1. speak when ur turn comes\n2.\n3.");
         dontTextArea.setEditable(false);
         dontTextArea.setWrapText(true);
@@ -44,7 +44,7 @@ public class GDTabScene {
         footerVBox.getChildren().addAll(footerHBox,dontTextArea);
 
 
-        Button enterGD = new Button("Enter Group Disscussion");
+        Button enterGD = new Button("Enter Group Discussion");
 
         basePane.setAlignment(Pos.CENTER);
         basePane.getChildren().addAll(headerVBox, footerVBox, enterGD);
