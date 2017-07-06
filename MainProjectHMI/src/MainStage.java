@@ -1,4 +1,4 @@
-package Stages; /**
+/**
  * Created by staLker on 30-06-2017.
  */
 
@@ -7,12 +7,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MainStage extends Application {
-    public static Stage window;
+
     public static void main(String[] args) {launch(args);}
 
     @Override
     public void start(Stage primaryStage) {
-        window = primaryStage;
+        Stage window = primaryStage;
         UserLoginScene.passControl(window);
         //window.setScene(scene);
         window.setResizable(false);
@@ -20,7 +20,5 @@ public class MainStage extends Application {
         //window.setOpacity(0.93);
     }
 
-    public static Stage getWindow() {
-        return window;
-    }
+
 }

@@ -1,13 +1,13 @@
 package ScenesPopWindow.TabContentsScenes;
 
 import Scenes.EnterGDScene;
+import Scenes.OnUserLogInScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class GDTabScene {
@@ -23,9 +23,9 @@ public class GDTabScene {
         HBox headerHBox = new HBox();
         headerHBox.setStyle("-fx-background-color: #000000");
         headerHBox.setAlignment(Pos.CENTER);
-        Label doLabel = new Label("Do's of GD :");
+        Label doLabel = new Label("Do's of Group Disscussion");
         TextArea doTextArea = new TextArea("1. speak when ur turn comes\n2.\n3.");
-        doTextArea.setDisable(true);
+        doTextArea.setEditable(false);
         doTextArea.setWrapText(true);
         headerHBox.getChildren().add(doLabel);
         headerVBox.getChildren().addAll(headerHBox,doTextArea);
@@ -38,7 +38,7 @@ public class GDTabScene {
         footerHBox.setAlignment(Pos.CENTER);
         Label dontLabel = new Label("Dont's of Group Disscussion");
         TextArea dontTextArea = new TextArea("1. speak when ur turn comes\n2.\n3.");
-        dontTextArea.setDisable(true);
+        dontTextArea.setEditable(false);
         dontTextArea.setWrapText(true);
         footerHBox.getChildren().add(dontLabel);
         footerVBox.getChildren().addAll(footerHBox,dontTextArea);
@@ -51,7 +51,7 @@ public class GDTabScene {
         basePane.setPadding(new Insets(30,20,0,20));
         scene = new Scene(basePane,400,400);
         enterGD.setOnAction(e -> {
-
+            OnUserLogInScene.getWindow().setScene(EnterGDScene.getScene());
         });
 
         return scene;

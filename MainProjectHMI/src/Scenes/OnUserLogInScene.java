@@ -22,9 +22,11 @@ import javafx.stage.Stage;
 
 public class OnUserLogInScene {
 
+    private static Stage window;
+
 
     public static void passControl(Stage window){
-
+        OnUserLogInScene.window = window;
         AnchorPane anchorPane = new AnchorPane();
         TabPane tabPane = new TabPane();
         Tab personalityTab = new Tab("Personality");
@@ -96,5 +98,9 @@ public class OnUserLogInScene {
         window.setScene(scene);
         window.show();
 
+    }
+
+    public static Stage getWindow() {
+        return window;
     }
 }

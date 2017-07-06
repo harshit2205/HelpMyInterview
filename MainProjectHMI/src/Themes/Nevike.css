@@ -116,8 +116,11 @@
 }
 
 .text-area   {
-    -fx-text-fill: #fff;
+    -fx-text-fill: #000;
 }
+
+
+
 
 
 
