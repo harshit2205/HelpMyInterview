@@ -24,7 +24,7 @@ import javax.xml.soap.Text;
 public class PersonalityTabScene {
     public static Scene getScene() {
 
-
+//
         Label personalDetailLabel = new Label("Personal Details");
         HBox personalDetailHBox = new HBox();
         personalDetailHBox.getChildren().add(personalDetailLabel);
