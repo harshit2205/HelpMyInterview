@@ -119,7 +119,18 @@
     /*-fx-text-fill: #000;*/
 /*}*/
 
+.scroll-pane {
+    -fx-background-color: transparent;
+}
 
+#topicslist * .list-cell {
+    -fx-background-color: #32302F;
+    -fx-text-fill: #fff;
+}
+
+#topicslist * .list-cell:filled:selected {
+    -fx-text-fill: #ff851a;
+}
 
 
 
