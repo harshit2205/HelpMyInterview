@@ -119,8 +119,9 @@
     /*-fx-text-fill: #000;*/
 /*}*/
 
-
-
+.scroll-pane {
+    -fx-background-color: transparent;
+}
 
 
 

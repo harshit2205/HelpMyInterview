@@ -12,9 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-/**
- * Created by USER on 7/6/2017.
- */
 public class EnterGDScene {
     public static Scene getScene(){
         Scene scene ;
@@ -23,9 +20,9 @@ public class EnterGDScene {
         //Logout Button.
         HBox headerBox = new HBox();
         headerBox.setAlignment(Pos.CENTER_RIGHT);
-        Button logoutButton = new Button("Logout");
-        headerBox.getChildren().add(logoutButton);
-        logoutButton.setOnAction(e -> { OnUserLogInScene.passControl(OnUserLogInScene.getWindow());});
+        Button backButton = new Button("Back");
+        headerBox.getChildren().add(backButton);
+        backButton.setOnAction(e -> { OnUserLogInScene.passControl(OnUserLogInScene.getWindow());});
 
 
         //topics of G.D :
@@ -40,6 +37,8 @@ public class EnterGDScene {
         ObservableList<String> list = FXCollections.observableArrayList();
         list.add("India Now");
         list.add("more");
+        listview.setEditable(false);
+        listview.setPadding(new Insets(0,10,0,10));
         listview.setItems(list);
 
         // Enter Group Disscussion.
