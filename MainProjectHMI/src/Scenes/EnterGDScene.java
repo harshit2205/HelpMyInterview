@@ -24,6 +24,7 @@ public class EnterGDScene {
         //Logout Button.
         HBox headerBox = new HBox();
         headerBox.setAlignment(Pos.CENTER_RIGHT);
+        headerBox.setPadding(new Insets(0,10,0,10));
         Button backButton = new Button("Back");
         headerBox.getChildren().add(backButton);
         backButton.setOnAction(e -> { OnUserLogInScene.passControl(OnUserLogInScene.getWindow());});
@@ -52,7 +53,7 @@ public class EnterGDScene {
 
         // Enter Group Disscussion.
         Button enterButton = new Button("Enter LIVE Group Discussion");
-        vBox.setPadding(new Insets(0,10,10,10));
+        vBox.setPadding(new Insets(0,0,10,0));
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(headerBox,titleTextHBox,listview,enterButton);
 
