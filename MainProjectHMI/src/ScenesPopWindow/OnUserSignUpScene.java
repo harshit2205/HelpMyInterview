@@ -320,7 +320,7 @@ public class OnUserSignUpScene {
         OnUserSignUpSceneListener.listen(firstNameTextField,lastNameTextField,eMailTextField,contactTextField,genderToggleGroup,usernameTextField,passwordTextField,repeatPasswordTextField,statesComboBox,cityComboBox,registerButton);
 
 
-        return new Scene(root,500,900);
+        return new Scene(root,500,800);
     }
 
 

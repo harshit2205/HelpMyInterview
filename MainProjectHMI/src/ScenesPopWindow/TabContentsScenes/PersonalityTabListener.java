@@ -6,6 +6,10 @@ import Scenes.OnUserLogInScene;
 import Utils.Education;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+
 
 /**
  * Created by staLker on 06-07-2017.
@@ -34,13 +38,20 @@ public class PersonalityTabListener {
         contactTextField.setText(user.getContact().toString());
         genderComboBox.setValue(user.getGender());
         bioTextArea.setText(user.getBio());
+        bioTextArea.setWrapText(true);
         homeTownTextField.setText(user.getCity());
         currentCityTextField.setText(user.getCity());
         stateTextField.setText(user.getState());
+        aboutYourselfTextArea.setText(user.getAbout());
+        aboutYourselfTextArea.setWrapText(true);
 
 
 
 
+        editProfilePictureButton.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            File selectedFile = fileChooser.showOpenDialog(null);
+        });
         editUsernameButton.setOnAction(e -> {
             toggleTextField(userNameTextField);
         });

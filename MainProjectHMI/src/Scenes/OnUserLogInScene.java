@@ -66,12 +66,12 @@ public class OnUserLogInScene {
 
 
 
-        HBox footerHbox = new HBox(7);
-        footerHbox.getChildren().addAll(facebookIcon,twitterIcon,instagramIcon);
-        AnchorPane.setBottomAnchor(footerHbox,0.0);
-        footerHbox.setPadding(new Insets(3,3,3,3));
-        footerHbox.setStyle("-fx-background-color: #000000");
-        footerHbox.setMinWidth(700);
+        HBox footerHBox = new HBox(7);
+        footerHBox.getChildren().addAll(facebookIcon,twitterIcon,instagramIcon);
+        AnchorPane.setBottomAnchor(footerHBox,0.0);
+        footerHBox.setPadding(new Insets(3,3,3,3));
+        footerHBox.setStyle("-fx-background-color: #000000");
+        footerHBox.setMinWidth(700);
 
 
 
@@ -92,7 +92,7 @@ public class OnUserLogInScene {
 
 
 
-        anchorPane.getChildren().addAll(tabPane,hBox,footerHbox);
+        anchorPane.getChildren().addAll(tabPane,hBox,footerHBox);
         Scene scene = new Scene(anchorPane,700,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         window.setScene(scene);
