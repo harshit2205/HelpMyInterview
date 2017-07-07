@@ -1,10 +1,8 @@
 package Scenes;
 
 import Delete.ConfirmBox;
-import Delete.DemoPojo;
 import Models.User;
 import Models.UserLab;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -25,7 +23,6 @@ import javafx.stage.Stage;
 
 public class ManagingListScene {
 
-    private static ObservableList<DemoPojo> list;
     private static TableView table;
 
 
@@ -62,14 +59,14 @@ public class ManagingListScene {
         editButton.setOnAction(e -> {});
         deleteButton.setOnAction(e -> {
             if(new ConfirmBox().confirmationUtility("Confirm delete!","Are you sure you want to \ndelete the user?")){
-            ObservableList<DemoPojo> selectedItems =  table.getSelectionModel().getSelectedItems();
+            ObservableList<User> selectedItems =  table.getSelectionModel().getSelectedItems();
             // code for updating in the sql
             table.getItems().removeAll(selectedItems);}
         });
 
-        table.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<DemoPojo>(){
+        table.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<User>(){
             @Override
-            public void onChanged(  ListChangeListener.Change<? extends DemoPojo> changed){
+            public void onChanged(  ListChangeListener.Change<? extends User> changed){
                 if( changed.getList().size() > 1){
                     editButton.setDisable(true);}
                     else{
