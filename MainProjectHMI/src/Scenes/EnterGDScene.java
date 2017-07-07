@@ -1,5 +1,6 @@
 package Scenes;
 
+import Utils.GDTopics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -45,8 +46,8 @@ public class EnterGDScene {
         listview.setId("topicslist");
         listview.setEditable(true);
         listview.setPadding(new Insets(0,10,0,10));
-        listview.setItems(fetchList());
-        // stylying inline listView...................
+        listview.setItems(GDTopics.fetchList());
+        // styling inline listView...................
         listview.setStyle("-fx-background-color: transparent;");
 
 
@@ -61,21 +62,5 @@ public class EnterGDScene {
         return scene;
     }
 
-    //function to fetch list of topics........................
-    private static ObservableList<String> fetchList(){
-        ObservableList<String> list = FXCollections.observableArrayList();
-        list.add("What is the major cause of intense civil agitation in Kashmir?");
-        list.add("How escalating pollution rate in India can be controlled?");
-        list.add("Live in relations are increasing in India. What is the cause behind it?");
-        list.add("The performance of India in sports has gone down. What can be a possible cause of it?");
-        list.add("What can bring more development in India?");
-        list.add("How criminalization can be checked in India?");
-        list.add("Which plays crucial role in maintaining democracy in India?");
-        list.add("Draught situations have effected which field of India?");
-        list.add("What must be done to improve the education system of India?");
-        list.add("Many bulk data websites have been banned by telecom authorities.");
-        return list;
-
-        //can also be used to fetch list from management
-    }
+    //it should be in different class in Utils Package.
 }
