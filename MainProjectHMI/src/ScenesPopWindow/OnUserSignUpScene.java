@@ -294,7 +294,7 @@ public class OnUserSignUpScene {
             checkIfAllTrue();
         });
 
-
+//
         registerButton.setOnAction(e -> {
             User user = new User();
 
