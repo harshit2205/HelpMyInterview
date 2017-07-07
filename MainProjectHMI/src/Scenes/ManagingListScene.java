@@ -2,6 +2,8 @@ package Scenes;
 
 import Delete.ConfirmBox;
 import Delete.DemoPojo;
+import Models.User;
+import Models.UserLab;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -46,11 +48,6 @@ public class ManagingListScene {
         VBox optionsVBox = new VBox(10);
         topBarHBox.setAlignment(Pos.CENTER_RIGHT);
         topBarHBox.setPadding(new Insets(10,10,0,10));
-
-        list = FXCollections.observableArrayList();
-        for(int i = 1 ; i <= 50 ; i++){
-            list.add(new DemoPojo(i,"username"+i,"harshit"));
-        }
 
         if(ifTableExists()){
             createTable();
@@ -109,20 +106,20 @@ public class ManagingListScene {
     }
 
     private static void createTable(){
-        table = new TableView<DemoPojo>();
+        table = new TableView<User>();
 
-        TableColumn<DemoPojo, Integer> idColumn = new TableColumn<>("Id");
+        TableColumn<User, Integer> idColumn = new TableColumn<>("Id");
         idColumn.setMaxWidth(1000);
         idColumn.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
-        TableColumn<DemoPojo, String> usernameColumn = new TableColumn<>("User Name");
+                new PropertyValueFactory<>(User.ID_PROPERTY_STRING));
+        TableColumn<User, String> usernameColumn = new TableColumn<>("Username");
         usernameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("userName"));
-        TableColumn<DemoPojo, String> nameColumn = new TableColumn<>("Name");
+                new PropertyValueFactory<>(User.USERNAME_PROPERTY_STRING));
+        TableColumn<User, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("name"));
+                new PropertyValueFactory<>(User.NAME_PROPERTY_STRING));
 
-        table.setItems(list);
+        table.setItems(UserLab.get().getObservableUserList());
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.getColumns().addAll(idColumn, usernameColumn, nameColumn);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
