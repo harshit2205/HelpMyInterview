@@ -4,6 +4,8 @@ import Models.EntryValidation;
 import Models.User;
 import Utils.Cities;
 import Utils.States;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -35,14 +38,14 @@ public class OnUserSignUpScene {
     private static Button registerButton;
     public static Scene getScene(){
 
-        VBox root = new VBox(70);
+        VBox allInVBox = new VBox(70);
 
         Text titleText = new Text("Enter your Details");
         titleText.setFont(Font.font(null, FontWeight.EXTRA_BOLD,30));
         titleText.setFill(Paint.valueOf("#01a0e4"));
         HBox titleTextHBox = new HBox();
         titleTextHBox.setStyle("-fx-background-color: #000000");
-        titleTextHBox.setPadding(new Insets(10,10,10,10));
+        titleTextHBox.setPadding(new Insets(0,10,10,10));
         titleTextHBox.getChildren().add(titleText);
         titleTextHBox.setAlignment(Pos.CENTER);
 
@@ -314,13 +317,32 @@ public class OnUserSignUpScene {
 
         });
 
-        root.getChildren().addAll(titleTextHBox,formPane,acceptCheckBoxErrorHBox,registerButton);
-        root.setAlignment(Pos.CENTER);
+        allInVBox.getChildren().addAll(titleTextHBox,formPane,acceptCheckBoxErrorHBox,registerButton);
+        allInVBox.setAlignment(Pos.CENTER);
+        allInVBox.setMinHeight(900);
+        allInVBox.setMinWidth(493);
 
         OnUserSignUpSceneListener.listen(firstNameTextField,lastNameTextField,eMailTextField,contactTextField,genderToggleGroup,usernameTextField,passwordTextField,repeatPasswordTextField,statesComboBox,cityComboBox,registerButton);
 
 
-        return new Scene(root,500,800);
+
+        ScrollPane scrollPane = new ScrollPane();
+        VBox.setVgrow(scrollPane, Priority.ALWAYS);
+        scrollPane.setVmax(1000);
+        scrollPane.setPrefSize(493, 900);
+        scrollPane.setContent(allInVBox);
+        scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+
+            }
+        });
+
+
+        VBox root = new VBox();
+        root.getChildren().addAll(scrollPane);
+
+        return new Scene(root,500,700);
     }
 
 
