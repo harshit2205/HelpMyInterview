@@ -1,6 +1,7 @@
 package Models;
 
 import Utils.DOB;
+import Utils.Education;
 import javafx.scene.image.Image;
 
 /**
@@ -20,6 +21,10 @@ public class User{
     private Image userImage;
     private DOB dob;
     private String bio;
+    private Education education;
+    private String homeTown;
+    private String about;
+
 
 
     public User() {
@@ -113,5 +118,56 @@ public class User{
 
     public void printUser(){
         System.out.println("Id : "+this.id+"\nfirstName : "+firstName+"\nlastName : "+lastName+"\neMail : "+eMail+"\ncontact : "+contact+"\ngender : "+gender+"\nuserName : "+userName+"\npassword : "+this.password+"\nstate : "+this.state+"\ncity : "+this.city);
+    }
+    public void setContact(long contact) {
+        this.contact = contact;
+    }
+
+    public Image getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(Image userImage) {
+        this.userImage = userImage;
+    }
+
+    public DOB getDob() {
+        return dob;
+    }
+
+    public void setDob(DOB dob) {
+        this.dob = dob;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public Education getEducation() {
+        return education;
+    }
+
+    public void setEducation(Education education) {
+        this.education = education;
+    }
+
+    public String getHomeTown() {
+        return homeTown;
+    }
+
+    public void setHomeTown(String homeTown) {
+        this.homeTown = homeTown;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 }

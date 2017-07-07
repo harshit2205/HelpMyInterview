@@ -29,6 +29,7 @@ import java.awt.*;
  * Created by staLker on 30-06-2017.
  */
 public class UserLoginScene {
+
     public static void passControl(Stage window){
 
         HBox imageHMIHBox = new HBox(10);
@@ -74,13 +75,8 @@ public class UserLoginScene {
 
 
 
-        managerLoginMenuItem.setOnAction(e -> ManagerLoginScene.passControl(window));
-        aboutMenuItem.setOnAction(e -> {PopUpStage.show("About HMI", AboutScene.getScene());});
-        helpMenuItem.setOnAction(e -> {PopUpStage.show("HMI Forum", HelpScene.getScene());});
-        exitMenuItem.setOnAction(e -> {window.close();});
-        loginButton.setOnAction(e -> {OnUserLogInScene.passControl(window);});
-        signUpButton.setOnAction(e -> {PopUpStage.show("Registration", OnUserSignUpScene.getScene());});
 
+        UserLoginSceneListener.listen(window,inputUsername,inputPassword,loginButton,signUpButton,managerLoginMenuItem,aboutMenuItem,helpMenuItem,exitMenuItem);
 
 
         MenuBar menuBar = new MenuBar();
@@ -129,6 +125,8 @@ public class UserLoginScene {
         window.setScene(scene);
         window.show();
     }
+
+
 
 
 }

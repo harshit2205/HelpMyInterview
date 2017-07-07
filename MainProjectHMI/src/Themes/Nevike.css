@@ -1,4 +1,4 @@
-.root {
+.root{
     -fx-background-color: #32302F;
 
 }
@@ -70,7 +70,7 @@
 }
 .tab-pane {
     -fx-min-height: 581;
-    -fx-min-width: 600;
+    -fx-min-width: 700;
 }
 .radio-button{
     -fx-text-fill: #ffffff;
@@ -115,9 +115,9 @@
     -fx-background-color: #32302F;
 }
 
-.text-area   {
-    -fx-text-fill: #000;
-}
+/*.text-area   {*/
+    /*-fx-text-fill: #000;*/
+/*}*/
 
 
 

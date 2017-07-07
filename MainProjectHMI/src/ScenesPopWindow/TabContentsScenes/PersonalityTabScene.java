@@ -1,5 +1,6 @@
 package ScenesPopWindow.TabContentsScenes;
 
+import Utils.DOB;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -53,8 +54,9 @@ public class PersonalityTabScene {
         Button editUsernameButton = new Button("Edit");
 
         Label genderLabel = new Label("Gender : ");
-        ComboBox<String> genderChoiceBox = new ComboBox<>();
-
+        ComboBox<String> genderComboBox = new ComboBox<>();
+        genderComboBox.setPromptText("Gender");
+        genderComboBox.getItems().addAll("Male","Female");
 
         Label emailLabel = new Label("Email : ");
         TextField eMailTextField = new TextField();
@@ -68,11 +70,11 @@ public class PersonalityTabScene {
         Button editContactButton = new Button("Edit");
 
         Label dobLabel = new Label("DOB : ");
-        ComboBox<String> selectDayComboBox = new ComboBox<>();
+        ComboBox<String> selectDayComboBox = new ComboBox<>(DOB.getAllDateList());
         selectDayComboBox.setPromptText("Day");
-        ComboBox<String> selectMonthComboBox = new ComboBox<>();
+        ComboBox<String> selectMonthComboBox = new ComboBox<>(DOB.getAllMonthList());
         selectMonthComboBox.setPromptText("Month");
-        ComboBox<String> selectYearComboBox = new ComboBox<>();
+        ComboBox<String> selectYearComboBox = new ComboBox<>(DOB.getAllYears());
         selectYearComboBox.setPromptText("Year");
         HBox dateSelectHBox = new HBox(10);
         dateSelectHBox.getChildren().addAll(selectDayComboBox,selectMonthComboBox);
@@ -89,7 +91,7 @@ public class PersonalityTabScene {
         GridPane.setConstraints(userNameTextField,1,1);
         GridPane.setConstraints(editUsernameButton,2,1);
         GridPane.setConstraints(genderLabel,0,2);
-        GridPane.setConstraints(genderChoiceBox,1,2);
+        GridPane.setConstraints(genderComboBox,1,2);
         GridPane.setConstraints(emailLabel,0,3);
         GridPane.setConstraints(eMailTextField,1,3);
         GridPane.setConstraints(editEmailButton,2,3);
@@ -103,7 +105,7 @@ public class PersonalityTabScene {
         personalGrid.getChildren().addAll(
                 nameLabel,firstNameTextField,lastNameTextField,
                 userNameLabel,userNameTextField,editUsernameButton,
-                genderLabel,genderChoiceBox,
+                genderLabel,genderComboBox,
                 emailLabel,eMailTextField,editEmailButton,
                 contactLabel,contactTextField,editContactButton,
                 dobLabel,dateSelectHBox,selectYearComboBox
@@ -173,45 +175,69 @@ public class PersonalityTabScene {
 
         ComboBox<String> degree1ComboBox = new ComboBox<>();
         degree1ComboBox.setPromptText("Select Degree");
+        TextField course1TextField = new TextField();
+        course1TextField.setMaxWidth(100);
+        course1TextField.setPromptText("enter course");
+        course1TextField.setDisable(true);
         TextField degree1TextField = new TextField();
-        degree1TextField.setPromptText("Enter Institution");
-        degree1TextField.setMinWidth(400);
+        degree1TextField.setPromptText("enter name of institution");
+        degree1TextField.setMinWidth(300);
         degree1TextField.setDisable(true);
+
         ComboBox<String> degree2ComboBox= new ComboBox<>();
         degree2ComboBox.setPromptText("Select Degree");
+        TextField course2TextField = new TextField();
+        course2TextField.setMaxWidth(100);
+        course2TextField.setPromptText("enter course");
+        course2TextField.setDisable(true);
         TextField degree2TextField = new TextField();
-        degree2TextField.setPromptText("Enter Institution");
+        degree2TextField.setPromptText("enter name of nstitution");
         degree2TextField.setDisable(true);
+
         ComboBox<String> degree3ComboBox= new ComboBox<>();
         degree3ComboBox.setPromptText("Select Degree");
+        TextField course3TextField = new TextField();
+        course3TextField.setMaxWidth(100);
+        course3TextField.setPromptText("enter course");
+        course3TextField.setDisable(true);
         TextField degree3TextField = new TextField();
-        degree3TextField.setPromptText("Enter Institution");
+        degree3TextField.setPromptText("enter name of institution");
         degree3TextField.setDisable(true);
+
         ComboBox<String> degree4ComboBox= new ComboBox<>();
         degree4ComboBox.setPromptText("Select Degree");
+        TextField course4TextField = new TextField();
+        course4TextField.setMaxWidth(100);
+        course4TextField.setPromptText("enter course");
+        course4TextField.setDisable(true);
         TextField degree4TextField = new TextField();
-        degree4TextField.setPromptText("Enter Institution");
+        degree4TextField.setPromptText("enter name of institution");
         degree4TextField.setDisable(true);
+
         //GridPane.setConstraints(educationLabel,0,0);
         GridPane.setConstraints(degree1ComboBox,0,1);
-        GridPane.setConstraints(degree1TextField,1,1);
+        GridPane.setConstraints(course1TextField,1,1);
+        GridPane.setConstraints(degree1TextField,2,1);
         GridPane.setConstraints(degree2ComboBox,0,2);
-        GridPane.setConstraints(degree2TextField,1,2);
+        GridPane.setConstraints(course2TextField,1,2);
+        GridPane.setConstraints(degree2TextField,2,2);
         GridPane.setConstraints(degree3ComboBox,0,3);
-        GridPane.setConstraints(degree3TextField,1,3);
+        GridPane.setConstraints(course3TextField,1,3);
+        GridPane.setConstraints(degree3TextField,2,3);
         GridPane.setConstraints(degree4ComboBox,0,4);
-        GridPane.setConstraints(degree4TextField,1,4);
+        GridPane.setConstraints(course4TextField,1,4);
+        GridPane.setConstraints(degree4TextField,2,4);
 
         emailLabel.setAlignment(Pos.CENTER);
 
         GridPane educationGridPane = new GridPane();
-        educationGridPane.setHgap(20);
-        educationGridPane.setVgap(10);
+        educationGridPane.setHgap(7);
+        educationGridPane.setVgap(20);
         educationGridPane.getChildren().addAll(
-                degree1ComboBox,degree1TextField,
-                degree2ComboBox,degree2TextField,
-                degree3ComboBox,degree3TextField,
-                degree4ComboBox,degree4TextField);
+                degree1ComboBox,course1TextField,degree1TextField,
+                degree2ComboBox,course2TextField,degree2TextField,
+                degree3ComboBox,course3TextField,degree3TextField,
+                degree4ComboBox,course4TextField,degree4TextField);
         ///------------------------------------->education ends<---------------------------//
 
 
@@ -319,12 +345,12 @@ public class PersonalityTabScene {
                 acceptCheckBox,
                 saveButton
         );
-        VBox.setMargin(saveButton,new Insets(0,0,70,0));
+        VBox.setMargin(saveButton,new Insets(0,0,170,0));
         VBox.setMargin(bioLabelHBox,new Insets(60,0,0,0));
         VBox.setMargin(educationLabelHBox,new Insets(60,0,0,0));
         VBox.setMargin(locationDetailLabelHBox,new Insets(60,0,0,0));
         VBox.setMargin(aboutLabelHBox,new Insets(60,0,0,0));
-        VBox.setMargin(acceptCheckBox,new Insets(30,0,0,0));
+        VBox.setMargin(acceptCheckBox,new Insets(60,0,0,0));
 
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(10,0,10,20));
@@ -350,16 +376,17 @@ public class PersonalityTabScene {
 
         PersonalityTabListener.listen(
                 profilePicture,editProfilePictureButton,
+                firstNameTextField,lastNameTextField,
                 userNameTextField,editUsernameButton,
-                genderChoiceBox,
+                genderComboBox,
                 eMailTextField,editEmailButton,
                 contactTextField,editContactButton,
                 selectDayComboBox,selectMonthComboBox,selectYearComboBox,
                 bioTextArea,
-                degree1ComboBox,degree1TextField,
-                degree2ComboBox,degree2TextField,
-                degree3ComboBox,degree3TextField,
-                degree4ComboBox,degree4TextField,
+                degree1ComboBox,course1TextField,degree1TextField,
+                degree2ComboBox,course2TextField,degree2TextField,
+                degree3ComboBox,course3TextField,degree3TextField,
+                degree4ComboBox,course4TextField,degree4TextField,
                 homeTownTextField,homeTownEditButton,
                 currentCityTextField,currentCityEditButton,
                 stateTextField,stateEditButton,

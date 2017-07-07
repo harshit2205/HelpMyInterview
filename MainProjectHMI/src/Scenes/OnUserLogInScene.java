@@ -6,17 +6,14 @@ import ScenesPopWindow.TabContentsScenes.GDTabScene;
 import ScenesPopWindow.TabContentsScenes.PersonalityTabScene;
 import ScenesPopWindow.TabContentsScenes.ResumeTabScene;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
  * Created by staLker on 30-06-2017.
@@ -25,6 +22,7 @@ import javafx.stage.Stage;
 public class OnUserLogInScene {
 
     private static Stage window;
+    private static String userName;
 
 
     public static void passControl(Stage window){
@@ -104,5 +102,12 @@ public class OnUserLogInScene {
 
     public static Stage getWindow() {
         return window;
+    }
+
+    public static String getUserName() {return userName;}
+
+
+    public static void setUserName(String userName) {
+        OnUserLogInScene.userName = userName;
     }
 }

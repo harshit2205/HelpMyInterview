@@ -317,6 +317,8 @@ public class OnUserSignUpScene {
         root.getChildren().addAll(titleTextHBox,formPane,acceptCheckBoxErrorHBox,registerButton);
         root.setAlignment(Pos.CENTER);
 
+        OnUserSignUpSceneListener.listen(firstNameTextField,lastNameTextField,eMailTextField,contactTextField,genderToggleGroup,usernameTextField,passwordTextField,repeatPasswordTextField,statesComboBox,cityComboBox,registerButton);
+
 
         return new Scene(root,500,900);
     }
