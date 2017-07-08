@@ -36,7 +36,7 @@ public class UserLoginScene {
         HBox userNameHBox = new HBox(10);
         HBox passwordHBox = new HBox(10);
         HBox bothButtonHBox = new HBox(10);
-        VBox loginPanelHBox = new VBox(10);
+        VBox loginPanelHBox = new VBox(0);
         HBox imageSliderHBox = ImageSlider.getLayout();
         VBox root = new VBox(0);
         HBox imageLoginPanel = new HBox(10);
@@ -76,9 +76,6 @@ public class UserLoginScene {
 
 
 
-        UserLoginSceneListener.listen(window,inputUsername,inputPassword,loginButton,signUpButton,managerLoginMenuItem,aboutMenuItem,helpMenuItem,exitMenuItem);
-
-
         MenuBar menuBar = new MenuBar();
         menuBar.setBackground(Background.EMPTY);
         menuBar.getMenus().add(menu);
@@ -98,15 +95,20 @@ public class UserLoginScene {
         coloredHBoxTwo.getChildren().add(new Text(""));
         coloredHBoxTwo.setStyle("-fx-background-color: transparent");
 
-
-        userNameHBox.getChildren().addAll(userNameLabel,inputUsername);
-        passwordHBox.getChildren().addAll(passwordLabel,inputPassword);
+        Text userNameErrorText = new Text("*");
+        Text passwordErrorText = new Text("*");
+        Text entryErrorText = new Text();
+        userNameHBox.getChildren().addAll(userNameLabel,inputUsername,userNameErrorText);
+        passwordHBox.getChildren().addAll(passwordLabel,inputPassword,passwordErrorText);
         imageHMIHBox.getChildren().add(logoImageView);
         bothButtonHBox.getChildren().addAll(loginButton,signUpButton);
         loginPanelHBox.setPadding(new Insets(10,10,10,10));
         bothButtonHBox.setPadding(new Insets(10,10,10,90));
         imageHMIHBox.setPadding(new Insets(10,0,0,40));
-        loginPanelHBox.getChildren().addAll(userNameHBox,passwordHBox,bothButtonHBox);
+        loginPanelHBox.setAlignment(Pos.CENTER);
+        VBox userNameAndPasswordHBox = new VBox(10);
+        userNameAndPasswordHBox.getChildren().addAll(userNameHBox,passwordHBox);
+        loginPanelHBox.getChildren().addAll(userNameAndPasswordHBox,entryErrorText,bothButtonHBox);
         imageLoginPanel.getChildren().addAll(imageHMIHBox,loginPanelHBox);
         imageLoginPanel.setPadding(new Insets(10,10,10,10));
         imageLoginPanel.setStyle("-fx-background-color: #090300");
@@ -116,6 +118,20 @@ public class UserLoginScene {
         root.getChildren().addAll(optionMenuHBox,imageLoginPanel,coloredHBoxTwo,imageSliderHBox,runnableTextHBox);
 
         root.setAlignment(Pos.CENTER);
+
+
+        UserLoginSceneListener.listen(
+                window,
+                inputUsername,userNameErrorText,
+                inputPassword,passwordErrorText,
+                entryErrorText,
+                loginButton,
+                signUpButton,
+                managerLoginMenuItem,
+                aboutMenuItem,
+                helpMenuItem,
+                exitMenuItem
+        );
 
 
 

@@ -406,23 +406,31 @@ public class PersonalityTabScene {
         VBox root = new VBox();
         root.getChildren().addAll(scrollPane);
 
+        PersonalityTabToggleTextViewListener.toggle(
+                eMailTextField,editEmailButton,
+                contactTextField,editContactButton,
+                homeTownTextField,homeTownEditButton,
+                currentCityTextField,currentCityEditButton,
+                stateTextField,stateEditButton
+        );
+
 
         PersonalityTabListener.listen(
                 profilePicture,editProfilePictureButton,
                 firstNameTextField,lastNameTextField,
                 userNameTextField,
                 genderComboBox,
-                eMailTextField,editEmailButton,
-                contactTextField,editContactButton,
+                eMailTextField,
+                contactTextField,
                 selectDayComboBox,selectMonthComboBox,selectYearComboBox,
                 bioTextArea,
                 degree1ComboBox,course1TextField,degree1TextField,
                 degree2ComboBox,course2TextField,degree2TextField,
                 degree3ComboBox,course3TextField,degree3TextField,
                 degree4ComboBox,course4TextField,degree4TextField,
-                homeTownTextField,homeTownEditButton,
-                currentCityTextField,currentCityEditButton,
-                stateTextField,stateEditButton,
+                homeTownTextField,
+                currentCityTextField,
+                stateTextField,
                 aboutYourselfTextArea,
                 acceptCheckBox,
                 saveButton,
@@ -432,6 +440,23 @@ public class PersonalityTabScene {
                 monthErrorText,yearErrorText,
                 degree1ErrorText,degree2ErrorText,degree3ErrorText,degree4ErrorText
                 );
+        PersonalityTabValidationListener.validateAndListen(
+                firstNameTextField,lastNameTextField,
+                eMailTextField,
+                contactTextField,
+                selectDayComboBox,selectMonthComboBox,selectYearComboBox,
+                degree1ComboBox,course1TextField,degree1TextField,
+                degree2ComboBox,course2TextField,degree2TextField,
+                degree3ComboBox,course3TextField,degree3TextField,
+                degree4ComboBox,course4TextField,degree4TextField,
+                acceptCheckBox,
+                saveButton,
+                firstNameErrorText,lastNameErrorText,
+                emailErrorText,
+                contactErrorText,
+                monthErrorText,yearErrorText,
+                degree1ErrorText,degree2ErrorText,degree3ErrorText,degree4ErrorText
+        );
 
 
 

@@ -30,16 +30,8 @@ import static Utils.ValidationUtils.setErrorHBox;
  * Created by staLker on 01-07-2017.
  */
 public class OnUserSignUpScene {
-    private static boolean firstNameVal = false;
-    private static boolean lastNameVal = false;
-    private static boolean eMailVal = false;
-    private static boolean contactVal = false;
-    private static boolean userNameVal = false;
-    private static boolean passwordVal = false;
-    private static boolean genderVal = false;
-    private static boolean stateVal = false;
-    private static boolean cityVal = false;
-    private static boolean acceptTermVal = false;
+
+
     private static Button registerButton;
     public static Scene getScene(){
 
@@ -118,9 +110,6 @@ public class OnUserSignUpScene {
 
 
 
-
-
-
         GridPane.setConstraints(firstNameLabel,0,0);
         GridPane.setConstraints(firstNameErrorHBox,1,0);
 
@@ -154,165 +143,24 @@ public class OnUserSignUpScene {
 
 
         formPane.getChildren().addAll(
-                firstNameLabel,
-                firstNameErrorHBox,
-                lastNameLabel,
-                lastNameErrorHBox,
-                eMailLabel,
-                eMailErrorHBox,
-                contactLabel,
-                contactErrorHBox,
-                genderLabel,
-                genderErrorHBox,
-                userNameLabel,
-                userNameErrorHBox,
-                passwordLabel,
-                passwordErrorHBox,
-                repeatPasswordLabel,
-                repeatPasswordErrorHBox,
-                stateLabel,
-                stateComboBoxErrorHBox,
-                cityLabel,
-                cityComboBoxErrorHBox
+                firstNameLabel, firstNameErrorHBox, lastNameLabel, lastNameErrorHBox,
+                eMailLabel, eMailErrorHBox,
+                contactLabel, contactErrorHBox,
+                genderLabel, genderErrorHBox,
+                userNameLabel, userNameErrorHBox,
+                passwordLabel, passwordErrorHBox, repeatPasswordLabel, repeatPasswordErrorHBox,
+                stateLabel, stateComboBoxErrorHBox,
+                cityLabel, cityComboBoxErrorHBox
         );
         formPane.setAlignment(Pos.TOP_CENTER);
 
-
-
-
         registerButton = new Button("Register!");
         registerButton.setDisable(true);
-
-
-        firstNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(EntryValidation.isFirstNameValid(newValue)){
-                onCorrectMakeInvisible(firstNameErrorHBox);
-                firstNameVal=true;
-            }
-            else if(!EntryValidation.isFirstNameValid(newValue)){
-                onErrorMakeRed(firstNameErrorHBox);
-                firstNameVal=false;
-            }
-            checkIfAllTrue();
-        });
-        lastNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(EntryValidation.isLastNameValid(newValue)){
-                onCorrectMakeInvisible(lastNameErrorHBox);
-                lastNameVal=true;
-            }
-            else if(!EntryValidation.isFirstNameValid(newValue)){
-                onErrorMakeRed(lastNameErrorHBox);
-                lastNameVal=false;
-            }
-            checkIfAllTrue();
-        });
-        eMailTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(EntryValidation.isEmailValid(newValue)){
-                onCorrectMakeInvisible(eMailErrorHBox);
-                eMailVal=true;
-            }
-            else if(!EntryValidation.isEmailValid(newValue)){
-                onErrorMakeRed(eMailErrorHBox);
-                eMailVal=false;
-            }
-            checkIfAllTrue();
-        });
-        contactTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(EntryValidation.isContactValid(Long.parseLong(newValue))){
-                onCorrectMakeInvisible(contactErrorHBox);
-                contactVal=true;
-            }
-            else if(!EntryValidation.isContactValid(Long.parseLong(newValue))){
-                onErrorMakeRed(contactErrorHBox);
-                contactVal=false;
-            }
-            checkIfAllTrue();
-        });
-        genderToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if(genderToggleGroup.getSelectedToggle() != null){
-                onCorrectMakeInvisible(genderErrorHBox);
-                genderVal=true;
-            }
-
-            checkIfAllTrue();
-        });
-        usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(genderToggleGroup.getSelectedToggle() != null){
-                onCorrectMakeInvisible(genderErrorHBox);
-                genderVal=true;
-            }
-            else {
-                onErrorMakeRed(genderErrorHBox);
-                genderVal=false;
-            }
-            if(EntryValidation.isUserNameValid(newValue)){
-                onCorrectMakeInvisible(userNameErrorHBox);
-                userNameVal=true;
-            }
-            else if(!EntryValidation.isUserNameValid(newValue)){
-                onErrorMakeRed(userNameErrorHBox);
-                userNameVal=false;
-            }
-            checkIfAllTrue();
-        });
-        repeatPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(EntryValidation.isPasswordValid(passwordTextField.getText(),newValue)){
-                onCorrectMakeInvisible(passwordErrorHBox);
-                onCorrectMakeInvisible(repeatPasswordErrorHBox);
-                passwordVal=true;
-            }
-            else if(!EntryValidation.isPasswordValid(passwordTextField.getText(),newValue)){
-                onErrorMakeRed(passwordErrorHBox);
-                onErrorMakeRed(repeatPasswordErrorHBox);
-                passwordVal=false;
-            }
-            checkIfAllTrue();
-
-        });
-        statesComboBox.setOnAction(e -> {
-            if(statesComboBox.getSelectionModel().getSelectedItem()!=null){
-                stateVal = true;
-                onCorrectMakeInvisible(stateComboBoxErrorHBox);
-            }
-            else {
-                stateVal = false;
-                onErrorMakeRed(stateComboBoxErrorHBox);
-            }
-            checkIfAllTrue();
-        });
-        cityComboBox.setOnAction(e -> {
-            if(cityComboBox.getSelectionModel().getSelectedItem()!=null){
-                onCorrectMakeInvisible(cityComboBoxErrorHBox);
-                cityVal = true;
-            }
-            else {
-                cityVal = false;
-                onErrorMakeRed(cityComboBoxErrorHBox);
-            }
-            checkIfAllTrue();
-        });
-        acceptCheckBox.selectedProperty().addListener(e -> {
-            acceptTermVal = acceptCheckBox.isSelected();
-            if(acceptTermVal){
-                onCorrectMakeInvisible(acceptCheckBoxErrorHBox);
-            }
-            else{
-                onErrorMakeRed(acceptCheckBoxErrorHBox);
-            }
-            checkIfAllTrue();
-        });
-
-//
-
 
         allInVBox.getChildren().addAll(titleTextHBox,formPane,acceptCheckBoxErrorHBox,registerButton);
         allInVBox.setAlignment(Pos.CENTER);
         allInVBox.setMinHeight(900);
         allInVBox.setMinWidth(493);
-
-        OnUserSignUpSceneListener.listen(firstNameTextField,lastNameTextField,eMailTextField,contactTextField,genderToggleGroup,usernameTextField,passwordTextField,repeatPasswordTextField,statesComboBox,cityComboBox,registerButton);
-
-
 
         ScrollPane scrollPane = new ScrollPane();
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -325,6 +173,28 @@ public class OnUserSignUpScene {
 
             }
         });
+        OnUserSignUpValidationListener.validateAndListen(
+                registerButton,
+                firstNameTextField,firstNameErrorHBox, lastNameTextField,lastNameErrorHBox,
+                eMailTextField,eMailErrorHBox,
+                contactTextField,contactErrorHBox,
+                genderToggleGroup,genderErrorHBox,
+                usernameTextField,userNameErrorHBox,
+                passwordTextField,repeatPasswordTextField,passwordErrorHBox,repeatPasswordErrorHBox,
+                statesComboBox,stateComboBoxErrorHBox, cityComboBox,cityComboBoxErrorHBox,
+                acceptCheckBoxErrorHBox,acceptCheckBox
+        );
+
+        OnUserSignUpSceneListener.listen(
+                firstNameTextField,lastNameTextField,
+                eMailTextField,
+                contactTextField,
+                genderToggleGroup,
+                usernameTextField,
+                passwordTextField,repeatPasswordTextField,
+                statesComboBox,cityComboBox,
+                registerButton
+        );
 
 
         VBox root = new VBox();
@@ -334,15 +204,4 @@ public class OnUserSignUpScene {
     }
 
 
-
-
-
-    private static void checkIfAllTrue(){
-        if(firstNameVal&&lastNameVal &&eMailVal &&contactVal &&userNameVal &&passwordVal &&genderVal&&stateVal&&cityVal&&acceptTermVal){
-            registerButton.setDisable(false);
-        }
-        else {
-            registerButton.setDisable(true);
-        }
-    }
 }
