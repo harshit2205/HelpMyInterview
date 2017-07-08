@@ -32,7 +32,7 @@ public class EnterGDScene {
 
 
         //topics of G.D :
-        Text titleText = new Text("Enter your Details");
+        Text titleText = new Text("Select your Group Discussion topic");
         titleText.setFont(Font.font(null, FontWeight.EXTRA_BOLD,30));
         titleText.setFill(Paint.valueOf("#01a0e4"));
 
@@ -48,6 +48,7 @@ public class EnterGDScene {
         listview.setEditable(true);
         listview.setPadding(new Insets(0,10,0,10));
         listview.setItems(GDTopics.fetchList());
+
         // styling inline listView...................
         listview.setStyle("-fx-background-color: transparent;");
 
