@@ -4,11 +4,18 @@ import Models.User;
 import Models.UserLab;
 import Scenes.OnUserLogInScene;
 import Utils.Education;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -31,12 +38,15 @@ public class PersonalityTabListener {
 
 
 
+
         firstNameTextField.setText(user.getFirstName());
         lastNameTextField.setText(user.getLastName());
         userNameTextField.setText(userName);
         eMailTextField.setText(user.getEmail());
         contactTextField.setText(user.getContact().toString());
         genderComboBox.setValue(user.getGender());
+        selectMonthComboBox.setDisable(true);
+        selectYearComboBox.setDisable(true);
         bioTextArea.setText(user.getBio());
         bioTextArea.setWrapText(true);
         homeTownTextField.setText(user.getCity());
@@ -50,7 +60,22 @@ public class PersonalityTabListener {
 
         editProfilePictureButton.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select Profile Picture");
+            fileChooser.setInitialDirectory(
+                    new File(System.getProperty("user.home"))
+            );
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+            );
             File selectedFile = fileChooser.showOpenDialog(null);
+            try {
+                BufferedImage bufferedImage = ImageIO.read(selectedFile);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                profilePicture.setImage(image);
+            } catch (IOException ex) {
+                Logger.getLogger(PersonalityTabListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         editUsernameButton.setOnAction(e -> {
             toggleTextField(userNameTextField);
@@ -60,6 +85,12 @@ public class PersonalityTabListener {
         });
         editContactButton.setOnAction(e ->{
              toggleTextField(contactTextField);
+        });
+        selectDayComboBox.setOnAction(e -> {
+            selectMonthComboBox.setDisable(false);
+        });
+        selectMonthComboBox.setOnAction(e -> {
+            selectYearComboBox.setDisable(false);
         });
 
         degree1ComboBox.setOnAction(e -> {

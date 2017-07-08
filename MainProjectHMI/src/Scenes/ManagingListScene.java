@@ -1,8 +1,8 @@
 package Scenes;
 
 import Delete.ConfirmBox;
-import Delete.DemoPojo;
-import javafx.collections.FXCollections;
+import Models.User;
+import Models.UserLab;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 
 public class ManagingListScene {
 
-    private static ObservableList<DemoPojo> list;
     private static TableView table;
 
 
@@ -47,11 +46,6 @@ public class ManagingListScene {
         topBarHBox.setAlignment(Pos.CENTER_RIGHT);
         topBarHBox.setPadding(new Insets(10,10,0,10));
 
-        list = FXCollections.observableArrayList();
-        for(int i = 1 ; i <= 50 ; i++){
-            list.add(new DemoPojo(i,"username"+i,"harshit"));
-        }
-
         if(ifTableExists()){
             createTable();
         }
@@ -65,14 +59,14 @@ public class ManagingListScene {
         editButton.setOnAction(e -> {});
         deleteButton.setOnAction(e -> {
             if(new ConfirmBox().confirmationUtility("Confirm delete!","Are you sure you want to \ndelete the user?")){
-            ObservableList<DemoPojo> selectedItems =  table.getSelectionModel().getSelectedItems();
+            ObservableList<User> selectedItems =  table.getSelectionModel().getSelectedItems();
             // code for updating in the sql
             table.getItems().removeAll(selectedItems);}
         });
 
-        table.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<DemoPojo>(){
+        table.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<User>(){
             @Override
-            public void onChanged(  ListChangeListener.Change<? extends DemoPojo> changed){
+            public void onChanged(  ListChangeListener.Change<? extends User> changed){
                 if( changed.getList().size() > 1){
                     editButton.setDisable(true);}
                     else{
@@ -109,20 +103,20 @@ public class ManagingListScene {
     }
 
     private static void createTable(){
-        table = new TableView<DemoPojo>();
+        table = new TableView<User>();
 
-        TableColumn<DemoPojo, Integer> idColumn = new TableColumn<>("Id");
+        TableColumn<User, Integer> idColumn = new TableColumn<>("Id");
         idColumn.setMaxWidth(1000);
         idColumn.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
-        TableColumn<DemoPojo, String> usernameColumn = new TableColumn<>("User Name");
+                new PropertyValueFactory<>(User.ID_PROPERTY_STRING));
+        TableColumn<User, String> usernameColumn = new TableColumn<>("Username");
         usernameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("userName"));
-        TableColumn<DemoPojo, String> nameColumn = new TableColumn<>("Name");
+                new PropertyValueFactory<>(User.USERNAME_PROPERTY_STRING));
+        TableColumn<User, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("name"));
+                new PropertyValueFactory<>(User.NAME_PROPERTY_STRING));
 
-        table.setItems(list);
+        table.setItems(UserLab.get().getObservableUserList());
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.getColumns().addAll(idColumn, usernameColumn, nameColumn);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

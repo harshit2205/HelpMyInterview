@@ -1,5 +1,8 @@
 package Models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,9 @@ public class UserLab {
 
     public ArrayList<User> getUserList() {
         return userList;
+    }
+    public ObservableList<User> getObservableUserList(){
+        return FXCollections.observableList(userList);
     }
 
     public User getUserByUserName(String userName){
