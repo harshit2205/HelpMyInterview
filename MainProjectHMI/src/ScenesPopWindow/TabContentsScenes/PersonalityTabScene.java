@@ -17,8 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-
-import javax.xml.soap.Text;
+import javafx.scene.text.Text;
 
 
 /**
@@ -45,39 +44,59 @@ public class PersonalityTabScene {
 
 
         Label nameLabel = new Label("Name :");
+        HBox firstNameTextFieldHBox = new HBox(2);
+        Text firstNameErrorText = new Text("*");
         TextField firstNameTextField = new TextField();
+        firstNameTextFieldHBox.getChildren().addAll(firstNameTextField,firstNameErrorText);
+
+        HBox lastNameTextFieldHBox = new HBox(2);
+        Text lastNameErrorText = new Text("*");
         TextField lastNameTextField = new TextField();
+        lastNameTextFieldHBox.getChildren().addAll(lastNameTextField,lastNameErrorText);
+
 
         Label userNameLabel = new Label("Username :");
         TextField userNameTextField = new TextField();
         userNameTextField.setDisable(true);
-        Button editUsernameButton = new Button("Edit");
 
         Label genderLabel = new Label("Gender : ");
         ComboBox<String> genderComboBox = new ComboBox<>();
         genderComboBox.setPromptText("Gender");
         genderComboBox.getItems().addAll("Male","Female");
 
+
         Label emailLabel = new Label("Email : ");
+        HBox emailTextFieldHBox = new HBox(2);
+        Text emailErrorText = new Text("*");
         TextField eMailTextField = new TextField();
+        emailTextFieldHBox.getChildren().addAll(eMailTextField,emailErrorText);
         eMailTextField.setDisable(true);
         Button editEmailButton = new Button("Edit");
 
 
         Label contactLabel = new Label("Contact : ");
+        HBox contactTextFieldHBox = new HBox(2);
+        Text contactErrorText = new Text("*");
         TextField contactTextField = new TextField();
+        contactTextFieldHBox.getChildren().addAll(contactTextField,contactErrorText);
         contactTextField.setDisable(true);
         Button editContactButton = new Button("Edit");
 
         Label dobLabel = new Label("DOB : ");
         ComboBox<String> selectDayComboBox = new ComboBox<>(DOB.getAllDateList());
         selectDayComboBox.setPromptText("Day");
+        HBox monthComboBoxHBox = new HBox(2);
+        Text monthErrorText = new Text("*");
         ComboBox<String> selectMonthComboBox = new ComboBox<>(DOB.getAllMonthList());
+        monthComboBoxHBox.getChildren().addAll(selectMonthComboBox,monthErrorText);
         selectMonthComboBox.setPromptText("Month");
+        HBox yearComboBoxHBox = new HBox(2);
+        Text yearErrorText = new Text("*");
         ComboBox<String> selectYearComboBox = new ComboBox<>(DOB.getAllYears());
+        yearComboBoxHBox.getChildren().addAll(selectYearComboBox,yearErrorText);
         selectYearComboBox.setPromptText("Year");
         HBox dateSelectHBox = new HBox(10);
-        dateSelectHBox.getChildren().addAll(selectDayComboBox,selectMonthComboBox);
+        dateSelectHBox.getChildren().addAll(selectDayComboBox,monthComboBoxHBox);
 
 
 
@@ -85,31 +104,31 @@ public class PersonalityTabScene {
         personalGrid.setHgap(10);
         personalGrid.setVgap(10);
         GridPane.setConstraints(nameLabel,0,0);
-        GridPane.setConstraints(firstNameTextField,1,0 );
-        GridPane.setConstraints(lastNameTextField,2,0);
+        GridPane.setConstraints(firstNameTextFieldHBox,1,0 );
+        GridPane.setConstraints(lastNameTextFieldHBox,2,0);
         GridPane.setConstraints(userNameLabel,0,1);
         GridPane.setConstraints(userNameTextField,1,1);
-        GridPane.setConstraints(editUsernameButton,2,1);
         GridPane.setConstraints(genderLabel,0,2);
         GridPane.setConstraints(genderComboBox,1,2);
         GridPane.setConstraints(emailLabel,0,3);
-        GridPane.setConstraints(eMailTextField,1,3);
+        GridPane.setConstraints(emailTextFieldHBox,1,3);
         GridPane.setConstraints(editEmailButton,2,3);
         GridPane.setConstraints(contactLabel,0,4);
-        GridPane.setConstraints(contactTextField,1,4);
+        GridPane.setConstraints(contactTextFieldHBox,1,4);
         GridPane.setConstraints(editContactButton,2,4);
         GridPane.setConstraints(dobLabel,0,5);
         GridPane.setConstraints(dateSelectHBox,1,5);
-        GridPane.setConstraints(selectYearComboBox,2,5);
+        GridPane.setConstraints(yearComboBoxHBox,2,5);
 
         personalGrid.getChildren().addAll(
-                nameLabel,firstNameTextField,lastNameTextField,
-                userNameLabel,userNameTextField,editUsernameButton,
+                nameLabel,firstNameTextFieldHBox,lastNameTextFieldHBox,
+                userNameLabel,userNameTextField,
                 genderLabel,genderComboBox,
-                emailLabel,eMailTextField,editEmailButton,
-                contactLabel,contactTextField,editContactButton,
-                dobLabel,dateSelectHBox,selectYearComboBox
+                emailLabel,emailTextFieldHBox,editEmailButton,
+                contactLabel,contactTextFieldHBox,editContactButton,
+                dobLabel,dateSelectHBox,yearComboBoxHBox
                 );
+        personalGrid.setGridLinesVisible(true);
 
         VBox profilePictureVBox = new VBox(10);
         profilePictureVBox.setAlignment(Pos.CENTER);
@@ -117,7 +136,7 @@ public class PersonalityTabScene {
 
         GridPane completePersonalGrid = new GridPane();
         completePersonalGrid.setVgap(10);
-        completePersonalGrid.setHgap(40);
+        completePersonalGrid.setHgap(20);
         //GridPane.setConstraints(personalDetailLabel,0,0);
         GridPane.setConstraints(profilePictureVBox,0,1);
         GridPane.setConstraints(personalGrid,1,1);
@@ -214,19 +233,32 @@ public class PersonalityTabScene {
         degree4TextField.setPromptText("enter name of institution");
         degree4TextField.setDisable(true);
 
+        Text degree1ErrorText = new Text("*");
+        Text degree2ErrorText = new Text("*");
+        Text degree3ErrorText = new Text("*");
+        Text degree4ErrorText = new Text("*");
+
         //GridPane.setConstraints(educationLabel,0,0);
         GridPane.setConstraints(degree1ComboBox,0,1);
         GridPane.setConstraints(course1TextField,1,1);
         GridPane.setConstraints(degree1TextField,2,1);
+        GridPane.setConstraints(degree1ErrorText,3,1);
+
         GridPane.setConstraints(degree2ComboBox,0,2);
         GridPane.setConstraints(course2TextField,1,2);
         GridPane.setConstraints(degree2TextField,2,2);
+        GridPane.setConstraints(degree2ErrorText,3,2);
+
         GridPane.setConstraints(degree3ComboBox,0,3);
         GridPane.setConstraints(course3TextField,1,3);
         GridPane.setConstraints(degree3TextField,2,3);
+        GridPane.setConstraints(degree3ErrorText,3,3);
+
         GridPane.setConstraints(degree4ComboBox,0,4);
         GridPane.setConstraints(course4TextField,1,4);
         GridPane.setConstraints(degree4TextField,2,4);
+        GridPane.setConstraints(degree4ErrorText,3,4);
+
 
         emailLabel.setAlignment(Pos.CENTER);
 
@@ -234,10 +266,11 @@ public class PersonalityTabScene {
         educationGridPane.setHgap(7);
         educationGridPane.setVgap(20);
         educationGridPane.getChildren().addAll(
-                degree1ComboBox,course1TextField,degree1TextField,
-                degree2ComboBox,course2TextField,degree2TextField,
-                degree3ComboBox,course3TextField,degree3TextField,
-                degree4ComboBox,course4TextField,degree4TextField);
+                degree1ComboBox,course1TextField,degree1TextField,degree1ErrorText,
+                degree2ComboBox,course2TextField,degree2TextField,degree2ErrorText,
+                degree3ComboBox,course3TextField,degree3TextField,degree3ErrorText,
+                degree4ComboBox,course4TextField,degree4TextField,degree4ErrorText);
+        educationGridPane.setGridLinesVisible(true);
         ///------------------------------------->education ends<---------------------------//
 
 
@@ -377,7 +410,7 @@ public class PersonalityTabScene {
         PersonalityTabListener.listen(
                 profilePicture,editProfilePictureButton,
                 firstNameTextField,lastNameTextField,
-                userNameTextField,editUsernameButton,
+                userNameTextField,
                 genderComboBox,
                 eMailTextField,editEmailButton,
                 contactTextField,editContactButton,
@@ -392,7 +425,12 @@ public class PersonalityTabScene {
                 stateTextField,stateEditButton,
                 aboutYourselfTextArea,
                 acceptCheckBox,
-                saveButton
+                saveButton,
+                firstNameErrorText,lastNameErrorText,
+                emailErrorText,
+                contactErrorText,
+                monthErrorText,yearErrorText,
+                degree1ErrorText,degree2ErrorText,degree3ErrorText,degree4ErrorText
                 );
 
 

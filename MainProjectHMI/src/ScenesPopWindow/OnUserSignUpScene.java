@@ -4,6 +4,7 @@ import Models.EntryValidation;
 import Models.User;
 import Utils.Cities;
 import Utils.States;
+import Utils.ValidationUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -19,6 +20,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
+import static Utils.ValidationUtils.onCorrectMakeInvisible;
+import static Utils.ValidationUtils.onErrorMakeRed;
+import static Utils.ValidationUtils.setErrorHBox;
 
 
 /**
@@ -298,24 +303,7 @@ public class OnUserSignUpScene {
         });
 
 //
-        registerButton.setOnAction(e -> {
-            User user = new User();
 
-            user.setUserDetails(
-                    firstNameTextField.getText(),
-                    lastNameTextField.getText(),
-                    eMailTextField.getText(),
-                    Long.parseLong(contactTextField.getText()),
-                    genderToggleGroup.getSelectedToggle().getUserData().toString(),
-                    usernameTextField.getText(),
-                    passwordTextField.getText(),
-                    statesComboBox.getValue(),
-                    cityComboBox.getValue()
-            );
-
-            user.printUser();
-
-        });
 
         allInVBox.getChildren().addAll(titleTextHBox,formPane,acceptCheckBoxErrorHBox,registerButton);
         allInVBox.setAlignment(Pos.CENTER);
@@ -347,34 +335,7 @@ public class OnUserSignUpScene {
 
 
 
-    private static HBox setErrorHBox(Parent parent){
-        Text errorText = new Text("*");
-        HBox hBox = new HBox(2);
-        errorText.setVisible(false);
-        errorText.setFont(Font.font(null,FontWeight.EXTRA_BOLD,23));
-        errorText.getStyleClass().add("text-error");
-        hBox.getChildren().addAll(parent,errorText);
-        return hBox;
-    }
 
-    private static void onErrorMakeRed(HBox hBox){
-//        if(hBox.getChildren().get(0)instanceof TextField) {
-//            if(hBox.getChildren().get(0).getStyleClass().contains("text-field-normal")){
-//                hBox.getChildren().get(0).getStyleClass().remove("text-field-normal");
-//                hBox.getChildren().get(0).getStyleClass().add("text-field-error");
-//            }
-//        }
-        hBox.getChildren().get(1).setVisible(true);
-    }
-    private  static void onCorrectMakeInvisible(HBox hBox){
-//        if(hBox.getChildren().get(0)instanceof TextField) {
-//            if(hBox.getChildren().get(0).getStyleClass().contains("text-field-error")){
-//                hBox.getChildren().get(0).getStyleClass().remove("text-field-error");
-//                hBox.getChildren().get(0).getStyleClass().add("text-field-normal");
-//            }
-//        }
-        hBox.getChildren().get(1).setVisible(false);
-    }
 
     private static void checkIfAllTrue(){
         if(firstNameVal&&lastNameVal &&eMailVal &&contactVal &&userNameVal &&passwordVal &&genderVal&&stateVal&&cityVal&&acceptTermVal){

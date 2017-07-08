@@ -77,20 +77,22 @@ public class GDTabScene {
         basePane.setAlignment(Pos.CENTER);
         basePane.getChildren().addAll(headerVBox, footerVBox, enterGD);
         basePane.setPadding(new Insets(20,20,20,20));
+        basePane.setMinHeight(700);
+        basePane.setMinWidth(700);
 
         // Adding ScrollBar......................
         ScrollPane scrollPane = new ScrollPane();
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setVmax(10000);
+        scrollPane.setPrefSize(500, 600);
+
         scrollPane.setContent(basePane);
-//        scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
-//            public void changed(ObservableValue<? extends Number> ov,
-//                                Number old_val, Number new_val) {
-//
-//            }
-//        });
+        scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+
+            }
+        });
 
         VBox root = new VBox();
         root.getChildren().addAll(scrollPane);

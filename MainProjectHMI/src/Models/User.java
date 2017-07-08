@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+
 /**
  * Created by staLker on 04-07-2017.
  */
@@ -31,7 +33,7 @@ public class User{
     private Image userImage;
     private DOB dob;
     private String bio;
-    private Education education;
+    private ArrayList<Education> educationList = new ArrayList<>(4);
     private String homeTown;
     private String about;
 
@@ -56,6 +58,7 @@ public class User{
         this.state = state;
         this.city = city;
     }
+
 
     public int getId() {
         return id;
@@ -160,12 +163,10 @@ public class User{
         this.bio = bio;
     }
 
-    public Education getEducation() {
-        return education;
-    }
+    public ArrayList<Education> getEducation() {return educationList;}
 
-    public void setEducation(Education education) {
-        this.education = education;
+    public void setEducation(ArrayList<Education> education) {
+        this.educationList = education;
     }
 
     public String getHomeTown() {
@@ -218,5 +219,24 @@ public class User{
 
     public void set_name_(String _name_) {
         this._name_.set(_name_);
+    }
+
+    public void personalityUpdate(Image userImage, String firstName, String lastName, String userName, String gender,
+                                  String eMail, String contact, DOB dob, String bio, ArrayList<Education> educationList,
+                                  String homeTown, String city, String state, String about) {
+        this.userImage = userImage;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.gender = gender;
+        this.eMail = eMail;
+        this.contact = Long.parseLong(contact);
+        this.dob = dob;
+        this.bio = bio;
+        this.educationList = educationList;
+        this.homeTown = homeTown;
+        this.city = city;
+        this.state = state;
+        this.about = about;
     }
 }
