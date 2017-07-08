@@ -3,7 +3,7 @@ package Scenes;
 import Models.User;
 import Models.UserLab;
 import Stages.ConfirmationDialog;
-import Utils.BaseUtilities;
+import Utils.FormatButton;
 import Utils.FormattedText;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -53,14 +53,12 @@ public class ManagingEditScene {
 
         //Buttons......
         Button backButton = new Button("Back");
-        Button editUserName = new Button("edit");
-        Button editPassword = new Button("edit");
+        FormatButton editUserName = new FormatButton("edit",userNameField);
+        FormatButton editPassword = new FormatButton("edit",passwordField);
         Button changeButton = new Button("Change Credentials");
 
         //listeners.........
         backButton.setOnAction(e -> ManagingListScene.passControl(window));
-        editUserName.setOnAction(e -> BaseUtilities.toggleTextField(userNameField));
-        editPassword.setOnAction(e -> BaseUtilities.toggleTextField(passwordField));
         changeButton.setOnAction(e ->{
             if(new ConfirmationDialog().confirmationUtility("Confirmation!", "Are u sure to Edit")){
                 // wrte your code for changiing crredential here..............
