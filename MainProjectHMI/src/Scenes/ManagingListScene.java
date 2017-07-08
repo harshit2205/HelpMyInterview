@@ -1,8 +1,8 @@
 package Scenes;
 
-import Delete.ConfirmBox;
 import Models.User;
 import Models.UserLab;
+import Stages.ConfirmationDialog;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 public class ManagingListScene {
 
     private static TableView table;
+    private String username;
+    private static User user = null;
 
 
     static void passControl(Stage window){
@@ -56,44 +58,62 @@ public class ManagingListScene {
         Button deleteButton = new Button("delete");
         deleteButton.setDisable(true);
         Button logoutButton = new Button("Logout!");
-        editButton.setOnAction(e -> {});
-        deleteButton.setOnAction(e -> {
-            if(new ConfirmBox().confirmationUtility("Confirm delete!","Are you sure you want to \ndelete the user?")){
-            ObservableList<User> selectedItems =  table.getSelectionModel().getSelectedItems();
-            // code for updating in the sql
-            table.getItems().removeAll(selectedItems);}
-        });
 
-        table.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<User>(){
+
+        //listeners...................
+        ObservableList selectedItems = table.getSelectionModel().getSelectedItems();
+
+        //on table item selected..........................
+
+        selectedItems.addListener(new ListChangeListener<User>(){
             @Override
             public void onChanged(  ListChangeListener.Change<? extends User> changed){
                 if( changed.getList().size() > 1){
-                    editButton.setDisable(true);}
-                    else{
+                    editButton.setDisable(true);
+                }
+                else{
                     deleteButton.setDisable(false);
                     editButton.setDisable(false);
+                    user = (User)selectedItems.get(0);
                 }
             }
         });
-        table.setMaxHeight(330);
-        VBox.setMargin(table,new Insets(30,10,30,10));
 
+        editButton.setOnAction(e -> {
+            ManagingEditScene.passControl(window,user.getUserName());
+        });
+
+
+        deleteButton.setOnAction(e -> {
+            if(new ConfirmationDialog().confirmationUtility("Confirm delete!","Are you sure you want to \ndelete the user?")){
+                // code for updating in the sql
+                table.getItems().removeAll(selectedItems);}
+        });
 
 
         logoutButton.setOnAction(e -> {ManagerLoginScene.passControl(window);});
-        topBarHBox.getChildren().add(logoutButton);
 
+
+
+
+
+
+        //Ui design..................
+
+        VBox.setMargin(table,new Insets(30,10,30,10));
+        topBarHBox.getChildren().add(logoutButton);
         optionsVBox.setAlignment(Pos.CENTER);
         optionsVBox.getChildren().addAll(editButton,deleteButton);
 
         parentPaneVBox.setPadding(new Insets(0,0,0,0));
         parentPaneVBox.getChildren().addAll(topBarHBox,titleTextHBox,table,optionsVBox);
-        Scene scene = new Scene(parentPaneVBox,600,600);
+        Scene scene = new Scene(parentPaneVBox,700,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         window.setScene(scene);
         window.show();
     }
 
+    //Table existence check.............
 
     private static boolean ifTableExists(){
         if(table == null){
@@ -101,6 +121,8 @@ public class ManagingListScene {
         else{
             return false;}
     }
+
+    //Creating the TableView.......................
 
     private static void createTable(){
         table = new TableView<User>();
@@ -120,6 +142,7 @@ public class ManagingListScene {
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.getColumns().addAll(idColumn, usernameColumn, nameColumn);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        table.setMaxHeight(330);
     }
 
 }

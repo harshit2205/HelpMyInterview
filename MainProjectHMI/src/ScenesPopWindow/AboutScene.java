@@ -1,5 +1,6 @@
 package ScenesPopWindow;
 
+import Utils.FormattedText;
 import com.sun.javafx.font.freetype.HBGlyphLayout;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -30,12 +31,10 @@ public class AboutScene {
         HBox hBoxForLogo = new HBox();//-->
         hBoxForLogo.getChildren().add(logoImage);
 
-        Text nameOfApplicationText = new Text("Help My Interview");
-        nameOfApplicationText.setFill(Paint.valueOf("#ffffff"));
+        FormattedText nameOfApplicationText = new FormattedText("Help My Interview");
         nameOfApplicationText.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD,25));
-        Text copyRightDetailText = new Text("version 1.0.12\n\n\nCopyright 2017 DCODE Inc.\nAll right reserved.");
+        FormattedText copyRightDetailText = new FormattedText("version 1.0.12\n\n\nCopyright 2017 DCODE Inc.\nAll right reserved.");
         copyRightDetailText.setTextAlignment(TextAlignment.CENTER);
-        copyRightDetailText.setFill(Paint.valueOf("#ffffff"));
 
         VBox vBox = new VBox();
 //
