@@ -39,7 +39,7 @@ public class AddProjectStage {
         projectTitleTextField.setMaxWidth(300);
 
         Label projectLinkLabel = new Label("Project Link : ");
-        TextField projectLinkTextField = new TextField("https://");
+        TextField projectLinkTextField = new TextField();
         projectLinkTextField.setPromptText("enter projects URL");
 
         Label projectDescriptionLabel = new Label("Description : ");
@@ -70,7 +70,7 @@ public class AddProjectStage {
         projectGridHBox.setPadding(new Insets(30,10,10,10));
 
         Button saveButton = new Button("Save!");
-        DataAdditionValidation.validate(projectTitleTextField,projectLinkTextField,isProjectOnGoingCheckBox,projectDescriptionTextArea,saveButton);
+        DataAdditionValidation.validate(projectTitleTextField,projectLinkTextField,projectDescriptionTextArea,saveButton);
 
 
         saveButton.setOnAction(event -> {

@@ -131,6 +131,7 @@ public class ResumeTabScene {
         updateTrainingVBox(trainingsVBox,addTrainingButton);
         updateProjectVBox(projectsVBox,addProjectButton);
         updateInternshipVBox(internshipVBox,addInternshipButton);
+        updateJobVBox(jobVBox,addJobButton);
 
 
 ///////////---------------->initial updations--------------------------
@@ -292,7 +293,6 @@ public class ResumeTabScene {
             vBox.setAlignment(Pos.CENTER);
             vBox.getChildren().addAll(internshipName,internshipOrganization);
             vBox.setPadding(new Insets(0,0,10,0));
-            vBox.getChildren().add(vBox);
             internshipVBox.getChildren().add(vBox);
         }
         internshipVBox.getChildren().add(addInternshipButton);
@@ -310,7 +310,6 @@ public class ResumeTabScene {
             vBox.setAlignment(Pos.CENTER);
             vBox.getChildren().addAll(jobProfile,jobOrganization);
             vBox.setPadding(new Insets(0,0,10,0));
-            vBox.getChildren().add(vBox);
             jobVBox.getChildren().add(vBox);
         }
         jobVBox.getChildren().add(addJobButton);
