@@ -57,7 +57,7 @@ public class ManagingEditScene {
         Button backButton = new Button("Back");
         EditButton editUserName = new EditButton("edit",userNameField);
         EditButton editPassword = new EditButton("edit",passwordField);
-        Button changeButton = new Button("Change Credentials");
+        Button changeButton = new Button("Save!");
 
         //listeners.........
         backButton.setOnAction(e -> ManagingListScene.passControl(window));
