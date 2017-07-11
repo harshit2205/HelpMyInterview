@@ -84,7 +84,7 @@ public class AddTrainingStage {
 
         Button saveButton = new Button("Save");
 
-        DataAdditionValidation.validate(trainingProgramTextField,organizationTextField,onlineTrainingCheckbox,locationTextField,descriptionTextArea,saveButton);
+        DataAdditionValidation.validate(trainingProgramTextField,organizationTextField,onlineTrainingCheckbox,locationTextField,descriptionTextArea,saveButton,"Online Training");
 
         saveButton.setOnAction(event -> {
             if(trainingProgramTextField.getText().intern()!=""){

@@ -145,10 +145,10 @@ public class ResumeTabScene {
 
 
         addSkillButton.setOnAction(e -> {
+            user.getSkillArrayList().ensureCapacity(6);
             Boolean isSavePressed = AddSkillStage.show();
             if(isSavePressed){
                 updateSkillVBox(skillsVBox,addSkillButton);
-
             }
         });
 
@@ -248,36 +248,70 @@ public class ResumeTabScene {
     private static void updateTrainingVBox(VBox updateTrainingVBox,Button addTrainingButton){
         updateTrainingVBox.getChildren().clear();
         for (int i=0;i<user.getTrainingsArrayList().size();i++){
-            TextField textField = new TextField(user.getTrainingsArrayList().get(i).getTrainingName());
-            textField.setEditable(false);
-            updateTrainingVBox.getChildren().add(textField);
+            Text trainingName = new Text(user.getTrainingsArrayList().get(i).getTrainingName());
+            Text trainingOrganization = new Text(user.getTrainingsArrayList().get(i).getOrganizationName());
+            trainingName.setFont(Font.font(null, FontWeight.SEMI_BOLD,22));
+            trainingOrganization.setFont(Font.font(null, FontWeight.NORMAL, FontPosture.ITALIC,14));
+            trainingName.setFill(Paint.valueOf("#ffffff"));
+            trainingOrganization.setFill(Paint.valueOf("#ffffff"));
+            VBox vBox = new VBox();
+            vBox.setAlignment(Pos.CENTER);
+            vBox.getChildren().addAll(trainingName,trainingOrganization);
+            vBox.setPadding(new Insets(0,0,10,0));
+            updateTrainingVBox.getChildren().add(vBox);
         }
         updateTrainingVBox.getChildren().add(addTrainingButton);
     }
     private static void updateProjectVBox(VBox projectsVBox, Button addProjectButton) {
         projectsVBox.getChildren().clear();
         for (int i=0;i<user.getProjectArrayList().size();i++){
-            TextField textField = new TextField(user.getProjectArrayList().get(i).getProjectTitle());
-            textField.setEditable(false);
-            projectsVBox.getChildren().add(textField);
+            Text projectName = new Text(user.getProjectArrayList().get(i).getProjectTitle());
+            Text projectUrl = new Text(user.getProjectArrayList().get(i).getProjectURL());
+            projectName.setFont(Font.font(null, FontWeight.SEMI_BOLD,22));
+            projectUrl.setFont(Font.font(null, FontWeight.NORMAL, FontPosture.ITALIC,14));
+            projectName.setFill(Paint.valueOf("#ffffff"));
+            projectUrl.setFill(Paint.valueOf("#01a0e4"));
+            VBox vBox = new VBox();
+            vBox.setAlignment(Pos.CENTER);
+            vBox.getChildren().addAll(projectName,projectUrl);
+            vBox.setPadding(new Insets(0,0,10,0));
+            projectsVBox.getChildren().add(vBox);
         }
         projectsVBox.getChildren().add(addProjectButton);
     }
     private static void updateInternshipVBox(VBox internshipVBox, Button addInternshipButton) {
         internshipVBox.getChildren().clear();
         for (int i=0;i<user.getInternshipArrayList().size();i++){
-            TextField textField = new TextField(user.getInternshipArrayList().get(i).getTitleOfInternship());
-            textField.setEditable(false);
-            internshipVBox.getChildren().add(textField);
+            Text internshipName = new Text(user.getInternshipArrayList().get(i).getTitleOfInternship());
+            Text internshipOrganization = new Text(user.getInternshipArrayList().get(i).getOrganization());
+            internshipName.setFont(Font.font(null, FontWeight.SEMI_BOLD,22));
+            internshipOrganization.setFont(Font.font(null, FontWeight.NORMAL, FontPosture.ITALIC,14));
+            internshipName.setFill(Paint.valueOf("#ffffff"));
+            internshipOrganization.setFill(Paint.valueOf("#ffffff"));
+            VBox vBox = new VBox();
+            vBox.setAlignment(Pos.CENTER);
+            vBox.getChildren().addAll(internshipName,internshipOrganization);
+            vBox.setPadding(new Insets(0,0,10,0));
+            vBox.getChildren().add(vBox);
+            internshipVBox.getChildren().add(vBox);
         }
         internshipVBox.getChildren().add(addInternshipButton);
     }
     private static void updateJobVBox(VBox jobVBox, Button addJobButton) {
         jobVBox.getChildren().clear();
         for (int i=0;i<user.getJobArrayList().size();i++){
-            TextField textField = new TextField(user.getJobArrayList().get(i).getProfile());
-            textField.setEditable(false);
-            jobVBox.getChildren().add(textField);
+            Text jobProfile = new Text(user.getJobArrayList().get(i).getProfile());
+            Text jobOrganization = new Text(user.getJobArrayList().get(i).getOrganization());
+            jobProfile.setFont(Font.font(null, FontWeight.SEMI_BOLD,22));
+            jobOrganization.setFont(Font.font(null, FontWeight.NORMAL, FontPosture.ITALIC,14));
+            jobProfile.setFill(Paint.valueOf("#ffffff"));
+            jobOrganization.setFill(Paint.valueOf("#ffffff"));
+            VBox vBox = new VBox();
+            vBox.setAlignment(Pos.CENTER);
+            vBox.getChildren().addAll(jobProfile,jobOrganization);
+            vBox.setPadding(new Insets(0,0,10,0));
+            vBox.getChildren().add(vBox);
+            jobVBox.getChildren().add(vBox);
         }
         jobVBox.getChildren().add(addJobButton);
     }

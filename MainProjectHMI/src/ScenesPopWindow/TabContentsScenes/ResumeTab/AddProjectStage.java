@@ -69,7 +69,10 @@ public class AddProjectStage {
         projectGridHBox.setAlignment(Pos.CENTER);
         projectGridHBox.setPadding(new Insets(30,10,10,10));
 
-        Button saveButton = new Button("Save");
+        Button saveButton = new Button("Save!");
+        DataAdditionValidation.validate(projectTitleTextField,projectLinkTextField,isProjectOnGoingCheckBox,projectDescriptionTextArea,saveButton);
+
+
         saveButton.setOnAction(event -> {
             isSavePressed = true;
             user.getProjectArrayList().add(new Project(projectTitleTextField.getText(),projectLinkTextField.getText(),isProjectOnGoingCheckBox.isSelected(),projectDescriptionTextArea.getText()));

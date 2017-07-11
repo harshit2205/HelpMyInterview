@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 /**
@@ -16,30 +17,30 @@ public class User{
     public static final String USERNAME_PROPERTY_STRING = "_name_";
 
 
-    private int id;
+    private int id;//4 digit
     private SimpleIntegerProperty _id_;
     private SimpleStringProperty _userName_;
     private SimpleStringProperty _name_;
-    private String firstName;
-    private String lastName;
-    private String eMail;
-    private long contact;
-    private String gender;
-    private String userName;
-    private String password;
-    private String state;
-    private String city;
-    private Image userImage;
-    private DOB dob;
-    private String bio;
-    private ArrayList<Education> educationList = new ArrayList<>(4);
-    private String homeTown;
-    private String about;
-    private ArrayList<Skill> skillArrayList = new ArrayList<>(6);
-    private ArrayList<Training> trainingsArrayList = new ArrayList<>(6);
-    private ArrayList<Project> projectArrayList = new ArrayList<>(6);
-    private ArrayList<Internship> internshipArrayList = new ArrayList<>(2);
-    private ArrayList<Job> jobArrayList = new ArrayList<>(3);
+    private String firstName;//15 char max
+    private String lastName;//15 char mar
+    private String eMail;//30 char max
+    private long contact;//10 bigint
+    private String gender;//6 char max
+    private String userName;//20 char max
+    private String password;//10 char max
+    private String state;//25 char max
+    private String city;//25 char max
+    private String homeTown;//25 char max
+    private Image userImage;//not now
+    private DOB dob;//see DOB
+    private String bio;//large string
+    private ArrayList<Education> educationList = new ArrayList<>(4);//create education table
+    private String about;//large string
+    private ArrayList<Skill> skillArrayList = new ArrayList<>(6);//create skill table
+    private ArrayList<Training> trainingsArrayList = new ArrayList<>(6);//create training table
+    private ArrayList<Project> projectArrayList = new ArrayList<>(6);//create project table
+    private ArrayList<Internship> internshipArrayList = new ArrayList<>(2);//create internship table
+    private ArrayList<Job> jobArrayList = new ArrayList<>(3);//create job table
 
 
 
@@ -139,9 +140,7 @@ public class User{
     public void printUser(){
         System.out.println("Id : "+this.id+"\nfirstName : "+firstName+"\nlastName : "+lastName+"\neMail : "+eMail+"\ncontact : "+contact+"\ngender : "+gender+"\nuserName : "+userName+"\npassword : "+this.password+"\nstate : "+this.state+"\ncity : "+this.city);
     }
-    public void setContact(long contact) {
-        this.contact = contact;
-    }
+    public void setContact(long contact) {this.contact = contact;}
 
     public Image getUserImage() {
         return userImage;

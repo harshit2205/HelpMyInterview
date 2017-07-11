@@ -75,6 +75,10 @@ public class AddInternshipStage {
         gridPaneHBox.setPadding(new Insets(30,10,10,10));
 
         Button saveButton = new Button("Save!");
+
+        DataAdditionValidation.validate(internshipTitleTextField,internshipOrganizationTextField,workFromHomeInternshipCheckbox,internshipLocationTextField,internshipDescriptionTextArea,saveButton,"Work from home internship");
+
+
         saveButton.setOnAction(e ->{
             isSavePressed = true;
             user.getInternshipArrayList().add(new Internship(internshipTitleTextField.getText(),internshipOrganizationTextField.getText(),internshipLocationTextField.getText(),workFromHomeInternshipCheckbox.isSelected(),internshipDescriptionTextArea.getText()));

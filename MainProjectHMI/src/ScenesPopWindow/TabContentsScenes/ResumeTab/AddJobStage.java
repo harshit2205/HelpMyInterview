@@ -83,6 +83,9 @@ public class AddJobStage {
 
 
         Button saveButton = new Button("Save!");
+        DataAdditionValidation.validate(jobProfileTextField,jobOrganizationTextField,workFromHomeJobCheckbox,jobLocationTextField,jobDescriptionTextArea,saveButton,"Work from home job");
+
+
         saveButton.setOnAction(e ->{
             isSavePressed = true;
             user.getJobArrayList().add(new Job(jobProfileTextField.getText(),jobOrganizationTextField.getText(),workFromHomeJobCheckbox.isSelected(),jobLocationTextField.getText(),jobDescriptionTextArea.getText()));
