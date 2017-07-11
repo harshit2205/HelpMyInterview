@@ -40,7 +40,7 @@ public class User{
     private ArrayList<Training> trainingsArrayList = new ArrayList<>(6);//create training table
     private ArrayList<Project> projectArrayList = new ArrayList<>(6);//create project table
     private ArrayList<Internship> internshipArrayList = new ArrayList<>(2);//create internship table
-    private ArrayList<Job> jobArrayList = new ArrayList<>(3);//create job table
+    private ArrayList<Job> jobArrayList = new ArrayList<>(3);//create job table.
 
 
 
