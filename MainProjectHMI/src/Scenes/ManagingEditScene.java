@@ -26,11 +26,12 @@ import javafx.stage.Stage;
 public class ManagingEditScene {
 
     public static void passControl(Stage window,String username) {
+        ImageView userImage = null;
 
         //user Image .............
-        ImageView userImage = new ImageView(new Image("/ImageResource/userImage.jpg"));
-        userImage.setFitHeight(160);
-        userImage.setFitWidth(140);
+         userImage = new ImageView(new Image("/ImageResource/userImage.jpg"));
+        userImage.setFitHeight(140);
+        userImage.setFitWidth(120);
 
 
 
@@ -44,7 +45,6 @@ public class ManagingEditScene {
 
         //........
         FormattedText firstNameText = new FormattedText("First Name");
-        FormattedText lastNameText = new FormattedText("Last Name");
         FormattedText dobText =new FormattedText("date of birth");
         FormattedText emailText = new FormattedText("email");
         FormattedText contactText = new FormattedText("contact number");
@@ -72,9 +72,10 @@ public class ManagingEditScene {
         //connecting data............
         User user = UserLab.get().getUserByUserName(username);
 
+        if(user.getUserImage()!= null){
         userImage.setImage(user.getUserImage());
-        firstNameText.setText(user.getFirstName());
-        lastNameText.setText(user.getLastName());
+        }
+        firstNameText.setText(user.getFirstName()+" "+user.getLastName());
 //        dobText.setText(user.getDob().getDate()+"/"+user.getDob().getMonth()+"/"+user.getDob().getYear());
         emailText.setText(user.getEmail());
         contactText.setText(Long.toString(user.getContact()));
@@ -84,8 +85,9 @@ public class ManagingEditScene {
         //UI..............
 
         //root Pane. ..................
-        VBox rootPane = new VBox(20);
+        VBox rootPane = new VBox(10);
         rootPane.setPadding(new Insets(10,10,10,10));
+        rootPane.setAlignment(Pos.CENTER);
 
         //header HBox for Button..............
         HBox headerHBox = new HBox();
@@ -105,8 +107,9 @@ public class ManagingEditScene {
 
         //editor Pane..................
         GridPane editorPane = new GridPane();
+        editorPane.setPadding(new Insets(10,0,20,0));
         editorPane.setHgap(20);
-        editorPane.setVgap(20);
+        editorPane.setVgap(10);
 
         editorPane.add(nameLabel,0,0);
         editorPane.add(dobLabel,0,1);
@@ -114,8 +117,7 @@ public class ManagingEditScene {
         editorPane.add(contactlabel,0,3);
         editorPane.add(userNameLabel,0,4);
         editorPane.add(passwordLabel,0,5);
-        editorPane.add(firstNameText,1,0);
-        editorPane.add(lastNameText,2,0);
+        editorPane.add(firstNameText,1,0,2,1);
         editorPane.add(dobText,1,1,2,1);
         editorPane.add(emailText,1,2,2,1);
         editorPane.add(contactText,1,3,2,1);
@@ -132,10 +134,9 @@ public class ManagingEditScene {
         changeButtonPane.setAlignment(Pos.CENTER);
         changeButtonPane.getChildren().addAll(changeButton);
 
-        rootPane.getChildren().addAll(headerHBox,titleTextHBox,panel,changeButtonPane);
+        rootPane.getChildren().addAll(headerHBox,titleTextHBox,userImage,panel,changeButtonPane);
 
-
-        Scene scene = new Scene(rootPane,700,600);
+        Scene scene = new Scene(rootPane,600,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         window.setScene(scene);
 

@@ -465,7 +465,6 @@ public class PersonalityTabScene {
 
 
 
-
         return new Scene(root, 600, 600);
 
     }

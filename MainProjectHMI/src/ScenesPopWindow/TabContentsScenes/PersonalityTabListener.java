@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class PersonalityTabListener {
 
+    private static String userImagePath ;
     public static void listen(ImageView profilePicture, Button editProfilePictureButton, TextField firstNameTextField, TextField lastNameTextField, TextField userNameTextField, ComboBox<String> genderComboBox, TextField eMailTextField, TextField contactTextField, ComboBox<String> selectDayComboBox, ComboBox<String> selectMonthComboBox, ComboBox<String> selectYearComboBox, TextArea bioTextArea, ComboBox<String> degree1ComboBox, TextField course1TextField, TextField degree1TextField, ComboBox<String> degree2ComboBox, TextField course2TextField, TextField degree2TextField, ComboBox<String> degree3ComboBox, TextField course3TextField, TextField degree3TextField, ComboBox<String> degree4ComboBox, TextField course4TextField, TextField degree4TextField, TextField homeTownTextField, TextField currentCityTextField, TextField stateTextField, TextArea aboutYourselfTextArea, CheckBox acceptCheckBox, Button saveButton, Text firstNameErrorText, Text lastNameErrorText, Text emailErrorText, Text contactErrorText, Text monthErrorText, Text yearErrorText, Text degree1ErrorText, Text degree2ErrorText, Text degree3ErrorText, Text degree4ErrorText) {
 
         UserLab userLab = UserLab.get();
@@ -111,11 +112,13 @@ public class PersonalityTabListener {
                     new FileChooser.ExtensionFilter("PNG", "*.png")
             );
             File selectedFile = fileChooser.showOpenDialog(null);
+
             if (selectedFile != null) {
                 try {
                     BufferedImage bufferedImage = ImageIO.read(selectedFile);
                     Image image = SwingFXUtils.toFXImage(bufferedImage,null);
                     profilePicture.setImage(image);
+                    userImagePath = selectedFile.getPath();
                     System.out.println("Profile picture updated successfully");
 
                 } catch (IOException ex) {
