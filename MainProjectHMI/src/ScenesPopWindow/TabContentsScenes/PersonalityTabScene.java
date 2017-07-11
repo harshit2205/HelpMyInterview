@@ -16,10 +16,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-
-/**
- * Created by staLker on 02-07-2017.
- */
 public class PersonalityTabScene {
 
 

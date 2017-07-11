@@ -32,6 +32,8 @@ public class ManagingEditScene {
         userImage.setFitHeight(160);
         userImage.setFitWidth(140);
 
+
+
         //Labels ..................
         Label nameLabel = new Label("Name :");
         Label dobLabel = new Label("Date of Birth :");
@@ -70,7 +72,7 @@ public class ManagingEditScene {
         //connecting data............
         User user = UserLab.get().getUserByUserName(username);
 
-//        userImage.setImage(user.getUserImage());
+        userImage.setImage(user.getUserImage());
         firstNameText.setText(user.getFirstName());
         lastNameText.setText(user.getLastName());
 //        dobText.setText(user.getDob().getDate()+"/"+user.getDob().getMonth()+"/"+user.getDob().getYear());
@@ -131,6 +133,7 @@ public class ManagingEditScene {
         changeButtonPane.getChildren().addAll(changeButton);
 
         rootPane.getChildren().addAll(headerHBox,titleTextHBox,panel,changeButtonPane);
+
 
         Scene scene = new Scene(rootPane,700,600);
         scene.getStylesheets().add("Themes/Nevike.css");

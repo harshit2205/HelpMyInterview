@@ -1,4 +1,5 @@
 package ScenesPopWindow.TabContentsScenes;
+
 import Models.User;
 import Models.UserLab;
 import Scenes.OnUserLogInScene;
@@ -18,13 +19,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import static Utils.ValidationUtils.formatErrorText;
 
 
 
-/**
- * Created by staLker on 06-07-2017.
- */
 public class PersonalityTabListener {
 
     public static void listen(ImageView profilePicture, Button editProfilePictureButton, TextField firstNameTextField, TextField lastNameTextField, TextField userNameTextField, ComboBox<String> genderComboBox, TextField eMailTextField, TextField contactTextField, ComboBox<String> selectDayComboBox, ComboBox<String> selectMonthComboBox, ComboBox<String> selectYearComboBox, TextArea bioTextArea, ComboBox<String> degree1ComboBox, TextField course1TextField, TextField degree1TextField, ComboBox<String> degree2ComboBox, TextField course2TextField, TextField degree2TextField, ComboBox<String> degree3ComboBox, TextField course3TextField, TextField degree3TextField, ComboBox<String> degree4ComboBox, TextField course4TextField, TextField degree4TextField, TextField homeTownTextField, TextField currentCityTextField, TextField stateTextField, TextArea aboutYourselfTextArea, CheckBox acceptCheckBox, Button saveButton, Text firstNameErrorText, Text lastNameErrorText, Text emailErrorText, Text contactErrorText, Text monthErrorText, Text yearErrorText, Text degree1ErrorText, Text degree2ErrorText, Text degree3ErrorText, Text degree4ErrorText) {
