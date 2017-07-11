@@ -1,7 +1,6 @@
 package Models;
 
-import Utils.DOB;
-import Utils.Education;
+import Utils.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
@@ -36,6 +35,11 @@ public class User{
     private ArrayList<Education> educationList = new ArrayList<>(4);
     private String homeTown;
     private String about;
+    private ArrayList<Skill> skillArrayList = new ArrayList<>(6);
+    private ArrayList<Training> trainingsArrayList = new ArrayList<>(6);
+    private ArrayList<Project> projectArrayList = new ArrayList<>(6);
+    private ArrayList<Internship> internshipArrayList = new ArrayList<>(2);
+    private ArrayList<Job> jobArrayList = new ArrayList<>(3);
 
 
 
@@ -239,4 +243,28 @@ public class User{
         this.state = state;
         this.about = about;
     }
+
+    public ArrayList<Skill> getSkillArrayList() {
+        return skillArrayList;
+    }
+
+    public void setSkillArrayList(ArrayList<Skill> skillArrayList) {
+        this.skillArrayList = skillArrayList;
+    }
+
+    public ArrayList<Training> getTrainingsArrayList() {return trainingsArrayList;}
+
+    public void setTrainingsArrayList(ArrayList<Training> trainingsArrayList) {this.trainingsArrayList = trainingsArrayList;}
+
+    public ArrayList<Project> getProjectArrayList() {return projectArrayList;}
+
+    public void setProjectArrayList(ArrayList<Project> projectArrayList) {this.projectArrayList = projectArrayList;}
+
+    public ArrayList<Internship> getInternshipArrayList() {return internshipArrayList;}
+
+    public void setInternshipArrayList(ArrayList<Internship> internshipArrayList) {this.internshipArrayList = internshipArrayList;}
+
+    public ArrayList<Job> getJobArrayList() {return jobArrayList;}
+
+    public void setJobArrayList(ArrayList<Job> jobArrayList) {this.jobArrayList = jobArrayList;}
 }

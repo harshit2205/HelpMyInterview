@@ -107,7 +107,7 @@ public class ManagingListScene {
 
         parentPaneVBox.setPadding(new Insets(0,0,0,0));
         parentPaneVBox.getChildren().addAll(topBarHBox,titleTextHBox,table,optionsVBox);
-        Scene scene = new Scene(parentPaneVBox,700,600);
+        Scene scene = new Scene(parentPaneVBox,600,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         window.setScene(scene);
         window.show();

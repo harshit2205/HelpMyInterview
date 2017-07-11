@@ -70,7 +70,7 @@
 }
 .tab-pane {
     -fx-min-height: 581;
-    -fx-min-width: 700;
+    -fx-min-width: 600;
 }
 .radio-button{
     -fx-text-fill: #ffffff;

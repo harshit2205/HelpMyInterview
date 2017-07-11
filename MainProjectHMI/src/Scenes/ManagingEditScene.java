@@ -3,7 +3,7 @@ package Scenes;
 import Models.User;
 import Models.UserLab;
 import Stages.ConfirmationDialog;
-import Utils.FormatButton;
+import Utils.EditButton;
 import Utils.FormattedText;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -53,8 +53,8 @@ public class ManagingEditScene {
 
         //Buttons......
         Button backButton = new Button("Back");
-        FormatButton editUserName = new FormatButton("edit",userNameField);
-        FormatButton editPassword = new FormatButton("edit",passwordField);
+        EditButton editUserName = new EditButton("edit",userNameField);
+        EditButton editPassword = new EditButton("edit",passwordField);
         Button changeButton = new Button("Change Credentials");
 
         //listeners.........

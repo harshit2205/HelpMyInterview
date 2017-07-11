@@ -59,7 +59,7 @@ public class EnterGDScene {
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(headerBox,titleTextHBox,listview,enterButton);
 
-        scene = new Scene(vBox,700,600);
+        scene = new Scene(vBox,600,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         return scene;
     }

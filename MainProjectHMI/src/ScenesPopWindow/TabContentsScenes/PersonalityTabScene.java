@@ -1,14 +1,11 @@
 package ScenesPopWindow.TabContentsScenes;
 
 import Utils.DOB;
+import Utils.EditButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -71,7 +68,7 @@ public class PersonalityTabScene {
         TextField eMailTextField = new TextField();
         emailTextFieldHBox.getChildren().addAll(eMailTextField,emailErrorText);
         eMailTextField.setDisable(true);
-        Button editEmailButton = new Button("Edit");
+        EditButton editEmailButton = new EditButton("Edit",eMailTextField);
 
 
         Label contactLabel = new Label("Contact : ");
@@ -80,7 +77,7 @@ public class PersonalityTabScene {
         TextField contactTextField = new TextField();
         contactTextFieldHBox.getChildren().addAll(contactTextField,contactErrorText);
         contactTextField.setDisable(true);
-        Button editContactButton = new Button("Edit");
+        EditButton editContactButton = new EditButton("Edit",contactTextField);
 
         Label dobLabel = new Label("DOB : ");
         ComboBox<String> selectDayComboBox = new ComboBox<>(DOB.getAllDateList());
@@ -128,20 +125,25 @@ public class PersonalityTabScene {
                 contactLabel,contactTextFieldHBox,editContactButton,
                 dobLabel,dateSelectHBox,yearComboBoxHBox
                 );
-        personalGrid.setGridLinesVisible(true);
+
 
         VBox profilePictureVBox = new VBox(10);
         profilePictureVBox.setAlignment(Pos.CENTER);
         profilePictureVBox.getChildren().addAll(profilePicture,editProfilePictureButton);
 
-        GridPane completePersonalGrid = new GridPane();
-        completePersonalGrid.setVgap(10);
-        completePersonalGrid.setHgap(20);
-        //GridPane.setConstraints(personalDetailLabel,0,0);
-        GridPane.setConstraints(profilePictureVBox,0,1);
-        GridPane.setConstraints(personalGrid,1,1);
-
-        completePersonalGrid.getChildren().addAll(profilePictureVBox,personalGrid);
+//        GridPane completePersonalGrid = new GridPane();
+//        completePersonalGrid.setVgap(10);
+//        completePersonalGrid.setHgap(20);
+//        //GridPane.setConstraints(personalDetailLabel,0,0);
+//        GridPane.setConstraints(profilePictureVBox,0,1);
+//        GridPane.setConstraints(personalGrid,1,1);
+//
+//        completePersonalGrid.getChildren().addAll(profilePictureVBox,personalGrid);
+        HBox personalGridHbox = new HBox();
+        personalGridHbox.getChildren().add(personalGrid);
+        personalGridHbox.setPadding(new Insets(20,0,0,50));
+        VBox completePersonalGrid = new VBox(10);
+        completePersonalGrid.getChildren().addAll(profilePictureVBox,personalGridHbox);
 
 
 
@@ -168,13 +170,14 @@ public class PersonalityTabScene {
         TextArea bioTextArea = new TextArea();
         bioTextArea.setPromptText("Edit your bio...");
         bioTextArea.setMaxHeight(60);
-        bioTextArea.setMinWidth(640);
+        bioTextArea.setMaxWidth(500);
         //GridPane.setConstraints(bioLabel,0,0);
         GridPane.setConstraints(bioTextArea,0,1);
         GridPane bioGridPane = new GridPane();
         bioGridPane.setVgap(10);
         bioGridPane.setHgap(40);
         bioGridPane.getChildren().add(bioTextArea);
+        GridPane.setMargin(bioTextArea,new Insets(0,0,0,40));
 
         ///------------------------------------->bio ends<---------------------------//
 
@@ -194,17 +197,19 @@ public class PersonalityTabScene {
 
         ComboBox<String> degree1ComboBox = new ComboBox<>();
         degree1ComboBox.setPromptText("Select Degree");
+        degree1ComboBox.setMaxWidth(145);
         TextField course1TextField = new TextField();
         course1TextField.setMaxWidth(100);
         course1TextField.setPromptText("enter course");
         course1TextField.setDisable(true);
         TextField degree1TextField = new TextField();
         degree1TextField.setPromptText("enter name of institution");
-        degree1TextField.setMinWidth(300);
+        degree1TextField.setMinWidth(250);
         degree1TextField.setDisable(true);
 
         ComboBox<String> degree2ComboBox= new ComboBox<>();
         degree2ComboBox.setPromptText("Select Degree");
+        degree2ComboBox.setMaxWidth(145);
         TextField course2TextField = new TextField();
         course2TextField.setMaxWidth(100);
         course2TextField.setPromptText("enter course");
@@ -215,6 +220,7 @@ public class PersonalityTabScene {
 
         ComboBox<String> degree3ComboBox= new ComboBox<>();
         degree3ComboBox.setPromptText("Select Degree");
+        degree3ComboBox.setMaxWidth(145);
         TextField course3TextField = new TextField();
         course3TextField.setMaxWidth(100);
         course3TextField.setPromptText("enter course");
@@ -225,6 +231,7 @@ public class PersonalityTabScene {
 
         ComboBox<String> degree4ComboBox= new ComboBox<>();
         degree4ComboBox.setPromptText("Select Degree");
+        degree4ComboBox.setMaxWidth(145);
         TextField course4TextField = new TextField();
         course4TextField.setMaxWidth(100);
         course4TextField.setPromptText("enter course");
@@ -270,7 +277,9 @@ public class PersonalityTabScene {
                 degree2ComboBox,course2TextField,degree2TextField,degree2ErrorText,
                 degree3ComboBox,course3TextField,degree3TextField,degree3ErrorText,
                 degree4ComboBox,course4TextField,degree4TextField,degree4ErrorText);
-        educationGridPane.setGridLinesVisible(true);
+
+
+        VBox.setMargin(educationGridPane,new Insets(0,0,0,40));
         ///------------------------------------->education ends<---------------------------//
 
 
@@ -290,19 +299,19 @@ public class PersonalityTabScene {
         TextField homeTownTextField = new TextField();
         homeTownTextField.setPromptText("enter your hometown");
         homeTownTextField.setDisable(true);
-        Button homeTownEditButton = new Button("Edit");
+        EditButton homeTownEditButton = new EditButton("Edit",homeTownTextField);
 
         Label currentCityLabel = new Label("Current City : ");
         TextField currentCityTextField = new TextField();
         currentCityTextField.setPromptText("enter your current city");
         currentCityTextField.setDisable(true);
-        Button currentCityEditButton = new Button("Edit");
+        EditButton currentCityEditButton = new EditButton("Edit",currentCityTextField);
 
         Label stateLabel = new Label("State : ");
         TextField stateTextField = new TextField();
         stateTextField.setPromptText("enter your state");
         stateTextField.setDisable(true);
-        Button stateEditButton = new Button("Edit");
+        EditButton stateEditButton = new EditButton("Edit",stateTextField);
 
         //GridPane.setConstraints(locationDetailsLabel,0,0);
         GridPane.setConstraints(homeTownLabel,0,1);
@@ -323,6 +332,7 @@ public class PersonalityTabScene {
                 currentCityLabel,currentCityTextField,currentCityEditButton,
                 stateLabel,stateTextField,stateEditButton
         );
+        VBox.setMargin(locationGridPane,new Insets(0,0,0,100));
 
 
         ///------------------------------------->location end<---------------------------//
@@ -343,8 +353,9 @@ public class PersonalityTabScene {
 
         TextArea aboutYourselfTextArea = new TextArea();
         aboutYourselfTextArea.setPromptText("write here something about yourself...");
-        aboutYourselfTextArea.setMaxHeight(80);
-        aboutYourselfTextArea.setMinWidth(640);
+        aboutYourselfTextArea.setMaxHeight(90);
+        aboutYourselfTextArea.setMaxWidth(500);
+
         //GridPane.setConstraints(aboutLabel,0,0);
         GridPane.setConstraints(aboutYourselfTextArea,0,1);
 
@@ -352,6 +363,8 @@ public class PersonalityTabScene {
         aboutGridPane.setHgap(40);
         aboutGridPane.setVgap(10);
         aboutGridPane.getChildren().add(aboutYourselfTextArea);
+        VBox.setMargin(aboutGridPane,new Insets(0,0,0,40));
+
 
         ///------------------------------------->about ends<---------------------------//
 
@@ -378,22 +391,24 @@ public class PersonalityTabScene {
                 acceptCheckBox,
                 saveButton
         );
+
         VBox.setMargin(saveButton,new Insets(0,0,170,0));
         VBox.setMargin(bioLabelHBox,new Insets(60,0,0,0));
         VBox.setMargin(educationLabelHBox,new Insets(60,0,0,0));
         VBox.setMargin(locationDetailLabelHBox,new Insets(60,0,0,0));
-        VBox.setMargin(aboutLabelHBox,new Insets(60,0,0,0));
-        VBox.setMargin(acceptCheckBox,new Insets(60,0,0,0));
+        VBox.setMargin(aboutLabelHBox,new Insets(60,0,20,0));
+        VBox.setMargin(acceptCheckBox,new Insets(60,0,20,0));
 
         vBox.setAlignment(Pos.CENTER);
-        vBox.setPadding(new Insets(10,0,10,20));
+        vBox.setPadding(new Insets(10,0,10,0));
+        vBox.setMinWidth(600);
 
 
 
         ScrollPane scrollPane = new ScrollPane();
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
         scrollPane.setVmax(600);
-        scrollPane.setPrefSize(700, 535);
+        scrollPane.setPrefSize(600, 535);
         scrollPane.setContent(vBox);
         scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
@@ -406,13 +421,7 @@ public class PersonalityTabScene {
         VBox root = new VBox();
         root.getChildren().addAll(scrollPane);
 
-        PersonalityTabToggleTextViewListener.toggle(
-                eMailTextField,editEmailButton,
-                contactTextField,editContactButton,
-                homeTownTextField,homeTownEditButton,
-                currentCityTextField,currentCityEditButton,
-                stateTextField,stateEditButton
-        );
+
 
 
         PersonalityTabListener.listen(
@@ -461,7 +470,7 @@ public class PersonalityTabScene {
 
 
 
-        return new Scene(root, 700, 600);
+        return new Scene(root, 600, 600);
 
     }
 

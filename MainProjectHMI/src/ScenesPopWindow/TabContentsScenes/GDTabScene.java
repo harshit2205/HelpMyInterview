@@ -77,8 +77,8 @@ public class GDTabScene {
         basePane.setAlignment(Pos.TOP_CENTER);
         basePane.getChildren().addAll(headerVBox, footerVBox, enterGD);
         basePane.setPadding(new Insets(10,20,20,20));
-        basePane.setMinHeight(700);
-        basePane.setMinWidth(680);
+        basePane.setMinHeight(800);
+        basePane.setMaxWidth(580);
 
         // Adding ScrollBar......................
         ScrollPane scrollPane = new ScrollPane();
@@ -97,7 +97,7 @@ public class GDTabScene {
         VBox root = new VBox();
         root.getChildren().addAll(scrollPane);
 
-        scene = new Scene(root,700,600);
+        scene = new Scene(root,600,600);
 
 
         return scene;

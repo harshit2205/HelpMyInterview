@@ -4,7 +4,7 @@ import ScenesPopWindow.AboutScene;
 import ScenesPopWindow.HelpScene;
 import ScenesPopWindow.TabContentsScenes.GDTabScene;
 import ScenesPopWindow.TabContentsScenes.PersonalityTabScene;
-import ScenesPopWindow.TabContentsScenes.ResumeTabScene;
+import ScenesPopWindow.TabContentsScenes.ResumeTab.ResumeTabScene;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -71,7 +71,7 @@ public class OnUserLogInScene {
         AnchorPane.setBottomAnchor(footerHBox,0.0);
         footerHBox.setPadding(new Insets(3,3,3,3));
         footerHBox.setStyle("-fx-background-color: #000000");
-        footerHBox.setMinWidth(700);
+        footerHBox.setMinWidth(600);
 
 
 
@@ -93,7 +93,7 @@ public class OnUserLogInScene {
 
 
         anchorPane.getChildren().addAll(tabPane,hBox,footerHBox);
-        Scene scene = new Scene(anchorPane,700,600);
+        Scene scene = new Scene(anchorPane,600,600);
         scene.getStylesheets().add("Themes/Nevike.css");
         window.setScene(scene);
         window.show();
