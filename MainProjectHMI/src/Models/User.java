@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class User{
     public static final String ID_PROPERTY_STRING = "_id_";
-    public static final String NAME_PROPERTY_STRING = "_userName_";
-    public static final String USERNAME_PROPERTY_STRING = "_name_";
+    public static final String USERNAME_PROPERTY_STRING = "_userName_";
+    public static final String NAME_PROPERTY_STRING = "_name_";
 
 
     private int id;//4 digit
@@ -43,13 +43,6 @@ public class User{
     private ArrayList<Job> jobArrayList = new ArrayList<>(3);//create job table.
 
 
-
-    public User() {
-        this.id = 1000 + (int)(Math.random() * 8999);
-        this._id_ = new SimpleIntegerProperty(this.id);
-    }
-
-
     public void setUserDetails(String firstName, String lastName, String eMail, Long contact, String gender, String userName, String password, String state, String city) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,6 +61,8 @@ public class User{
     public int getId() {
         return id;
     }
+
+    public void setId(int id) { this.id = id;}
 
     public String getFirstName() {
         return firstName;

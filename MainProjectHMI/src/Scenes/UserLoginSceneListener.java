@@ -44,7 +44,7 @@ public class UserLoginSceneListener {
         loginButton.setOnAction(e -> {
             User user = userLab.getUserByUserName(inputUsername.getText());
             if(user!=null){
-                if(user.getPassword().intern()==inputPassword.getText().intern()){
+                if(user.getPassword().intern() == inputPassword.getText().intern()){
                     OnUserLogInScene.setUserName(inputUsername.getText());
                     OnUserLogInScene.passControl(window);
                 }

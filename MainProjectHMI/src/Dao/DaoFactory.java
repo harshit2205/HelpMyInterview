@@ -16,13 +16,13 @@ public class DaoFactory {
         return daoFactory;
     }
 
-    public Connection getConnection() throws SQLException, ClassNotFoundException {
-        final String DURL = "jdbc:oracle:thin:@localhost:1521:xe";
-        final String userName = "root";
-        final String password = "password";
+    public Connection getConnection() throws SQLException {
+        final String DURL = "jdbc:mysql://localhost:3306/hmidatabase";
+        final String userName = "harshit";
+        final String password = "5749550";
+
 
         if(connection == null){
-                Class.forName("jdbc:oracle:thin:@localhost:1521:xe");
                 connection = DriverManager.getConnection(DURL, userName, password);
         }
         return connection;

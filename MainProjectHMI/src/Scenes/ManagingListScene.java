@@ -1,5 +1,6 @@
 package Scenes;
 
+import Dao.UserDAO;
 import Models.User;
 import Models.UserLab;
 import Stages.ConfirmationDialog;
@@ -17,6 +18,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by staLker on 30-06-2017.
  */
@@ -29,6 +34,7 @@ public class ManagingListScene {
 
 
     static void passControl(Stage window){
+
         VBox parentPaneVBox = new VBox(10);
         HBox topBarHBox = new HBox();
 
@@ -80,6 +86,7 @@ public class ManagingListScene {
         });
 
         editButton.setOnAction(e -> {
+            System.out.println(user.getUserName());
             ManagingEditScene.passControl(window,user.getUserName());
         });
 
@@ -127,6 +134,12 @@ public class ManagingListScene {
     private static void createTable(){
         table = new TableView<User>();
 
+
+        // database Connection...................
+        ObservableList<User> users ;
+        users = UserDAO.getUserDAOInstance().allUsers();
+        //........................................
+
         TableColumn<User, Integer> idColumn = new TableColumn<>("Id");
         idColumn.setMaxWidth(1000);
         idColumn.setCellValueFactory(
@@ -138,7 +151,7 @@ public class ManagingListScene {
         nameColumn.setCellValueFactory(
                 new PropertyValueFactory<>(User.NAME_PROPERTY_STRING));
 
-        table.setItems(UserLab.get().getObservableUserList());
+        table.setItems(users);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.getColumns().addAll(idColumn, usernameColumn, nameColumn);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

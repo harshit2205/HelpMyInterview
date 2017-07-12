@@ -1,5 +1,6 @@
 package ScenesPopWindow;
 
+import Dao.UserDAO;
 import Models.User;
 import Models.UserLab;
 import Stages.PopUpStage;
@@ -24,6 +25,9 @@ public class OnUserSignUpSceneListener {
                     statesComboBox.getValue(),
                     cityComboBox.getValue()
                     );
+
+
+            UserDAO.getUserDAOInstance().insertUser(user);
 
             UserLab.get().getUserList().add(user);
             PopUpStage.getWindow().close();

@@ -1,5 +1,6 @@
 package Scenes;
 
+import Dao.UserDAO;
 import Models.User;
 import Models.UserLab;
 import Stages.ConfirmationDialog;
@@ -22,13 +23,19 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ManagingEditScene {
 
     public static void passControl(Stage window,String username) {
-        ImageView userImage = null;
+
+        User user = UserDAO.getUserDAOInstance().findUser(username);
+
 
         //user Image .............
+        ImageView userImage = null;
          userImage = new ImageView(new Image("/ImageResource/userImage.jpg"));
         userImage.setFitHeight(140);
         userImage.setFitWidth(120);
@@ -70,13 +77,15 @@ public class ManagingEditScene {
 
 
         //connecting data............
-        User user = UserLab.get().getUserByUserName(username);
+//        User user = UserLab.get().getUserByUserName(username);
 
         if(user.getUserImage()!= null){
         userImage.setImage(user.getUserImage());
         }
         firstNameText.setText(user.getFirstName()+" "+user.getLastName());
-//        dobText.setText(user.getDob().getDate()+"/"+user.getDob().getMonth()+"/"+user.getDob().getYear());
+        if(user.getDob()!= null){
+            dobText.setText(user.getDob().getDate()+"/"+user.getDob().getMonth()+"/"+user.getDob().getYear());
+        }
         emailText.setText(user.getEmail());
         contactText.setText(Long.toString(user.getContact()));
         userNameField.setText(user.getUserName());

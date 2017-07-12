@@ -1,5 +1,7 @@
 package Models;
 
+import Dao.UserDAO;
+
 /**
  * Created by staLker on 04-07-2017.
  */
@@ -30,7 +32,7 @@ public class EntryValidation {
         else return false;
     }
     public static boolean isUserNameValid(String userName){
-        if(userName.matches("^[a-zA-Z0-9_-]{3,15}$")){
+        if(userName.matches("^[a-zA-Z0-9_-]{3,15}$") && !UserDAO.getUserDAOInstance().ifUserExists(userName)){
             return true;
         }
         else return false;
