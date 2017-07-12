@@ -15,9 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- * Created by staLker on 09-07-2017.
- */
+//1234567.................. stallker
 public class AddProjectStage {
     private static boolean isSavePressed = false;
     public static boolean show(){
