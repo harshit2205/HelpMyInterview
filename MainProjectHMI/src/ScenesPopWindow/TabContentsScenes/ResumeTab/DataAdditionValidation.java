@@ -69,12 +69,13 @@ public class DataAdditionValidation {
             checkIfAllFilledOne();
         });
     }
-    public static void validate(TextField projectTitleTextField, TextField projectLinkTextField, CheckBox isProjectOnGoingCheckBox, TextArea projectDescriptionTextArea, Button saveButton) {
+    public static void validate(TextField projectTitleTextField, TextField projectLinkTextField, TextArea projectDescriptionTextArea, Button saveButton) {
         saveButton.setDisable(true);
         titleVal = false;
         linkVal = false;
         descriptionVal = false;
-        projectDescriptionTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
+        DataAdditionValidation.saveButton = saveButton;
+        projectTitleTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             titleVal = newValue.intern()!="";
             checkIfAllFilledTwo();
         });
