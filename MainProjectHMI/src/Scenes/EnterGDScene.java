@@ -23,11 +23,11 @@ public class EnterGDScene {
         VBox vBox = new VBox(20);
 
         //Logout Button.
-        HBox headerBox = new HBox();
-        headerBox.setAlignment(Pos.CENTER_RIGHT);
-        headerBox.setPadding(new Insets(0,10,0,10));
-        Button backButton = new Button("Back");
-        headerBox.getChildren().add(backButton);
+        HBox hBoxBackButton = new HBox();
+        Button backButton = new Button("<");
+        backButton.getStyleClass().add("button-round");
+        hBoxBackButton.getChildren().add(backButton);
+        hBoxBackButton.setPadding(new Insets(10,0,0,10));
         backButton.setOnAction(e -> { OnUserLogInScene.passControl(OnUserLogInScene.getWindow());});
 
 
@@ -57,7 +57,7 @@ public class EnterGDScene {
         Button enterButton = new Button("Enter LIVE Group Discussion");
         vBox.setPadding(new Insets(0,0,10,0));
         vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(headerBox,titleTextHBox,listview,enterButton);
+        vBox.getChildren().addAll(hBoxBackButton,titleTextHBox,listview,enterButton);
 
         scene = new Scene(vBox,600,600);
         scene.getStylesheets().add("Themes/Nevike.css");

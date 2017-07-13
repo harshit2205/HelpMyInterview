@@ -14,7 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.beans.EventHandler;
 import java.util.ArrayList;
 
 import static Utils.ValidationUtils.formatErrorText;
@@ -41,30 +43,18 @@ public class UserLoginSceneListener {
 
 
 
+        loginButton.setOnKeyPressed(e -> {
+            if(e.getCode().toString().equals("ENTER")){
+                onLoginButtonMethod(inputUsername,inputPassword,window,userNameErrorText,passwordErrorText,entryErrorText);
+            }
+        });
 
         loginButton.setOnAction(e -> {
 
-            if(UserDAO.getUserDAOInstance().ifUserExists(inputUsername.getText())){
-                User loggedInUser = UserDAO.getUserDAOInstance().findUser(inputUsername.getText());
-                if(loggedInUser.getPassword().intern() == inputPassword.getText().intern()){
-                    OnUserLogInScene.setUserName(inputUsername.getText(),loggedInUser);
-                    OnUserLogInScene.passControl(window);
-                }
-            else {
-                    showErrorMessage(userNameErrorText,passwordErrorText,entryErrorText,"invalid username or password");
-                }
-            }
-            else {
-                if(inputUsername.getText().intern()!=""){
-                    showErrorMessage(userNameErrorText,passwordErrorText,entryErrorText,"user not registered");
-                }
-                else {
-                    showErrorMessage(userNameErrorText,passwordErrorText,entryErrorText,"input a username and password");
-
-                }
-            }
+            onLoginButtonMethod(inputUsername,inputPassword,window,userNameErrorText,passwordErrorText,entryErrorText);
 
         });
+
 
 
         managerLoginMenuItem.setOnAction(e -> ManagerLoginScene.passControl(window));
@@ -85,5 +75,26 @@ public class UserLoginSceneListener {
         entry.setVisible(true);
         entry.setText(message);
 
+    }
+    private static void onLoginButtonMethod(TextField inputUsername, PasswordField inputPassword, Stage window,Text userNameErrorText,Text passwordErrorText,Text entryErrorText){
+        if(UserDAO.getUserDAOInstance().ifUserExists(inputUsername.getText())){
+            User loggedInUser = UserDAO.getUserDAOInstance().findUser(inputUsername.getText());
+            if(loggedInUser.getPassword().intern() == inputPassword.getText().intern()){
+                OnUserLogInScene.setUserName(inputUsername.getText(),loggedInUser);
+                OnUserLogInScene.passControl(window);
+            }
+            else {
+                showErrorMessage(userNameErrorText,passwordErrorText,entryErrorText,"invalid username or password");
+            }
+        }
+        else {
+            if(inputUsername.getText().intern()!=""){
+                showErrorMessage(userNameErrorText,passwordErrorText,entryErrorText,"user not registered");
+            }
+            else {
+                showErrorMessage(userNameErrorText,passwordErrorText,entryErrorText,"input a username and password");
+
+            }
+        }
     }
 }

@@ -2,7 +2,9 @@ package ScenesPopWindow.TabContentsScenes.ResumeTab;
 
 import Models.User;
 import Models.UserLab;
+import Scenes.EnterGDScene;
 import Scenes.OnUserLogInScene;
+import Scenes.ResumeTemplateScene;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -184,6 +186,11 @@ public class ResumeTabScene {
 
 
         Button generateResumeButton = new Button("Generate resume!");
+        generateResumeButton.setOnAction(event -> {
+            OnUserLogInScene.getWindow().setScene(ResumeTemplateScene.getScene());
+        });
+
+
         VBox.setMargin(generateResumeButton,new Insets(50,0,0,0));
 
         allIn.getChildren().addAll(
@@ -196,7 +203,7 @@ public class ResumeTabScene {
                 generateResumeButton
         );
         allIn.setMinWidth(580);
-        allIn.setMinHeight(1000);
+        allIn.setMinHeight(10000);
         allIn.setAlignment(Pos.TOP_CENTER);
 
         ScrollPane scrollPane = new ScrollPane();

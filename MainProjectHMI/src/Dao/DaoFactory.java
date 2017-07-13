@@ -17,9 +17,9 @@ public class DaoFactory {
     }
 
     public Connection getConnection() throws SQLException {
-        final String DURL = "jdbc:mysql://localhost:3306/hmidatabase";
-        final String userName = "harshit";
-        final String password = "5749550";
+        final String DURL = "jdbc:mysql://localhost:3306/HelpMyInterviewDB";
+        final String userName = "root";
+        final String password = "mysql461";
 
 
         if(connection == null){

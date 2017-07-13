@@ -5,20 +5,16 @@ package ImageSlider;
  */
 import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Application;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 public class ImageSlider {
 
@@ -37,9 +33,9 @@ public class ImageSlider {
         // images in src folder.
         try {
 
-            list.add("/ImageSlider/3.jpg");
-            list.add("/ImageSlider/4.jpg");
-            list.add("/ImageSlider/5.jpg");
+            list.add("/ImageSlider/3.png");
+            list.add("/ImageSlider/4.png");
+            list.add("/ImageSlider/5.png");
 
 
 
