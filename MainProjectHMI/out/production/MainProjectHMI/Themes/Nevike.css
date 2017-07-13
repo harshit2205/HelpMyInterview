@@ -59,7 +59,7 @@
 {
     -fx-alignment: CENTER;
     -fx-font-weight: bold;
-    -fx-padding: 5;
+    -fx-padding: 2; /*was 5 in case of staLker*/
     -fx-text-fill: #ffffff;
 }
 

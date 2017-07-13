@@ -1,8 +1,6 @@
 package Dao;
 
 import Models.Education;
-import javafx.collections.ObservableList;
-import sun.security.x509.EDIPartyName;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -53,9 +51,9 @@ public class EducationDAO {
     }
 
     public void insertEducation(Education education){
-        String query = "INSERT INTO education VALUES( /'"+education.getUserNAme()+"/',/'"+
+        String query = "INSERT INTO education VALUES( /'"+education.getUserName()+"/',/'"+
                 education.getDegree()+ "/',/'" +
-                        education.getCoarseName()+"/', /'"+
+                        education.getCourse()+"/', /'"+
                 education.getInstitution()+"/';";
 
 

@@ -4,17 +4,17 @@ package Models;
  * Created by USER on 7/13/2017.
  */
 public class Education {
-    String userNAme;
+    String userName;
     String degree;
-    String coarseName;
+    String course;
     String institution;
 
-    public String getUserNAme() {
-        return userNAme;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserNAme(String userNAme) {
-        this.userNAme = userNAme;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getDegree() {
@@ -25,12 +25,12 @@ public class Education {
         this.degree = degree;
     }
 
-    public String getCoarseName() {
-        return coarseName;
+    public String getCourse() {
+        return course;
     }
 
-    public void setCoarseName(String coarseName) {
-        this.coarseName = coarseName;
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     public String getInstitution() {
@@ -43,9 +43,9 @@ public class Education {
 
     public Education(String userNAme, String degree, String coarseName, String institution) {
 
-        this.userNAme = userNAme;
+        this.userName = userNAme;
         this.degree = degree;
-        this.coarseName = coarseName;
+        this.course = coarseName;
         this.institution = institution;
     }
 
