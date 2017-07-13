@@ -27,8 +27,7 @@ public class ResumeTabScene {
     public static Scene getScene(){
 
         UserLab userLab = UserLab.get();
-        String userName = OnUserLogInScene.getUserName();
-        user = userLab.getUserByUserName(userName);
+        user = OnUserLogInScene.getLoggedInUser();
 
 
         VBox allIn = new VBox(10);

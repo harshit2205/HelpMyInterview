@@ -1,6 +1,7 @@
 package Dao;
 
 import Models.User;
+import Models.UserUpdate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -37,7 +38,7 @@ public class UserDAO {
     public void insertUser(User user) {
 
         try {
-            CallableStatement insertStatement = connection.prepareCall("{call Insertprocedure(?,?,?,?,?,?,?,?,?,?,?)}");
+            CallableStatement insertStatement = connection.prepareCall("{call Insertprocedure(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             System.out.println("Callable statement object created");
             insertStatement.setInt(1,user.getId());
             insertStatement.setString(2,user.getFirstName());
@@ -50,6 +51,9 @@ public class UserDAO {
             insertStatement.setString(9,user.getState());
             insertStatement.setString(10,user.getCity());
             insertStatement.setString(11,user.getBio());
+            insertStatement.setDate(12,user.getDob());
+            insertStatement.setString(13,user.getHomeTown());
+            insertStatement.setString(14,user.getAbout());
             insertStatement.execute();
 
         } catch (SQLException e) {
@@ -82,6 +86,9 @@ public class UserDAO {
                 user.setState(rs.getString("state"));
                 user.setCity(rs.getString("city"));
                 user.setBio(rs.getString("bio"));
+                user.setHomeTown(rs.getString("homeTown"));
+                user.setAbout(rs.getString("about"));
+                user.setDob(rs.getDate("dob"));
                 break;
             }
 
@@ -122,5 +129,24 @@ public class UserDAO {
          return user!=null;
     }
 
+    public void updateUser(UserUpdate userUpdate){
+        String query = "UPDATE user SET  firstName = \'"+ userUpdate.getFirstName()+
+                "\', lastName = \'"+userUpdate.getLastName() +
+                "\', eMail = \'"+userUpdate.geteMail()+
+                "\', gender = \'"+userUpdate.getGender()+
+                "\', state = \'"+userUpdate.getState()+
+                "\', city = \'"+userUpdate.getCurrentCity()+
+                "\', bio = \'"+userUpdate.getBio()+
+                "\', dob = \'"+userUpdate.getDob() +
+                "\' WHERE userName = \'"+userUpdate.getUserName()+"\';";
+
+
+        try {
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

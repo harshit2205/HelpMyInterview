@@ -10,73 +10,65 @@ import java.util.Date;
  * Created by staLker on 07-07-2017.
  */
 public class DOB {
-    private String date;
-    private String month;
-    private String year;
+    private int date;
+    private int month;
+    private int year;
 
 
     public DOB() {
         //empty constructor was made intentionally
     }
 
-    public DOB(String date, String month, String year) {
+    public DOB(int date, int month, int year) {
         this.date = date;
         this.month = month;
         this.year = year;
     }
 
-    public static ObservableList<String> getAllDateList(){
-        ArrayList<String> allDate = new ArrayList<>();
+    public static ObservableList<Integer> getAllDateList(){
+        ArrayList<Integer> allDate = new ArrayList<>();
         for (int i=1;i<=31;i++){
-            allDate.add(i+"");
+            allDate.add(i);
         }
         return FXCollections.observableList(allDate);
     }
-    public static ObservableList<String> getAllMonthList(){
-        ArrayList<String> allMonth = new ArrayList<>();
-        allMonth.add("Jan");
-        allMonth.add("Feb");
-        allMonth.add("Mar");
-        allMonth.add("Apr");
-        allMonth.add("May");
-        allMonth.add("Jun");
-        allMonth.add("Jul");
-        allMonth.add("Aug");
-        allMonth.add("Sept");
-        allMonth.add("Oct");
-        allMonth.add("Nov");
-        allMonth.add("Dec");
-        return FXCollections.observableList(allMonth);
+    public static ObservableList<Integer> getAllMonthList(){
+        ObservableList<Integer> allMonth = FXCollections.observableArrayList();
+
+       for(int i=1 ; i<=12; i++){
+           allMonth.add(i);
+       }
+        return allMonth;
     }
-    public static ObservableList<String> getAllYears(){
-        ArrayList<String> allYear = new ArrayList<>();
+    public static ObservableList<Integer> getAllYears(){
+        ArrayList<Integer> allYear = new ArrayList<>();
         for (int i=2017;i>=1950;i--){
-            allYear.add(i+"");
+            allYear.add(i);
         }
         return FXCollections.observableList(allYear);
     }
 
-    public String getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
-    public String getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
+    public void setMonth(int month) {
         this.month = month;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 }

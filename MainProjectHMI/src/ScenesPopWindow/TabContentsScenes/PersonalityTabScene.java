@@ -76,16 +76,16 @@ public class PersonalityTabScene {
         EditButton editContactButton = new EditButton("Edit",contactTextField);
 
         Label dobLabel = new Label("DOB : ");
-        ComboBox<String> selectDayComboBox = new ComboBox<>(DOB.getAllDateList());
+        ComboBox<Integer> selectDayComboBox = new ComboBox<>(DOB.getAllDateList());
         selectDayComboBox.setPromptText("Day");
         HBox monthComboBoxHBox = new HBox(2);
         Text monthErrorText = new Text("*");
-        ComboBox<String> selectMonthComboBox = new ComboBox<>(DOB.getAllMonthList());
+        ComboBox<Integer> selectMonthComboBox = new ComboBox<>(DOB.getAllMonthList());
         monthComboBoxHBox.getChildren().addAll(selectMonthComboBox,monthErrorText);
         selectMonthComboBox.setPromptText("Month");
         HBox yearComboBoxHBox = new HBox(2);
         Text yearErrorText = new Text("*");
-        ComboBox<String> selectYearComboBox = new ComboBox<>(DOB.getAllYears());
+        ComboBox<Integer> selectYearComboBox = new ComboBox<>(DOB.getAllYears());
         yearComboBoxHBox.getChildren().addAll(selectYearComboBox,yearErrorText);
         selectYearComboBox.setPromptText("Year");
         HBox dateSelectHBox = new HBox(10);

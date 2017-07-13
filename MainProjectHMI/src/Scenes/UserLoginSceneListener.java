@@ -1,5 +1,6 @@
 package Scenes;
 
+import Dao.UserDAO;
 import Models.User;
 import Models.UserLab;
 import ScenesPopWindow.AboutScene;
@@ -42,16 +43,16 @@ public class UserLoginSceneListener {
 
 
         loginButton.setOnAction(e -> {
-            User user = userLab.getUserByUserName(inputUsername.getText());
-            if(user!=null){
-                if(user.getPassword().intern() == inputPassword.getText().intern()){
-                    OnUserLogInScene.setUserName(inputUsername.getText());
+
+            if(UserDAO.getUserDAOInstance().ifUserExists(inputUsername.getText())){
+                User loggedInUser = UserDAO.getUserDAOInstance().findUser(inputUsername.getText());
+                if(loggedInUser.getPassword().intern() == inputPassword.getText().intern()){
+                    OnUserLogInScene.setUserName(inputUsername.getText(),loggedInUser);
                     OnUserLogInScene.passControl(window);
                 }
-                else {
+            else {
                     showErrorMessage(userNameErrorText,passwordErrorText,entryErrorText,"invalid username or password");
                 }
-
             }
             else {
                 if(inputUsername.getText().intern()!=""){

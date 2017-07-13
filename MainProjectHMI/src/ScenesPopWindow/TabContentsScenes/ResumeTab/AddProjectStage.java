@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-//1234567.................. stallker
 public class AddProjectStage {
     private static boolean isSavePressed = false;
     public static boolean show(){

@@ -1,10 +1,13 @@
 package ScenesPopWindow.TabContentsScenes;
 
+import Dao.UserDAO;
 import Models.User;
 import Models.UserLab;
+import Models.UserUpdate;
 import Scenes.OnUserLogInScene;
 import Utils.DOB;
 import Utils.Education;
+import Utils.HMICalendar;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -18,6 +21,10 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -25,11 +32,49 @@ import java.util.ArrayList;
 public class PersonalityTabListener {
 
     private static String userImagePath ;
-    public static void listen(ImageView profilePicture, Button editProfilePictureButton, TextField firstNameTextField, TextField lastNameTextField, TextField userNameTextField, ComboBox<String> genderComboBox, TextField eMailTextField, TextField contactTextField, ComboBox<String> selectDayComboBox, ComboBox<String> selectMonthComboBox, ComboBox<String> selectYearComboBox, TextArea bioTextArea, ComboBox<String> degree1ComboBox, TextField course1TextField, TextField degree1TextField, ComboBox<String> degree2ComboBox, TextField course2TextField, TextField degree2TextField, ComboBox<String> degree3ComboBox, TextField course3TextField, TextField degree3TextField, ComboBox<String> degree4ComboBox, TextField course4TextField, TextField degree4TextField, TextField homeTownTextField, TextField currentCityTextField, TextField stateTextField, TextArea aboutYourselfTextArea, CheckBox acceptCheckBox, Button saveButton, Text firstNameErrorText, Text lastNameErrorText, Text emailErrorText, Text contactErrorText, Text monthErrorText, Text yearErrorText, Text degree1ErrorText, Text degree2ErrorText, Text degree3ErrorText, Text degree4ErrorText) {
+    public static void listen(ImageView profilePicture,
+                              Button editProfilePictureButton,
+                              TextField firstNameTextField,
+                              TextField lastNameTextField,
+                              TextField userNameTextField,
+                              ComboBox<String> genderComboBox,
+                              TextField eMailTextField,
+                              TextField contactTextField,
+                              ComboBox<Integer> selectDayComboBox,
+                              ComboBox<Integer> selectMonthComboBox,
+                              ComboBox<Integer> selectYearComboBox,
+                              TextArea bioTextArea,
+                              ComboBox<String> degree1ComboBox,
+                              TextField course1TextField,
+                              TextField degree1TextField,
+                              ComboBox<String> degree2ComboBox,
+                              TextField course2TextField,
+                              TextField degree2TextField,
+                              ComboBox<String> degree3ComboBox,
+                              TextField course3TextField,
+                              TextField degree3TextField,
+                              ComboBox<String> degree4ComboBox,
+                              TextField course4TextField,
+                              TextField degree4TextField,
+                              TextField homeTownTextField,
+                              TextField currentCityTextField,
+                              TextField stateTextField,
+                              TextArea aboutYourselfTextArea,
+                              CheckBox acceptCheckBox,
+                              Button saveButton,
+                              Text firstNameErrorText,
+                              Text lastNameErrorText,
+                              Text emailErrorText,
+                              Text contactErrorText,
+                              Text monthErrorText,
+                              Text yearErrorText,
+                              Text degree1ErrorText,
+                              Text degree2ErrorText,
+                              Text degree3ErrorText,
+                              Text degree4ErrorText) {
 
-        UserLab userLab = UserLab.get();
-        String userName = OnUserLogInScene.getUserName();
-        User user = userLab.getUserByUserName(userName);
+//        UserLab userLab = UserLab.get();
+        User user  = OnUserLogInScene.getLoggedInUser();
 
 
         saveButton.setDisable(true);
@@ -47,22 +92,23 @@ public class PersonalityTabListener {
         firstNameTextField.setText(user.getFirstName());
         lastNameTextField.setText(user.getLastName());
 
-        userNameTextField.setText(userName);
+        userNameTextField.setText(user.getUserName());
 
         genderComboBox.setValue(user.getGender());
 
         eMailTextField.setText(user.getEmail());
 
         contactTextField.setText(user.getContact().toString());
-        if (user.getDob()!=null){
-            selectDayComboBox.setValue(user.getDob().getDate());
-            selectMonthComboBox.setValue(user.getDob().getMonth());
-            selectYearComboBox.setValue(user.getDob().getYear());
-        }
 
-        selectMonthComboBox.setDisable(true);
+//        int[] dob = HMICalendar.getCalendarInstance().getDate(user.getDob());
+//        System.out.println(dob[0]+"-"+dob[1]+"-"+dob[2]);
+//
+//        if (user.getDob()!=null){
+//            selectDayComboBox.setValue(dob[0]);
+//            selectMonthComboBox.setValue(dob[1]);
+//            selectYearComboBox.setValue(dob[2]);
+//        }
 
-        selectYearComboBox.setDisable(true);
         if(user.getBio()!=null){
             bioTextArea.setText(user.getBio());
         }
@@ -91,6 +137,7 @@ public class PersonalityTabListener {
             degree4TextField.setText(user.getEducation().get(3).getInstitution());
         }
 
+        homeTownTextField.setText(user.getHomeTown());
         currentCityTextField.setText(user.getCity());
         stateTextField.setText(user.getState());
         if(user.getAbout()!=null){
@@ -142,29 +189,61 @@ public class PersonalityTabListener {
                 educationList.add(new Education(degree3ComboBox.getValue(),course3TextField.getText(),degree3TextField.getText()));
             if(degree4TextField.getText()!=null)
                 educationList.add(new Education(degree4ComboBox.getValue(),course4TextField.getText(),degree4TextField.getText()));
-            user.personalityUpdate(
-                    profilePicture.getImage(),
+
+            //setting date..........................
+            Date dmy = getDate(selectDayComboBox,selectYearComboBox,selectMonthComboBox);
+
+            UserUpdate userUpdate = new UserUpdate(userNameTextField.getText(),
                     firstNameTextField.getText(),
                     lastNameTextField.getText(),
-                    userNameTextField.getText(),
                     genderComboBox.getValue(),
                     eMailTextField.getText(),
-                    contactTextField.getText(),
-                    new DOB(selectDayComboBox.getValue(),selectMonthComboBox.getValue(),selectYearComboBox.getValue()),
+                    dmy,
                     bioTextArea.getText(),
-                    educationList,
                     homeTownTextField.getText(),
                     currentCityTextField.getText(),
                     stateTextField.getText(),
-                    aboutYourselfTextArea.getText()
-            );
-
+                    aboutYourselfTextArea.getText());
+            UserDAO.getUserDAOInstance().updateUser(userUpdate);
         });
-
     }
 
     private static void addDegreeList(ComboBox<String> comboBox){
         comboBox.getItems().addAll(Education.getAllDegree());
+    }
+
+
+    private static Date getDate(ComboBox<Integer> selectDayComboBox, ComboBox<Integer> selectYearComboBox, ComboBox<Integer> selectMonthComboBox){
+        Date sqldob = null;
+
+        // converting date selected into java.sql.Date..............
+
+        String date = "01",month = "01",year = "2000";
+
+        if(selectDayComboBox.getValue()!= null || selectMonthComboBox.getValue()!=null || selectYearComboBox.getValue()!=null){
+            if(selectDayComboBox.getValue()<10){
+                date = "0"+selectDayComboBox.getValue();
+            }
+
+            if(selectMonthComboBox.getValue()<10){
+                month = "0"+selectMonthComboBox.getValue();
+            }
+
+            year = ""+selectYearComboBox.getValue();
+        }
+        String dobString = year+"-"+month+"-"+date;
+        System.out.println(dobString);
+
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date dob = null;
+        try {
+            dob = formatter.parse(dobString);
+        } catch (ParseException e) {
+            System.out.println("unable to Parse Date");
+        }
+
+        sqldob = new Date(dob.getTime());
+        return sqldob;
     }
 
 

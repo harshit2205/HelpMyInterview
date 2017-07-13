@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +33,7 @@ public class User{
     private String city;//25 char max
     private String homeTown;//25 char max
     private Image userImage;//not now
-    private DOB dob;//see DOB
+    private Date dob;//see DOB
     private String bio;//large string
     private ArrayList<Education> educationList = new ArrayList<>(4);//create education table
     private String about;//large string
@@ -145,11 +146,11 @@ public class User{
         this.userImage = userImage;
     }
 
-    public DOB getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(DOB dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -220,7 +221,7 @@ public class User{
     }
 
     public void personalityUpdate(Image userImage, String firstName, String lastName, String userName, String gender,
-                                  String eMail, String contact, DOB dob, String bio, ArrayList<Education> educationList,
+                                  String eMail, String contact, Date dob, String bio, ArrayList<Education> educationList,
                                   String homeTown, String city, String state, String about) {
         this.userImage = userImage;
         this.firstName = firstName;

@@ -1,5 +1,6 @@
 package Scenes;
 
+import Models.User;
 import ScenesPopWindow.AboutScene;
 import ScenesPopWindow.HelpScene;
 import ScenesPopWindow.TabContentsScenes.GDTabScene;
@@ -23,6 +24,7 @@ public class OnUserLogInScene {
 
     private static Stage window;
     private static String userName;
+    private static User loggedInUser;
 
 
     public static void passControl(Stage window){
@@ -106,8 +108,12 @@ public class OnUserLogInScene {
 
     public static String getUserName() {return userName;}
 
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
 
-    public static void setUserName(String userName) {
+    public static void setUserName(String userName, User user) {
         OnUserLogInScene.userName = userName;
+        OnUserLogInScene.loggedInUser = user;
     }
 }

@@ -1,0 +1,28 @@
+
+CREATE TABLE user(userId INT, firstName VARCHAR(15), lastName VARCHAR(15), eMail VARCHAR(255), contact BIGINT,
+  gender VARCHAR(6), userName VARCHAR(20), password VARCHAR(10),state VARCHAR(20), city VARCHAR(20), bio TEXT);
+
+SELECT * FROM test;
+
+CREATE PROCEDURE Insertprocedure(IN userId INT, firstName VARCHAR(15), lastName VARCHAR(15), eMail VARCHAR(255), contact BIGINT,
+                                 gender VARCHAR(6), userName VARCHAR(20), password VARCHAR(10),state VARCHAR(20), city VARCHAR(20),
+                                 bio TEXT, dob DATE, homeTown VARCHAR(20), about TEXT)
+BEGIN
+INSERT INTO user VALUES(userId,firstName,lastName,eMail,contact,gender,userName,password,state,city,bio,dob,homeTown,about);
+END;
+
+
+SELECT * FROM user;
+
+DESC user;
+
+UPDATE user SET  bio = '' WHERE userName = 'manu1230' ;
+
+ALTER TABLE user ADD dob DATE;
+ALTER TABLE user ADD homeTown VARCHAR(20);
+ALTER TABLE user ADD about TEXT;
+
+       sql updates...........................................
+
+
+
