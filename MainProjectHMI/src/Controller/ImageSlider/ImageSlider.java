@@ -3,9 +3,11 @@ package Controller.ImageSlider;
 /**
  * Created by staLker on 30-06-2017.
  */
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -15,6 +17,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+
+import static java.lang.Thread.currentThread;
+import static java.lang.Thread.sleep;
 
 public class ImageSlider {
 
@@ -26,18 +31,34 @@ public class ImageSlider {
     static Button rButton;
     static ImageView imageView;
     static Image[] images;
-    static Thread thread = null;
 
 
     public static HBox getLayout() {
         // images in src folder.
+//        new Thread() {
+//            public void run() {
+//                Platform.runLater(() -> {
+//                    for (int i = 0; i < images.length; i++) {
+//                        imageView.setImage(images[i]);
+//                        try {
+//                            sleep(2000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                        if (i == images.length - 1) {
+//                            i = 0;
+//                        }
+//                    }
+//                });
+//
+//            }
+//        }.start();
+
         try {
 
             list.add("/Controller/ImageSlider/3.png");
             list.add("/Controller/ImageSlider/4.png");
             list.add("/Controller/ImageSlider/5.png");
-
-
 
 
             GridPane gridPane = new GridPane();
@@ -54,7 +75,7 @@ public class ImageSlider {
                 images[i] = new Image(list.get(i));
             }
 
-            imageView = new ImageView(images[j]);
+            imageView = new ImageView(images[0]);
             imageView.setCursor(Cursor.CLOSED_HAND);
 
             imageView.setOnMousePressed(circleOnMousePressedEventHandler);
@@ -78,16 +99,16 @@ public class ImageSlider {
             });
             lbutton.setOnAction(e -> {
                 j = j - 1;
-                if ( j > list.size() + 1 || j == -1) {
+                if (j > list.size() + 1 || j == -1) {
                     j = list.size() - 1;
                 }
                 imageView.setImage(images[j]);
 
             });
 
-            if(isImageSliderThreadRunning()){
-                slideImages();
-            }
+
+//--------------------------------------------------------------------------
+
 
             imageView.setFitHeight(300);
             imageView.setFitWidth(535);
@@ -96,7 +117,7 @@ public class ImageSlider {
             hBox.setSpacing(4);
             hBox.setAlignment(Pos.CENTER);
             // hBox.getChildren().addAll(lbutton, imageView, rButton);
-            hBox.getChildren().addAll(lbutton,imageView,rButton);//----->uncomment to add buttons.
+            hBox.getChildren().addAll(lbutton, imageView, rButton);//----->uncomment to add buttons.
             //hBox.getChildren().add(imageView);
             //hBox.setStyle("-fx-background-color: #fded02");
             return hBox;
@@ -110,6 +131,7 @@ public class ImageSlider {
             e.printStackTrace();
             return null;
         }
+
     }
 
     static EventHandler<MouseEvent> circleOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
@@ -121,28 +143,7 @@ public class ImageSlider {
     };
 
 
-    private static boolean isImageSliderThreadRunning(){
-        if(thread == null) {
-            return true;
-        }else{
-            return false;
-        }
-    }
 
-    private static void slideImages(){
-//        thread = new Thread(() -> {
-//            while(true){
-//                try {
-//                    Thread.sleep(2000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                if((j + 1) == list.size()){
-//                    j = 0;
-//                }else j = j + 1;
-//                imageView.setImage(images[j]);
-//            }
-//        });
-//        thread.start();
-   }
+
+
 }
