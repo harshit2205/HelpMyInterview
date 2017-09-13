@@ -1,32 +1,32 @@
-package Beans.Utils;
+package Beans.Models;
 
 /**
  * Created by staLker on 11-07-2017.
  */
-public class Job {
-    private String profile;
+public class Internship {
+    private String titleOfInternship;
     private String organization;
-    private boolean workFromHome;
     private String location;
+    private boolean workFromHome;
     private String description;
 
-    public Job() {
+    public Internship() {
     }
 
-    public Job(String profile, String organization, boolean workFromHome, String location, String description) {
-        this.profile = profile;
+    public Internship(String titleOfInternship, String organization, String location, boolean workFromHome, String description) {
+        this.titleOfInternship = titleOfInternship;
         this.organization = organization;
-        this.workFromHome = workFromHome;
         this.location = location;
+        this.workFromHome = workFromHome;
         this.description = description;
     }
 
-    public String getProfile() {
-        return profile;
+    public String getTitleOfInternship() {
+        return titleOfInternship;
     }
 
-    public void setProfile(String profile) {
-        this.profile = profile;
+    public void setTitleOfInternship(String titleOfInternship) {
+        this.titleOfInternship = titleOfInternship;
     }
 
     public String getOrganization() {
@@ -37,20 +37,20 @@ public class Job {
         this.organization = organization;
     }
 
-    public boolean isWorkFromHome() {
-        return workFromHome;
-    }
-
-    public void setWorkFromHome(boolean workFromHome) {
-        this.workFromHome = workFromHome;
-    }
-
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public boolean isWorkFromHome() {
+        return workFromHome;
+    }
+
+    public void setWorkFromHome(boolean workFromHome) {
+        this.workFromHome = workFromHome;
     }
 
     public String getDescription() {

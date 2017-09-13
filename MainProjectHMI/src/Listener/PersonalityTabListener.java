@@ -1,10 +1,13 @@
 package Listener;
 
+import DAO.EducationDAO;
 import DAO.UserDAO;
 import Beans.Models.User;
 import Beans.Models.UserUpdate;
 import GUI.Scenes.OnUserLogInScene;
-import Beans.Utils.Education;
+import Beans.Models.Education;
+import GUI.Scenes.UserLoginScene;
+import GUI.ScenesPopWindow.OnUserSignUpScene;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -113,25 +116,31 @@ public class PersonalityTabListener {
         if(user.getHomeTown()!=null){
             homeTownTextField.setText(user.getHomeTown());
         }
-        if(user.getEducation().size()>0){
-            degree1ComboBox.setValue(user.getEducation().get(0).getDegree());
-            course1TextField.setText(user.getEducation().get(0).getCourse());
-            degree1TextField.setText(user.getEducation().get(0).getInstitution());
+
+        //Setting Education.................................
+        ArrayList<Education> educationsList = new ArrayList<>();
+        if(EducationDAO.getEducationDAOInstance().ifEducationExists(user.getUserName())) {
+             educationsList = EducationDAO.getEducationDAOInstance().getEducation(user.getUserName());
         }
-        if(user.getEducation().size()>1){
-            degree2ComboBox.setValue(user.getEducation().get(1).getDegree());
-            course2TextField.setText(user.getEducation().get(1).getCourse());
-            degree2TextField.setText(user.getEducation().get(1).getInstitution());
+        if(educationsList.size()>0){
+            degree1ComboBox.setValue(educationsList.get(0).getDegree());
+            course1TextField.setText(educationsList.get(0).getCourse());
+            degree1TextField.setText(educationsList.get(0).getInstitution());
         }
-        if(user.getEducation().size()>2){
-            degree3ComboBox.setValue(user.getEducation().get(2).getDegree());
-            course3TextField.setText(user.getEducation().get(2).getCourse());
-            degree3TextField.setText(user.getEducation().get(2).getInstitution());
+        if(educationsList.size()>1){
+            degree2ComboBox.setValue(educationsList.get(1).getDegree());
+            course2TextField.setText(educationsList.get(1).getCourse());
+            degree2TextField.setText(educationsList.get(1).getInstitution());
         }
-        if(user.getEducation().size()>3){
-            degree4ComboBox.setValue(user.getEducation().get(3).getDegree());
-            course4TextField.setText(user.getEducation().get(3).getCourse());
-            degree4TextField.setText(user.getEducation().get(3).getInstitution());
+        if(educationsList.size()>2){
+            degree3ComboBox.setValue(educationsList.get(2).getDegree());
+            course3TextField.setText(educationsList.get(2).getCourse());
+            degree3TextField.setText(educationsList.get(2).getInstitution());
+        }
+        if(educationsList.size()>3){
+            degree4ComboBox.setValue(educationsList.get(3).getDegree());
+            course4TextField.setText(educationsList.get(3).getCourse());
+            degree4TextField.setText(educationsList.get(3).getInstitution());
         }
 
         homeTownTextField.setText(user.getHomeTown());
@@ -186,6 +195,13 @@ public class PersonalityTabListener {
                 educationList.add(new Education(degree3ComboBox.getValue(),course3TextField.getText(),degree3TextField.getText()));
             if(degree4TextField.getText()!=null)
                 educationList.add(new Education(degree4ComboBox.getValue(),course4TextField.getText(),degree4TextField.getText()));
+
+            //updating education in database.................
+            if(EducationDAO.getEducationDAOInstance().ifEducationExists(user.getUserName())){
+                EducationDAO.getEducationDAOInstance().updateEducation(educationList, user.getUserName());
+            }else{
+                EducationDAO.getEducationDAOInstance().insertEducation(educationList, user.getUserName());
+            }
 
             //setting date..........................
             Date dmy = getDate(selectDayComboBox,selectYearComboBox,selectMonthComboBox);
@@ -242,6 +258,5 @@ public class PersonalityTabListener {
         sqldob = new Date(dob.getTime());
         return sqldob;
     }
-
 
 }

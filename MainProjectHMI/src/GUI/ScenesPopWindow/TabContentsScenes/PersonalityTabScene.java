@@ -373,7 +373,6 @@ public class PersonalityTabScene {
         Button saveButton = new Button("Save");
 
 
-
         VBox vBox = new VBox(10);
         vBox.getChildren().addAll(
                 personalDetailHBox,

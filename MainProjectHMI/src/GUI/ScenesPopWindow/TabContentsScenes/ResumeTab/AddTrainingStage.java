@@ -3,7 +3,7 @@ package GUI.ScenesPopWindow.TabContentsScenes.ResumeTab;
 import Beans.Models.User;
 import Beans.Models.UserLab;
 import GUI.Scenes.OnUserLogInScene;
-import Beans.Utils.Training;
+import Beans.Models.Training;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;

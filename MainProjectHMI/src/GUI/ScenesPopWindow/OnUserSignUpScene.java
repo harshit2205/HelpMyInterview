@@ -1,7 +1,7 @@
 package GUI.ScenesPopWindow;
 
 import Beans.Utils.Cities;
-import Beans.Utils.States;
+import Beans.Models.States;
 import Listener.OnUserSignUpSceneListener;
 import Listener.OnUserSignUpValidationListener;
 import javafx.beans.value.ChangeListener;

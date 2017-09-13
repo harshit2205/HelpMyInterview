@@ -1,32 +1,32 @@
-package Beans.Utils;
+package Beans.Models;
 
 /**
  * Created by staLker on 11-07-2017.
  */
-public class Internship {
-    private String titleOfInternship;
+public class Job {
+    private String profile;
     private String organization;
-    private String location;
     private boolean workFromHome;
+    private String location;
     private String description;
 
-    public Internship() {
+    public Job() {
     }
 
-    public Internship(String titleOfInternship, String organization, String location, boolean workFromHome, String description) {
-        this.titleOfInternship = titleOfInternship;
+    public Job(String profile, String organization, boolean workFromHome, String location, String description) {
+        this.profile = profile;
         this.organization = organization;
-        this.location = location;
         this.workFromHome = workFromHome;
+        this.location = location;
         this.description = description;
     }
 
-    public String getTitleOfInternship() {
-        return titleOfInternship;
+    public String getProfile() {
+        return profile;
     }
 
-    public void setTitleOfInternship(String titleOfInternship) {
-        this.titleOfInternship = titleOfInternship;
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public String getOrganization() {
@@ -37,20 +37,20 @@ public class Internship {
         this.organization = organization;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public boolean isWorkFromHome() {
         return workFromHome;
     }
 
     public void setWorkFromHome(boolean workFromHome) {
         this.workFromHome = workFromHome;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getDescription() {

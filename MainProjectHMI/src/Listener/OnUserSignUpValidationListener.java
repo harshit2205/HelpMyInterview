@@ -1,6 +1,6 @@
 package Listener;
 
-import Beans.Models.EntryValidation;
+import Beans.Utils.EntryValidation;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 

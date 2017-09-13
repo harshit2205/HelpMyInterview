@@ -1,6 +1,6 @@
 package Listener;
 
-import Beans.Models.EntryValidation;
+import Beans.Utils.EntryValidation;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -240,7 +240,7 @@ public class PersonalityTabValidationListener {
         errorText.setVisible(false);
     }
     private static void checkIfAllTrue(){
-        if(firstNameVal&&lastNameVal&&contactVal&&emailVal&&monthVal&&yearVal&&deg1Val&&deg2Val&&deg3Val&&deg4Val&&acceptVal){
+        if(firstNameVal&&lastNameVal&&contactVal&&emailVal&&deg1Val&&deg2Val&&deg3Val&&deg4Val&&acceptVal){
             saveButton.setDisable(false);
         }
         else {

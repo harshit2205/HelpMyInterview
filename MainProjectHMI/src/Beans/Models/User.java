@@ -1,6 +1,5 @@
 package Beans.Models;
 
-import Beans.Utils.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;

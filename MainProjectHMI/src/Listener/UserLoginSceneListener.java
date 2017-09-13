@@ -75,6 +75,7 @@ public class UserLoginSceneListener {
 
     }
     private static void onLoginButtonMethod(TextField inputUsername, PasswordField inputPassword, Stage window,Text userNameErrorText,Text passwordErrorText,Text entryErrorText){
+        System.out.println(inputUsername.getText());
         if(UserDAO.getUserDAOInstance().ifUserExists(inputUsername.getText())){
             User loggedInUser = UserDAO.getUserDAOInstance().findUser(inputUsername.getText());
             if(loggedInUser.getPassword().intern() == inputPassword.getText().intern()){

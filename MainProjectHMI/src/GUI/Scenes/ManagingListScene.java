@@ -28,12 +28,10 @@ public class ManagingListScene {
     private String username;
     private static User user = null;
 
-
     static void passControl(Stage window){
 
         VBox parentPaneVBox = new VBox(10);
         HBox topBarHBox = new HBox();
-
 
         Text titleText = new Text("Users-Details List");
         titleText.setFont(Font.font(null, FontWeight.EXTRA_BOLD,23));
@@ -44,8 +42,6 @@ public class ManagingListScene {
         titleTextHBox.getChildren().add(titleText);
         titleTextHBox.setAlignment(Pos.CENTER);
 
-
-
         VBox optionsVBox = new VBox(10);
         topBarHBox.setAlignment(Pos.CENTER_RIGHT);
         topBarHBox.setPadding(new Insets(10,10,0,10));
@@ -54,19 +50,16 @@ public class ManagingListScene {
             createTable();
         }
 
-
         Button editButton = new Button("Edit");
         editButton.setDisable(true);
         Button deleteButton = new Button("delete");
         deleteButton.setDisable(true);
         Button logoutButton = new Button("Logout!");
 
-
         //listeners...................
         ObservableList selectedItems = table.getSelectionModel().getSelectedItems();
 
         //on table item selected..........................
-
         selectedItems.addListener(new ListChangeListener<User>(){
             @Override
             public void onChanged(  ListChangeListener.Change<? extends User> changed){
@@ -86,20 +79,13 @@ public class ManagingListScene {
             ManagingEditScene.passControl(window,user.getUserName());
         });
 
-
         deleteButton.setOnAction(e -> {
             if(new ConfirmationDialog().confirmationUtility("Confirm delete!","Are you sure you want to \ndelete the user?")){
                 // code for updating in the sql
                 table.getItems().removeAll(selectedItems);}
         });
 
-
         logoutButton.setOnAction(e -> {ManagerLoginScene.passControl(window);});
-
-
-
-
-
 
         //Ui design..................
 
@@ -130,7 +116,6 @@ public class ManagingListScene {
     private static void createTable(){
         table = new TableView<User>();
 
-
         // database Connection...................
         ObservableList<User> users ;
         users = UserDAO.getUserDAOInstance().allUsers();
@@ -153,5 +138,4 @@ public class ManagingListScene {
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         table.setMaxHeight(330);
     }
-
 }

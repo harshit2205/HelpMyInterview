@@ -1,20 +1,37 @@
 package Beans.Models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+
 /**
- * Created by USER on 7/13/2017.
+ * Created by staLker on 07-07-2017.
  */
 public class Education {
-    String userName;
-    String degree;
-    String course;
-    String institution;
+    private String degree;
+    private String course;
+    private String institution;
 
-    public String getUserName() {
-        return userName;
+    public Education() {
+        //empty constructor was made intentionally.
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public Education(String degree, String course, String institution) {
+        this.degree = degree;
+        this.course = course;
+        this.institution = institution;
+    }
+
+    public static ObservableList<String> getAllDegree(){
+        ArrayList<String> allDegrees = new ArrayList<>();
+        allDegrees.add("High-School");
+        allDegrees.add("Intermediate");
+        allDegrees.add("Graduation");
+        allDegrees.add("Post-Graduation");
+        allDegrees.add("Phd");
+        allDegrees.add("Other");
+        return FXCollections.observableList(allDegrees);
     }
 
     public String getDegree() {
@@ -40,14 +57,4 @@ public class Education {
     public void setInstitution(String institution) {
         this.institution = institution;
     }
-
-    public Education(String userNAme, String degree, String coarseName, String institution) {
-
-        this.userName = userNAme;
-        this.degree = degree;
-        this.course = coarseName;
-        this.institution = institution;
-    }
-
-
 }

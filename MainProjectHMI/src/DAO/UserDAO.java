@@ -1,6 +1,7 @@
 package DAO;
 
 import Beans.Models.User;
+import Beans.Models.UserCredential;
 import Beans.Models.UserUpdate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,12 +67,11 @@ public class UserDAO {
 
     public User findUser(String userName) {
         User user = null;
-        String query = "SELECT * FROM user WHERE userName = \""+userName+"\" ;";
+        String query = "SELECT * FROM user WHERE userName = \'"+userName+"\' ;";
         System.out.println(query);
         try {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-
                 user = new User();
                 user.setId(rs.getInt("userId"));
                 user.setFirstName(rs.getString("firstName"));
@@ -127,6 +127,19 @@ public class UserDAO {
          return user!=null;
     }
 
+    public void updateUserCreadentials(UserCredential userCredential,String prevUserName){
+        String query = "UPDATE user SET userName = \'"+userCredential.getUserName()+
+                "\', password = \'"+userCredential.getPassword()+
+                "\' WHERE userName = \'"+prevUserName+";";
+        System.out.println(query);
+
+        try {
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateUser(UserUpdate userUpdate){
         String query = "UPDATE user SET  firstName = \'"+ userUpdate.getFirstName()+
                 "\', lastName = \'"+userUpdate.getLastName() +
@@ -136,6 +149,8 @@ public class UserDAO {
                 "\', city = \'"+userUpdate.getCurrentCity()+
                 "\', bio = \'"+userUpdate.getBio()+
                 "\', dob = \'"+userUpdate.getDob() +
+                "\', about = \'"+userUpdate.getAbout()+
+                "\', homeTown = \'"+userUpdate.getHomeTown()+
                 "\' WHERE userName = \'"+userUpdate.getUserName()+"\';";
 
 

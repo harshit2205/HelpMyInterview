@@ -1,4 +1,4 @@
-package Beans.Utils;
+package Beans.Models;
 
 /**
  * Created by staLker on 09-07-2017.

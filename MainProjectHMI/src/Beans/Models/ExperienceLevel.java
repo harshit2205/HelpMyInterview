@@ -1,4 +1,4 @@
-package Beans.Utils;
+package Beans.Models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
