@@ -25,7 +25,16 @@ public class PersonalityTabValidationListener {
     private static boolean deg4Val = true;
     private static boolean acceptVal = false;
     private static Button saveButton;
-    public static void validateAndListen(TextField firstNameTextField, TextField lastNameTextField, TextField eMailTextField, TextField contactTextField, ComboBox<Integer> selectDayComboBox, ComboBox<Integer> selectMonthComboBox, ComboBox<Integer> selectYearComboBox, ComboBox<String> degree1ComboBox, TextField course1TextField, TextField degree1TextField, ComboBox<String> degree2ComboBox, TextField course2TextField, TextField degree2TextField, ComboBox<String> degree3ComboBox, TextField course3TextField, TextField degree3TextField, ComboBox<String> degree4ComboBox, TextField course4TextField, TextField degree4TextField, CheckBox acceptCheckBox, Button saveButton, Text firstNameErrorText, Text lastNameErrorText, Text emailErrorText, Text contactErrorText, Text monthErrorText, Text yearErrorText, Text degree1ErrorText, Text degree2ErrorText, Text degree3ErrorText, Text degree4ErrorText) {
+    public static void validateAndListen(TextField firstNameTextField, TextField lastNameTextField,
+                                         TextField eMailTextField, TextField contactTextField,
+                                         ComboBox<Integer> selectDayComboBox, ComboBox<Integer> selectMonthComboBox, ComboBox<Integer> selectYearComboBox,
+                                         ComboBox<String> degree1ComboBox, TextField course1TextField, TextField aggregate1TextField, TextField degree1TextField,
+                                         ComboBox<String> degree2ComboBox, TextField course2TextField, TextField aggregate2TextField, TextField degree2TextField,
+                                         ComboBox<String> degree3ComboBox, TextField course3TextField, TextField aggregate3TextField, TextField degree3TextField,
+                                         ComboBox<String> degree4ComboBox, TextField course4TextField, TextField aggregate4TextField, TextField degree4TextField,
+                                         CheckBox acceptCheckBox, Button saveButton, Text firstNameErrorText, Text lastNameErrorText, Text emailErrorText,
+                                         Text contactErrorText, Text monthErrorText, Text yearErrorText, Text degree1ErrorText, Text degree2ErrorText,
+                                         Text degree3ErrorText, Text degree4ErrorText) {
         PersonalityTabValidationListener.saveButton = saveButton;
 
         formatErrorText(firstNameErrorText);
@@ -105,8 +114,8 @@ public class PersonalityTabValidationListener {
             onCorrectMakeInvisible(yearErrorText);
             yearVal = true;
             checkIfAllTrue();
-
         });
+
 
 
         degree1ComboBox.setOnAction(e -> {
@@ -117,8 +126,17 @@ public class PersonalityTabValidationListener {
         });
         course1TextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.intern()!=""){
-                degree1TextField.setDisable(false);
+                aggregate1TextField.setDisable(false);
 
+            }
+            else {
+                aggregate1TextField.setDisable(true);
+            }
+            checkIfAllTrue();
+        });
+        aggregate1TextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.intern()!=""){
+                degree1TextField.setDisable(false);
             }
             else {
                 degree1TextField.setDisable(true);
@@ -139,7 +157,6 @@ public class PersonalityTabValidationListener {
 
 
 
-
         degree2ComboBox.setOnAction(e -> {
             course2TextField.setDisable(false);
             onErrorMakeRed(degree2ErrorText);
@@ -147,6 +164,16 @@ public class PersonalityTabValidationListener {
             checkIfAllTrue();
         });
         course2TextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.intern()!=""){
+                aggregate2TextField.setDisable(false);
+
+            }
+            else {
+                aggregate2TextField.setDisable(true);
+            }
+            checkIfAllTrue();
+        });
+        aggregate2TextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.intern()!=""){
                 degree2TextField.setDisable(false);
             }
@@ -170,8 +197,6 @@ public class PersonalityTabValidationListener {
 
 
 
-
-
         degree3ComboBox.setOnAction(e -> {
             course3TextField.setDisable(false);
             onErrorMakeRed(degree3ErrorText);
@@ -179,6 +204,16 @@ public class PersonalityTabValidationListener {
             checkIfAllTrue();
         });
         course3TextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.intern()!=""){
+                aggregate3TextField.setDisable(false);
+
+            }
+            else {
+                aggregate3TextField.setDisable(true);
+            }
+            checkIfAllTrue();
+        });
+        aggregate3TextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.intern()!=""){
                 degree3TextField.setDisable(false);
             }
@@ -201,8 +236,6 @@ public class PersonalityTabValidationListener {
 
 
 
-
-
         degree4ComboBox.setOnAction(e -> {
             course4TextField.setDisable(false);
             onErrorMakeRed(degree4ErrorText);
@@ -210,6 +243,16 @@ public class PersonalityTabValidationListener {
             checkIfAllTrue();
         });
         course4TextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.intern()!=""){
+                aggregate4TextField.setDisable(false);
+
+            }
+            else {
+                aggregate4TextField.setDisable(true);
+            }
+            checkIfAllTrue();
+        });
+        aggregate2TextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.intern()!=""){
                 degree4TextField.setDisable(false);
             }

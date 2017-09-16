@@ -195,33 +195,44 @@ public class PersonalityTabScene {
 
         ComboBox<String> degree1ComboBox = new ComboBox<>();
         degree1ComboBox.setPromptText("Select Degree");
-        degree1ComboBox.setMaxWidth(145);
+        degree1ComboBox.setMaxWidth(100);
         TextField course1TextField = new TextField();
         course1TextField.setMaxWidth(100);
         course1TextField.setPromptText("enter course");
         course1TextField.setDisable(true);
+        TextField aggregate1TextField = new TextField();
+        aggregate1TextField.setMaxWidth(80);
+        aggregate1TextField.setPromptText("aggregate %");
+        aggregate1TextField.setDisable(true);
         TextField degree1TextField = new TextField();
         degree1TextField.setPromptText("enter name of institution");
-        degree1TextField.setMinWidth(250);
         degree1TextField.setDisable(true);
 
         ComboBox<String> degree2ComboBox= new ComboBox<>();
         degree2ComboBox.setPromptText("Select Degree");
-        degree2ComboBox.setMaxWidth(145);
+        degree2ComboBox.setMaxWidth(100);
         TextField course2TextField = new TextField();
         course2TextField.setMaxWidth(100);
         course2TextField.setPromptText("enter course");
         course2TextField.setDisable(true);
+        TextField aggregate2TextField = new TextField();
+        aggregate2TextField.setMaxWidth(80);
+        aggregate2TextField.setPromptText("aggregate %");
+        aggregate2TextField.setDisable(true);
         TextField degree2TextField = new TextField();
         degree2TextField.setPromptText("enter name of nstitution");
         degree2TextField.setDisable(true);
 
         ComboBox<String> degree3ComboBox= new ComboBox<>();
         degree3ComboBox.setPromptText("Select Degree");
-        degree3ComboBox.setMaxWidth(145);
+        degree3ComboBox.setMaxWidth(100);
         TextField course3TextField = new TextField();
         course3TextField.setMaxWidth(100);
         course3TextField.setPromptText("enter course");
+        TextField aggregate3TextField = new TextField();
+        aggregate3TextField.setMaxWidth(80);
+        aggregate3TextField.setPromptText("aggregate %");
+        aggregate3TextField.setDisable(true);
         course3TextField.setDisable(true);
         TextField degree3TextField = new TextField();
         degree3TextField.setPromptText("enter name of institution");
@@ -229,10 +240,14 @@ public class PersonalityTabScene {
 
         ComboBox<String> degree4ComboBox= new ComboBox<>();
         degree4ComboBox.setPromptText("Select Degree");
-        degree4ComboBox.setMaxWidth(145);
+        degree4ComboBox.setMaxWidth(100);
         TextField course4TextField = new TextField();
         course4TextField.setMaxWidth(100);
         course4TextField.setPromptText("enter course");
+        TextField aggregate4TextField = new TextField();
+        aggregate4TextField.setMaxWidth(80);
+        aggregate4TextField.setPromptText("aggregate %");
+        aggregate4TextField.setDisable(true);
         course4TextField.setDisable(true);
         TextField degree4TextField = new TextField();
         degree4TextField.setPromptText("enter name of institution");
@@ -246,23 +261,27 @@ public class PersonalityTabScene {
         //GridPane.setConstraints(educationLabel,0,0);
         GridPane.setConstraints(degree1ComboBox,0,1);
         GridPane.setConstraints(course1TextField,1,1);
-        GridPane.setConstraints(degree1TextField,2,1);
-        GridPane.setConstraints(degree1ErrorText,3,1);
+        GridPane.setConstraints(aggregate1TextField,2,1);
+        GridPane.setConstraints(degree1TextField,3,1);
+        GridPane.setConstraints(degree1ErrorText,4,1);
 
         GridPane.setConstraints(degree2ComboBox,0,2);
         GridPane.setConstraints(course2TextField,1,2);
-        GridPane.setConstraints(degree2TextField,2,2);
-        GridPane.setConstraints(degree2ErrorText,3,2);
+        GridPane.setConstraints(aggregate2TextField,2,2);
+        GridPane.setConstraints(degree2TextField,3,2);
+        GridPane.setConstraints(degree2ErrorText,4,2);
 
         GridPane.setConstraints(degree3ComboBox,0,3);
         GridPane.setConstraints(course3TextField,1,3);
-        GridPane.setConstraints(degree3TextField,2,3);
-        GridPane.setConstraints(degree3ErrorText,3,3);
+        GridPane.setConstraints(aggregate3TextField,2,3);
+        GridPane.setConstraints(degree3TextField,3,3);
+        GridPane.setConstraints(degree3ErrorText,4,3);
 
         GridPane.setConstraints(degree4ComboBox,0,4);
         GridPane.setConstraints(course4TextField,1,4);
-        GridPane.setConstraints(degree4TextField,2,4);
-        GridPane.setConstraints(degree4ErrorText,3,4);
+        GridPane.setConstraints(aggregate4TextField,2,4);
+        GridPane.setConstraints(degree4TextField,3,4);
+        GridPane.setConstraints(degree4ErrorText,4,4);
 
 
         emailLabel.setAlignment(Pos.CENTER);
@@ -271,10 +290,10 @@ public class PersonalityTabScene {
         educationGridPane.setHgap(7);
         educationGridPane.setVgap(20);
         educationGridPane.getChildren().addAll(
-                degree1ComboBox,course1TextField,degree1TextField,degree1ErrorText,
-                degree2ComboBox,course2TextField,degree2TextField,degree2ErrorText,
-                degree3ComboBox,course3TextField,degree3TextField,degree3ErrorText,
-                degree4ComboBox,course4TextField,degree4TextField,degree4ErrorText);
+                degree1ComboBox,course1TextField,aggregate1TextField,degree1TextField,degree1ErrorText,
+                degree2ComboBox,course2TextField,aggregate2TextField,degree2TextField,degree2ErrorText,
+                degree3ComboBox,course3TextField,aggregate3TextField,degree3TextField,degree3ErrorText,
+                degree4ComboBox,course4TextField,aggregate4TextField,degree4TextField,degree4ErrorText);
 
 
         VBox.setMargin(educationGridPane,new Insets(0,0,0,40));
@@ -430,10 +449,10 @@ public class PersonalityTabScene {
                 contactTextField,
                 selectDayComboBox,selectMonthComboBox,selectYearComboBox,
                 bioTextArea,
-                degree1ComboBox,course1TextField,degree1TextField,
-                degree2ComboBox,course2TextField,degree2TextField,
-                degree3ComboBox,course3TextField,degree3TextField,
-                degree4ComboBox,course4TextField,degree4TextField,
+                degree1ComboBox,course1TextField,aggregate1TextField,degree1TextField,
+                degree2ComboBox,course2TextField,aggregate2TextField,degree2TextField,
+                degree3ComboBox,course3TextField,aggregate3TextField,degree3TextField,
+                degree4ComboBox,course4TextField,aggregate4TextField,degree4TextField,
                 homeTownTextField,
                 currentCityTextField,
                 stateTextField,
@@ -451,10 +470,10 @@ public class PersonalityTabScene {
                 eMailTextField,
                 contactTextField,
                 selectDayComboBox,selectMonthComboBox,selectYearComboBox,
-                degree1ComboBox,course1TextField,degree1TextField,
-                degree2ComboBox,course2TextField,degree2TextField,
-                degree3ComboBox,course3TextField,degree3TextField,
-                degree4ComboBox,course4TextField,degree4TextField,
+                degree1ComboBox,course1TextField,aggregate1TextField,degree1TextField,
+                degree2ComboBox,course2TextField,aggregate2TextField,degree2TextField,
+                degree3ComboBox,course3TextField,aggregate3TextField,degree3TextField,
+                degree4ComboBox,course4TextField,aggregate4TextField,degree4TextField,
                 acceptCheckBox,
                 saveButton,
                 firstNameErrorText,lastNameErrorText,

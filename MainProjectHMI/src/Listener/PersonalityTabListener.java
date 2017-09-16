@@ -46,15 +46,19 @@ public class PersonalityTabListener {
                               TextArea bioTextArea,
                               ComboBox<String> degree1ComboBox,
                               TextField course1TextField,
+                              TextField aggregate1TextField,
                               TextField degree1TextField,
                               ComboBox<String> degree2ComboBox,
                               TextField course2TextField,
+                              TextField aggregate2TextField,
                               TextField degree2TextField,
                               ComboBox<String> degree3ComboBox,
                               TextField course3TextField,
+                              TextField aggregate3TextField,
                               TextField degree3TextField,
                               ComboBox<String> degree4ComboBox,
                               TextField course4TextField,
+                              TextField aggregate4TextField,
                               TextField degree4TextField,
                               TextField homeTownTextField,
                               TextField currentCityTextField,
@@ -125,21 +129,25 @@ public class PersonalityTabListener {
         if(educationsList.size()>0){
             degree1ComboBox.setValue(educationsList.get(0).getDegree());
             course1TextField.setText(educationsList.get(0).getCourse());
+            aggregate1TextField.setText(educationsList.get(0).getAggregatemarks());
             degree1TextField.setText(educationsList.get(0).getInstitution());
         }
         if(educationsList.size()>1){
             degree2ComboBox.setValue(educationsList.get(1).getDegree());
             course2TextField.setText(educationsList.get(1).getCourse());
+            aggregate2TextField.setText(educationsList.get(1).getAggregatemarks());
             degree2TextField.setText(educationsList.get(1).getInstitution());
         }
         if(educationsList.size()>2){
             degree3ComboBox.setValue(educationsList.get(2).getDegree());
             course3TextField.setText(educationsList.get(2).getCourse());
+            aggregate3TextField.setText(educationsList.get(2).getAggregatemarks());
             degree3TextField.setText(educationsList.get(2).getInstitution());
         }
         if(educationsList.size()>3){
             degree4ComboBox.setValue(educationsList.get(3).getDegree());
             course4TextField.setText(educationsList.get(3).getCourse());
+            aggregate4TextField.setText(educationsList.get(3).getAggregatemarks());
             degree4TextField.setText(educationsList.get(3).getInstitution());
         }
 
@@ -188,13 +196,13 @@ public class PersonalityTabListener {
         saveButton.setOnAction(e -> {
             ArrayList<Education> educationList = new ArrayList<>(4);
             if(degree1TextField.getText()!=null)
-                educationList.add(new Education(degree1ComboBox.getValue(),course1TextField.getText(),degree1TextField.getText()));
+                educationList.add(new Education(degree1ComboBox.getValue(),course1TextField.getText(),aggregate1TextField.getText(),degree1TextField.getText()));
             if(degree2TextField.getText()!=null)
-                educationList.add(new Education(degree2ComboBox.getValue(),course2TextField.getText(),degree2TextField.getText()));
+                educationList.add(new Education(degree2ComboBox.getValue(),course2TextField.getText(),aggregate2TextField.getText(),degree2TextField.getText()));
             if(degree3TextField.getText()!=null)
-                educationList.add(new Education(degree3ComboBox.getValue(),course3TextField.getText(),degree3TextField.getText()));
+                educationList.add(new Education(degree3ComboBox.getValue(),course3TextField.getText(),aggregate3TextField.getText(),degree3TextField.getText()));
             if(degree4TextField.getText()!=null)
-                educationList.add(new Education(degree4ComboBox.getValue(),course4TextField.getText(),degree4TextField.getText()));
+                educationList.add(new Education(degree4ComboBox.getValue(),course4TextField.getText(),aggregate4TextField.getText(),degree4TextField.getText()));
 
             //updating education in database.................
             if(EducationDAO.getEducationDAOInstance().ifEducationExists(user.getUserName())){

@@ -11,15 +11,17 @@ import java.util.ArrayList;
 public class Education {
     private String degree;
     private String course;
+    private String aggregatemarks;
     private String institution;
 
     public Education() {
         //empty constructor was made intentionally.
     }
 
-    public Education(String degree, String course, String institution) {
+    public Education(String degree, String course, String aggregatemarks, String institution) {
         this.degree = degree;
         this.course = course;
+        this.aggregatemarks = aggregatemarks;
         this.institution = institution;
     }
 
@@ -56,5 +58,13 @@ public class Education {
 
     public void setInstitution(String institution) {
         this.institution = institution;
+    }
+
+    public String getAggregatemarks() {
+        return aggregatemarks;
+    }
+
+    public void setAggregatemarks(String aggregatemarks) {
+        this.aggregatemarks = aggregatemarks;
     }
 }

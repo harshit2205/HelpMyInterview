@@ -41,6 +41,7 @@ public class EducationDAO {
             while (rs.next()) {
                 education = new Education(rs.getString("degree"),
                         rs.getString("courseName"),
+                        rs.getString("aggregate"),
                         rs.getString("institution"));
                 educationList.add(education);
             }
@@ -51,7 +52,7 @@ public class EducationDAO {
     }
 
     public void insertEducation(ArrayList<Education> educationlist, String userName) {
-        String query = "INSERT INTO education ( userName, degree, courseName, institution, eduIndex)" + " VALUES(?,?,?,?,?)";
+        String query = "INSERT INTO education ( userName, degree, courseName, institution, eduIndex, aggregate)" + " VALUES(?,?,?,?,?,?)";
         System.out.println("insert education: " + query);
         PreparedStatement preparedStmt = null;
         for (int i = 0; i < educationlist.size(); i++) {
@@ -61,9 +62,9 @@ public class EducationDAO {
                 preparedStmt.setString(2, educationlist.get(i).getDegree());
                 preparedStmt.setString(3, educationlist.get(i).getCourse());
                 preparedStmt.setString(4, educationlist.get(i).getInstitution());
+                preparedStmt.setString(6, educationlist.get(i).getAggregatemarks());
                 preparedStmt.setInt(5, i);
                 preparedStmt.execute();
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -76,10 +77,10 @@ public class EducationDAO {
             String query = "UPDATE education SET degree = \'" + educationlist.get(i).getDegree() +
                     "\', courseName = \'" + educationlist.get(i).getCourse() +
                     "\', institution = \'" + educationlist.get(i).getInstitution() +
+                    "\', aggregate = \'" + educationlist.get(i).getAggregatemarks() +
                     "\' WHERE userName = \'" + userName + "\' AND eduIndex = " + i + ";";
 
             System.out.println("update education: " + query);
-
             try {
                 statement.executeUpdate(query);
             } catch (SQLException e) {
@@ -90,7 +91,7 @@ public class EducationDAO {
 
     public String findUserName(String userName) {
         String name = "";
-        String query = "SELECT * FROM education WHERE userName = \'" + userName + "\';";
+        String query = "SELECT userName FROM education WHERE userName = \'" + userName + "\';";
         System.out.println("find education row: " + query);
 
         ResultSet rs = null;

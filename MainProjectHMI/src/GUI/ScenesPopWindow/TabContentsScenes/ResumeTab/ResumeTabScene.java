@@ -19,9 +19,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-/**
- * Created by staLker on 02-07-2017.
- */
+
 public class ResumeTabScene {
     private static User user;
 
@@ -182,6 +180,7 @@ public class ResumeTabScene {
 
 
 
+        Button saveInfoButton = new Button("SAVE");
 
 
         Button generateResumeButton = new Button("Generate resume!");
