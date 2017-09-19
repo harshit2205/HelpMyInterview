@@ -1,5 +1,6 @@
 package GUI.Scenes;
 
+import ResumeFormat.Format1;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -75,6 +76,9 @@ public class ResumeTemplateScene {
         templateGridPane.getChildren().addAll(templateOne,templateTwo,templateThree,templateFour,templateFive,templateSix);
 
         Button generateButton = new Button("Generate!");
+        generateButton.setOnAction(e->{
+             new Format1();
+        });
 
         VBox root = new VBox(10);
         root.getChildren().addAll(hBoxBackButton,titleTextHBox,templateGridPane,generateButton);

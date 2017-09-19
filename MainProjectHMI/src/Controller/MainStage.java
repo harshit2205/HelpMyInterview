@@ -4,6 +4,8 @@ package Controller; /**
 
 import GUI.Scenes.*;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainStage extends Application {
@@ -18,9 +20,6 @@ public class MainStage extends Application {
         window.setResizable(false);
         window.setTitle("Help My Interview!");
         //window.setOpacity(0.93);
-
-
-
     }
 
 
