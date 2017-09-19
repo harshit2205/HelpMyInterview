@@ -2,6 +2,7 @@ package GUI.ScenesPopWindow.TabContentsScenes.ResumeTab;
 
 import Beans.Models.User;
 import Beans.Models.UserLab;
+import DAO.JobDAO;
 import GUI.Scenes.OnUserLogInScene;
 import Beans.Models.Job;
 import javafx.geometry.Insets;
@@ -87,7 +88,13 @@ public class AddJobStage {
 
         saveButton.setOnAction(e ->{
             isSavePressed = true;
-            user.getJobArrayList().add(new Job(jobProfileTextField.getText(),jobOrganizationTextField.getText(),workFromHomeJobCheckbox.isSelected(),jobLocationTextField.getText(),jobDescriptionTextArea.getText()));
+            Job job = new Job(jobProfileTextField.getText(),
+                    jobOrganizationTextField.getText(),
+                    workFromHomeJobCheckbox.isSelected(),
+                    jobLocationTextField.getText(),
+                    jobDescriptionTextArea.getText());
+            user.getJobArrayList().add(job);
+            JobDAO.getJobDAOInstance().insertJob(job,userName);
             window.close();
         });
 

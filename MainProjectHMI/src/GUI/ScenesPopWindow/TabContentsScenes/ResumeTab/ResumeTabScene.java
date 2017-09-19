@@ -1,7 +1,6 @@
 package GUI.ScenesPopWindow.TabContentsScenes.ResumeTab;
 
 import Beans.Models.User;
-import Beans.Models.UserLab;
 import GUI.Scenes.OnUserLogInScene;
 import GUI.Scenes.ResumeTemplateScene;
 import javafx.beans.value.ChangeListener;
@@ -25,7 +24,6 @@ public class ResumeTabScene {
 
     public static Scene getScene(){
 
-        UserLab userLab = UserLab.get();
         user = OnUserLogInScene.getLoggedInUser();
 
 
@@ -180,9 +178,6 @@ public class ResumeTabScene {
 
 
 
-        Button saveInfoButton = new Button("SAVE");
-
-
         Button generateResumeButton = new Button("Generate resume!");
         generateResumeButton.setOnAction(event -> {
             OnUserLogInScene.getWindow().setScene(ResumeTemplateScene.getScene());
@@ -200,6 +195,7 @@ public class ResumeTabScene {
                 onelinerLabelHBox,oneLinerTextArea,
                 generateResumeButton
         );
+
         allIn.setMinWidth(580);
         allIn.setMinHeight(10000);
         allIn.setAlignment(Pos.TOP_CENTER);

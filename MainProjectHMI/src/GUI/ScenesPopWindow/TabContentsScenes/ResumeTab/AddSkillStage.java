@@ -2,6 +2,8 @@ package GUI.ScenesPopWindow.TabContentsScenes.ResumeTab;
 
 import Beans.Models.User;
 import Beans.Models.UserLab;
+import DAO.SkillDAO;
+import DAO.TrainingDAO;
 import GUI.Scenes.OnUserLogInScene;
 import Beans.Models.ExperienceLevel;
 import Beans.Models.Skill;
@@ -21,7 +23,6 @@ import javafx.stage.Stage;
 public class AddSkillStage {
     private static boolean isSavePressed = false;
     public static boolean show(){
-        UserLab userLab = UserLab.get();
         String userName = OnUserLogInScene.getUserName();
         User user = OnUserLogInScene.getLoggedInUser();
 
@@ -52,9 +53,10 @@ public class AddSkillStage {
             if(skillNameTextField.getText().intern()!=""){
                 isSavePressed = true;
                 user.getSkillArrayList().add(new Skill(skillNameTextField.getText(),experienceLevelComboBox.getValue()));
-            }
+                    SkillDAO.getSkillDAOInstance().insertSkill(
+                            new Skill(skillNameTextField.getText(),experienceLevelComboBox.getValue()),user.getUserName());
             window.close();
-        });
+        }});
 
 
 

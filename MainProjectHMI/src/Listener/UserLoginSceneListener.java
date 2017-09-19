@@ -1,6 +1,6 @@
 package Listener;
 
-import DAO.UserDAO;
+import DAO.*;
 import Beans.Models.User;
 import Beans.Models.UserLab;
 import GUI.Scenes.ManagerLoginScene;
@@ -25,7 +25,6 @@ import static Beans.Utils.ValidationUtils.formatErrorText;
 public class UserLoginSceneListener {
 
     public static void listen(Stage window, TextField inputUsername, Text userNameErrorText, PasswordField inputPassword, Text passwordErrorText, Text entryErrorText, Button loginButton, Button signUpButton, MenuItem managerLoginMenuItem, MenuItem aboutMenuItem, MenuItem helpMenuItem, MenuItem exitMenuItem) {
-        UserLab userLab = UserLab.get();
 
 
         formatErrorText(userNameErrorText);
@@ -80,6 +79,16 @@ public class UserLoginSceneListener {
             User loggedInUser = UserDAO.getUserDAOInstance().findUser(inputUsername.getText());
             if(loggedInUser.getPassword().intern() == inputPassword.getText().intern()){
                 OnUserLogInScene.setUserName(inputUsername.getText(),loggedInUser);
+                loggedInUser.setSkillArrayList(SkillDAO.getSkillDAOInstance().getSkill(inputUsername.getText()));
+                System.out.println("skills list set");
+                loggedInUser.setTrainingsArrayList(TrainingDAO.getTrainingDAOInstance().getTraining(inputUsername.getText()));
+                System.out.println("training list set");
+                loggedInUser.setProjectArrayList(ProjectDAO.getProjectDAOInstance().getProject(inputUsername.getText()));
+                System.out.println("project list set");
+                loggedInUser.setInternshipArrayList(InternshipDAO.getInternshipDAOInstance().getInternship(inputUsername.getText()));
+                System.out.println("internship list set");
+                loggedInUser.setJobArrayList(JobDAO.getJobDAOInstance().getJob(inputUsername.getText()));
+                System.out.println("job list set");
                 OnUserLogInScene.passControl(window);
             }
             else {

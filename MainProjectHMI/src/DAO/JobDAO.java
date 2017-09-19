@@ -48,25 +48,22 @@ public class JobDAO {
         return jobList;
     }
 
-    public void insertJob(ArrayList<Job> jobList, String userName){
+    public void insertJob(Job job, String userName){
         String query = "INSERT INTO job ( userName, profile, organization, wfhome, location, description)" + " VALUES(?,?,?,?,?,?)";
         System.out.println("insert job: " + query);
         PreparedStatement preparedStmt = null;
-        for (int i = 0; i < jobList.size(); i++) {
             try {
                 preparedStmt = connection.prepareStatement(query);
                 preparedStmt.setString(1, userName);
-                preparedStmt.setString(2, jobList.get(i).getProfile());
-                preparedStmt.setString(3, jobList.get(i).getOrganization());
-                preparedStmt.setBoolean(4, jobList.get(i).isWorkFromHome());
-                preparedStmt.setString(6, jobList.get(i).getLocation());
-                preparedStmt.setString(5, jobList.get(i).getDescription());
+                preparedStmt.setString(2, job.getProfile());
+                preparedStmt.setString(3, job.getOrganization());
+                preparedStmt.setBoolean(4, job.isWorkFromHome());
+                preparedStmt.setString(6, job.getLocation());
+                preparedStmt.setString(5, job.getDescription());
                 preparedStmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-
     }
 
     public void updateJob(ArrayList<Job> jobList, String userName){

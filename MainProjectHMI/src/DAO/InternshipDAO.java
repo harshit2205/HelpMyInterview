@@ -5,9 +5,6 @@ import Beans.Models.Internship;
 import java.sql.*;
 import java.util.ArrayList;
 
-/**
- * Created by USER on 9/15/2017.
- */
 public class InternshipDAO {
 
     private static InternshipDAO internshipDAO;
@@ -51,24 +48,22 @@ public class InternshipDAO {
         return internshipList;
     }
 
-    public void insertInternship(ArrayList<Internship> internshipList, String userName){
+    public void insertInternship(Internship internship, String userName){
         String query = "INSERT INTO internship ( userName, title, organization, location, workFromHome, description)" + " VALUES(?,?,?,?,?,?)";
         System.out.println("insert internship: " + query);
         PreparedStatement preparedStmt = null;
-        for (int i = 0; i < internshipList.size(); i++) {
             try {
                 preparedStmt = connection.prepareStatement(query);
                 preparedStmt.setString(1, userName);
-                preparedStmt.setString(2, internshipList.get(i).getTitleOfInternship());
-                preparedStmt.setString(3, internshipList.get(i).getOrganization());
-                preparedStmt.setString(4, internshipList.get(i).getLocation());
-                preparedStmt.setBoolean(6, internshipList.get(i).isWorkFromHome());
-                preparedStmt.setString(5, internshipList.get(i).getDescription());
+                preparedStmt.setString(2, internship.getTitleOfInternship());
+                preparedStmt.setString(3, internship.getOrganization());
+                preparedStmt.setString(4, internship.getLocation());
+                preparedStmt.setBoolean(5, internship.isWorkFromHome());
+                preparedStmt.setString(6, internship.getDescription());
                 preparedStmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
     }
 
     public void updateInternship(ArrayList<Internship> internshipList, String userName){

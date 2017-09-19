@@ -2,6 +2,7 @@ package GUI.ScenesPopWindow.TabContentsScenes.ResumeTab;
 
 import Beans.Models.User;
 import Beans.Models.UserLab;
+import DAO.TrainingDAO;
 import GUI.Scenes.OnUserLogInScene;
 import Beans.Models.Training;
 import javafx.geometry.Insets;
@@ -21,7 +22,6 @@ import javafx.stage.Stage;
 public class AddTrainingStage {
     private static boolean isSavePressed = false;
     public static boolean show(){
-        UserLab userLab = UserLab.get();
         String userName = OnUserLogInScene.getUserName();
         User user = OnUserLogInScene.getLoggedInUser();
 
@@ -89,7 +89,13 @@ public class AddTrainingStage {
         saveButton.setOnAction(event -> {
             if(trainingProgramTextField.getText().intern()!=""){
                 isSavePressed = true;
-                user.getTrainingsArrayList().add(new Training(trainingProgramTextField.getText(),organizationTextField.getText(),onlineTrainingCheckbox.isSelected(),locationTextField.getText(),descriptionTextArea.getText()));
+                Training training = new Training(trainingProgramTextField.getText(),
+                        organizationTextField.getText(),
+                        onlineTrainingCheckbox.isSelected(),
+                        locationTextField.getText(),
+                        descriptionTextArea.getText());
+                user.getTrainingsArrayList().add(training);
+                TrainingDAO.getTrainingDAOInstance().insertTraining(training,userName);
             }
             window.close();
         });

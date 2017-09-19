@@ -2,6 +2,7 @@ package GUI.ScenesPopWindow.TabContentsScenes.ResumeTab;
 
 import Beans.Models.User;
 import Beans.Models.UserLab;
+import DAO.ProjectDAO;
 import GUI.Scenes.OnUserLogInScene;
 import Beans.Models.Project;
 import javafx.geometry.Insets;
@@ -71,8 +72,13 @@ public class AddProjectStage {
 
 
         saveButton.setOnAction(event -> {
+            Project project = new Project(projectTitleTextField.getText(),
+                    projectLinkTextField.getText(),
+                    isProjectOnGoingCheckBox.isSelected(),
+                    projectDescriptionTextArea.getText());
             isSavePressed = true;
-            user.getProjectArrayList().add(new Project(projectTitleTextField.getText(),projectLinkTextField.getText(),isProjectOnGoingCheckBox.isSelected(),projectDescriptionTextArea.getText()));
+            user.getProjectArrayList().add(project);
+            ProjectDAO.getProjectDAOInstance().insertProject(project,userName);
             window.close();
         });
 

@@ -53,25 +53,23 @@ public class TrainingDAO {
         return trainingList;
     }
 
-    public void insertTraining(ArrayList<Training> trainingList, String userName){
+    public void insertTraining(Training training, String userName){
         String query = "INSERT INTO training ( userName, trainingName, organizationName, trainingOnline, trainingLocation, description)"
                 + " VALUES(?,?,?,?,?,?)";
         System.out.println("insert training: " + query);
         PreparedStatement preparedStmt = null;
-        for (int i = 0; i < trainingList.size(); i++) {
             try {
                 preparedStmt = connection.prepareStatement(query);
                 preparedStmt.setString(1, userName);
-                preparedStmt.setString(2, trainingList.get(i).getTrainingName());
-                preparedStmt.setString(3, trainingList.get(i).getOrganizationName());
-                preparedStmt.setBoolean(4, trainingList.get(i).isTrainingOnline());
-                preparedStmt.setString(6, trainingList.get(i).getTrainingLocation());
-                preparedStmt.setString(5, trainingList.get(i).getDescription());
+                preparedStmt.setString(2, training.getTrainingName());
+                preparedStmt.setString(3, training.getOrganizationName());
+                preparedStmt.setBoolean(4, training.isTrainingOnline());
+                preparedStmt.setString(6, training.getTrainingLocation());
+                preparedStmt.setString(5, training.getDescription());
                 preparedStmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
     }
 
     public void updateTraining(ArrayList<Training> trainingList, String userName){

@@ -2,6 +2,7 @@ package GUI.ScenesPopWindow.TabContentsScenes.ResumeTab;
 
 import Beans.Models.User;
 import Beans.Models.UserLab;
+import DAO.InternshipDAO;
 import GUI.Scenes.OnUserLogInScene;
 import Beans.Models.Internship;
 import javafx.geometry.Insets;
@@ -81,7 +82,13 @@ public class AddInternshipStage {
 
         saveButton.setOnAction(e ->{
             isSavePressed = true;
-            user.getInternshipArrayList().add(new Internship(internshipTitleTextField.getText(),internshipOrganizationTextField.getText(),internshipLocationTextField.getText(),workFromHomeInternshipCheckbox.isSelected(),internshipDescriptionTextArea.getText()));
+            Internship internship =  new Internship(internshipTitleTextField.getText(),
+                    internshipOrganizationTextField.getText(),
+                    internshipLocationTextField.getText(),
+                    workFromHomeInternshipCheckbox.isSelected(),
+                    internshipDescriptionTextArea.getText());
+            user.getInternshipArrayList().add(internship);
+            InternshipDAO.getInternshipDAOInstance().insertInternship(internship,userName);
             window.close();
         });
 

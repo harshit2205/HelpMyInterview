@@ -52,23 +52,21 @@ public class ProjectDAO {
         return projectList;
     }
 
-    public void insertProject(ArrayList<Project> projectList, String userName){
+    public void insertProject(Project project, String userName){
         String query = "INSERT INTO project ( userName, projectTitle, projectURL, projectOnGoing, projectDescription)" + " VALUES(?,?,?,?,?)";
         System.out.println("insert project: " + query);
         PreparedStatement preparedStmt = null;
-        for (int i = 0; i < projectList.size(); i++) {
             try {
                 preparedStmt = connection.prepareStatement(query);
                 preparedStmt.setString(1, userName);
-                preparedStmt.setString(2, projectList.get(i).getProjectTitle());
-                preparedStmt.setString(3, projectList.get(i).getProjectURL());
-                preparedStmt.setBoolean(4, projectList.get(i).isProjectOnGoing());
-                preparedStmt.setString(6, projectList.get(i).getProjectDescription());
+                preparedStmt.setString(2, project.getProjectTitle());
+                preparedStmt.setString(3, project.getProjectURL());
+                preparedStmt.setBoolean(4, project.isProjectOnGoing());
+                preparedStmt.setString(5, project.getProjectDescription());
                 preparedStmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
     }
 
     public void updateProject(ArrayList<Project> projectList, String userName){
